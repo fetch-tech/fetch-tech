@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import Fetch_Tech_Logo from "../../images/Fetch_Tech_Logo.png";
 import {Link} from "react-router-dom";
 import './Navbar.css';
+import SearchBar from "../Search/SearchBar";
 
 
 export default class Navbar extends Component {
@@ -24,7 +25,7 @@ export default class Navbar extends Component {
               <Link to="/funtech" className="Nlinks">
                 Fun Tech
               </Link>
-              <div>Search</div>
+              <div><SearchBar /></div>
               <Link to="/bookmark" className="Nlinks">
                 Book Mark
               </Link>
