@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import News_Tweet from '../News_Tweet/News_Tweet';
 import Trending from '../Trending/Trending';
 import Navbar from '../Navbar/Navbar';
+import Traffic_Light from '../Traffic_Light/Traffic_Light';
 //import {Link} from 'react-router-dom';
 
 
@@ -14,6 +15,7 @@ export default class Gen_Tech extends Component {
                 <div><Navbar/></div>
                 <div><Trending/></div>
                 <div><News_Tweet/></div>
+                <div><Traffic_Light/></div>
             </div>
         )
     }

@@ -15,14 +15,14 @@ export default class Navbar extends Component {
               </Link>
             </div>
             <div className="nav_wrap">
-              <Link to="/gentech" className="Nlinks">
-                Top Tech
+              <Link to="/" className="Nlinks">
+                Gen Tech
               </Link>
               <Link to="/devtech" className="Nlinks">
                 Dev Tech
               </Link>
               <Link to="/funtech" className="Nlinks">
-                Tech Humor
+                Fun Tech
               </Link>
               <div>Search</div>
               <Link to="/bookmark" className="Nlinks">
