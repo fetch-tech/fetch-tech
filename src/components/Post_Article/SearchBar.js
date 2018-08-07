@@ -1,50 +1,43 @@
 import React, { Component } from "react";
 import axios from "axios";
+import data from "./data";
 
-const { API_KEY } = process.env;
-const API_URL = "http://api.musicgraph.com/api/v2/artist/suggest";
+class SearchBar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      filterString: ""
+    };
+  }
 
-class Search extends Component {
-  state = {
-    query: "",
-    results: []
-  };
-
-  getInfo = () => {
-    axios.get(`https://swapi.co/api/people/1`).then(({ results }) => {
-      this.setState({
-        results: results.data
-      });
-    });
-  };
-
-  handleInputChange = () => {
-    this.setState(
-      {
-        query: this.search.value
-      },
-      () => {
-        if (this.state.query && this.state.query.length > 1) {
-          if (this.state.query.length % 2 === 0) {
-            this.getInfo();
-          }
-        }
-      }
-    );
-  };
-
+  handleFilterChange(filter) {
+    this.setState({ filterString: filter });
+  }
   render() {
+    let displaySearched = data
+      .filter((element, index) => {
+        return `${element.firstName} ${element.lastName}`.includes(
+          this.state.filterString // Dose first and last name include what the typed in ?
+        );
+      })
+      .map((element, index) => {
+        //if so, map over it.
+        return (
+          <h2 key={index}>{element.firstName + " " + element.lastName}</h2>
+        );
+      });
+
     return (
-      <form>
+      <div>
         <input
-          placeholder="Search for..."
-          ref={input => (this.search = input)}
-          onChange={this.handleInputChange}
+          onChange={e => this.handleFilterChange(e.target.value)}
+          type="text"
+          placeholder="Search For..."
         />
-        <p>{this.state.query}</p>
-      </form>
+        {displaySearched}
+      </div>
     );
   }
 }
 
-export default Search;
+export default SearchBar;

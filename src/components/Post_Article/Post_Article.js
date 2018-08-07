@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
+import SearchBar from "./SearchBar";
+import AddPost from "./AddPost";
 
 const options = [
   { value: "one", label: "One" },
@@ -70,6 +72,10 @@ class NewPost extends Component {
             />
           </form>
         )}
+        <AddPost />
+        <br />
+        <br />
+        <SearchBar />
       </div>
     );
   }
