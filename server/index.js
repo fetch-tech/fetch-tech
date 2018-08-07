@@ -5,6 +5,7 @@ const { json } = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 const session = require('express-session');
+const users_controller = require('./controllers/users_controller');
 
 // Sets up express server
 const app = express();
@@ -29,6 +30,9 @@ app.use(
     }
   })
 );
+
+// Gets a user form users table in database
+app.get('/api/users/:id', users_controller.getUser);
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
