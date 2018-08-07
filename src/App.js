@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+import React, { Component } from "react";
+
+import "./App.css";
+import "./components/Post_Article/post_article.css";
+
+import Post_Article from "./components/Post_Article/Post_Article";
+import SearchBar from "./components/Post_Article/SearchBar";
+=======
 import React, { Component } from 'react';
 
 import { Provider } from 'react-redux';
@@ -7,10 +16,17 @@ import routes from './router';
 
 
 import './App.css';
+>>>>>>> master
 
 class App extends Component {
   render() {
     return (
+<<<<<<< HEAD
+      <div>
+        <Post_Article />
+        <SearchBar />
+      </div>
+=======
 
 
       <Provider store={ store }>
@@ -21,6 +37,7 @@ class App extends Component {
         </HashRouter>
       </Provider>
 
+>>>>>>> master
     );
   }
 }
