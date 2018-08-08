@@ -1,0 +1,29 @@
+.mainTrending{
+    display: flex;
+    float: right;
+}
+.trending{
+display:flex;
+    font-size: 20px;
+    margin-top: 20px;
+    float:right;
+}
+
+.trending2{
+    display: flex;
+    font-size: 20px;
+    float: right;
+    margin-top: 100px;
+    float:right;
+}
+
+.trending_img{
+    display: flex;
+    float: right;
+    border-left: 1px solid red;
+    border-bottom: 1px solid red;
+    display:flex;
+    height:60px;
+    width: 800px;
+    margin-top: 50px;
+}

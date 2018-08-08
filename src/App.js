@@ -25,10 +25,7 @@ class App extends Component {
       <HashRouter>
         <div className="App">
          <div>{routes}</div>
-         <div>
-        <Post_Article />
-        
-      </div>
+         
         </div>
         </HashRouter>
       </Provider>
