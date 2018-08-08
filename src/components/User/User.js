@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
-import Navbar from '../Navbar/Navbar';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import { getUserClaps } from "../../redux/ducks/usersReducer";
 
 class User extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount = () => {
+    const { getUserClaps } = this.props;
+
+    // getUserClaps();
+  };
+
   render() {
+    console.log("props: ", this.props);
+
     return (
       <div>
-        <Navbar/>
         <div>
           <h1>USER PROFILE</h1>
         </div>
@@ -24,7 +33,7 @@ class User extends Component {
           <p>Following: </p>
         </div>
         <div className="claps">
-          <p>Number of claps: </p>
+          <p>Article Claps: </p>
         </div>
         <div className="bookmarks">
           <h2>Bookmarked Articles: </h2>
@@ -37,4 +46,11 @@ class User extends Component {
   }
 }
 
-export default User;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  { getUserClaps }
+)(User);

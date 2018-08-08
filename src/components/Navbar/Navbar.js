@@ -1,44 +1,43 @@
-import React, { Component } from "react";
-import FETCH_TECH_LOGO from "../../images/FETCH_TECH_LOGO.png";
-import { Link } from "react-router-dom";
+import { Avatar, Button, Card, Input } from "antd";
+import React from "react";
 import "./Navbar.css";
-import SearchBar from "../Search/SearchBar";
-import Post_Article from "../Post_Article/Post_Article";
-import BOOKMARKTRANS from "../../images/BOOKMARKTRANS.png";
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <div className="mainNav">
-        <div className="logo">
-          <Link to="/">
-            <img src={FETCH_TECH_LOGO} alt="logo" />
-          </Link>
-        </div>
-        <div className="nav_wrap">
-          <Link to="/" className="Nlinks">
-            Gen Tech
-          </Link>
-          <Link to="/devtech" className="Nlinks">
-            Dev Tech
-          </Link>
-          <Link to="/funtech" className="Nlinks">
-            Fun Tech
-          </Link>
-          <div className="Nlinks">
-            <SearchBar />
+const Search = Input.Search;
+
+export default () => {
+  return (
+    <div className="nav">
+      <Card
+        hoverable
+        style={{
+          width: "100vw",
+          color: "red",
+          cursor: "pointer",
+          height: "80px"
+        }}
+      >
+        <div className="nav-items">
+          <h4>Logo</h4>
+          <div className="navButtons">
+            <Button className="nav_btn">Trending Tech</Button>
+            <Button className="nav_btn">Dev Tech</Button>
+            <Button className="nav_btn">Entertainment</Button>
           </div>
-          <Link to="/bookmark" className="Nlinks">
-            <img src={BOOKMARKTRANS} className="bookM" alt="bookmark" />
-          </Link>
-          <Link to="/profile" className="Nlinks">
-            Profile
-          </Link>
+          <div>
+            <Search
+              placeholder="input search text"
+              onSearch={value => console.log(value)}
+              style={{ width: 200, marginLeft: "-30%" }}
+            />
+            <Avatar
+              style={{ marginLeft: "15%" }}
+              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              size={36}
+              icon="user"
+            />
+          </div>
         </div>
-        <div>
-          <Post_Article />
-        </div>
-      </div>
-    );
-  }
-}
+      </Card>
+    </div>
+  );
+};
