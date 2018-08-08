@@ -20,6 +20,7 @@
     "prop-types": "^15.6.2",
     "puppeteer": "^1.6.2",
     "react": "^16.4.2",
+    "react-clap": "0.0.1",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
