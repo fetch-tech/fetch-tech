@@ -1,0 +1,14 @@
+.stories_wrapper {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.stories_border {
+  margin: 10px;
+  display: flex;
+  border-left: solid;
+  border-bottom: solid;
+}
+.trending-opening {
+  margin-right: -11px;
+}
