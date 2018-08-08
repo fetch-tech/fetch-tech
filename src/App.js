@@ -1,19 +1,43 @@
+<<<<<<< HEAD
+import React, { Component } from "react";
+
+import "./App.css";
+import "./components/Post_Article/post_article.css";
+
+import Post_Article from "./components/Post_Article/Post_Article";
+import SearchBar from "./components/Post_Article/SearchBar";
+=======
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import { Provider } from 'react-redux';
+import {HashRouter} from "react-router-dom";
+import store from './redux/store';
+import routes from './router';
+
+
 import './App.css';
+>>>>>>> master
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+<<<<<<< HEAD
+      <div>
+        <Post_Article />
+        <SearchBar />
       </div>
+=======
+
+
+      <Provider store={ store }>
+      <HashRouter>
+        <div className="App">
+         <div>{routes}</div>
+        </div>
+        </HashRouter>
+      </Provider>
+
+>>>>>>> master
     );
   }
 }

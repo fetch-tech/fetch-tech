@@ -1,0 +1,30 @@
+.url-box {
+  width: 200px;
+  height: 31px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.select-box {
+  float: right;
+  margin-bottom: 40px;
+  margin-right: 5px;
+  width: 200px;
+  display: block;
+}
+
+.toggle-btn {
+  float: right;
+  margin-top: 100px;
+  margin-right: 100px;
+  margin-left: 10px;
+  height: 37px;
+  border-radius: 40px;
+  background-color: #343a40;
+  color: white;
+  display: block;
+}
+.div-form {
+  float: right;
+  margin-top: 100px;
+  display: block;
+}

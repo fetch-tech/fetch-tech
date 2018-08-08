@@ -13,11 +13,11 @@ import storiesReducer from './ducks/storiesReducer';
 
  const middleware = applyMiddleware(promiseMiddleWare());
 
- export default combineReducers({
+ const combinedReducers = combineReducers({
    articlesReducer,
    storiesReducer
  });
 
- const store = createStore(combineReducers, middleware);
+ const store = createStore(combinedReducers, middleware);
 
  export default store;
