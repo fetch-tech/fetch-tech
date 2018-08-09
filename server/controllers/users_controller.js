@@ -34,8 +34,20 @@ const getUserBookmarks = (req, res, next) => {
     .catch(err => res.status(500).send({ getUserBookmarksError: err }));
 };
 
+// Retrieves user's article comments
+const getUserComments = (req, res, next) => {
+  const { user_id } = req.params;
+
+  const db = req.app.get("db");
+
+  db.get_user_comments([user_id])
+    .then(userComments => res.status(200).send(userComments))
+    .catch(err => res.status(500).send({ getUserCommentsError: err }));
+};
+
 module.exports = {
   getUser,
   getUserClaps,
-  getUserBookmarks
+  getUserBookmarks,
+  getUserComments
 };

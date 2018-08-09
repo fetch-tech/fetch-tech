@@ -94,6 +94,9 @@ app.get("/api/users/claps/:user_id", users_controller.getUserClaps);
 // Gets list of user's bookmarked articles
 app.get("/api/users/bookmarks/:user_id", users_controller.getUserBookmarks);
 
+// Gets list of user's comments
+app.get("/api/users/comments/:user_id", users_controller.getUserComments);
+
 /****** USER ENDPOINTS ******/
 
 // Runs the server on localhost:3001

@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getUserClaps, getUserBookmarks } from "../../redux/ducks/usersReducer";
+import {
+  getUserClaps,
+  getUserBookmarks,
+  getUserComments
+} from "../../redux/ducks/usersReducer";
 import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
+import CommentArticles from "./CommentArticles";
 
 class User extends Component {
   constructor(props) {
@@ -11,16 +16,17 @@ class User extends Component {
   }
 
   componentDidMount = () => {
-    const { getUserClaps, getUserBookmarks } = this.props;
+    const { getUserClaps, getUserBookmarks, getUserComments } = this.props;
 
     getUserClaps("google-oauth2|105906369999808829473");
     getUserBookmarks("google-oauth2|105906369999808829473");
+    getUserComments("google-oauth2|105906369999808829473");
   };
 
   render() {
     console.log("props: ", this.props);
 
-    const { claps, bookmarks } = this.props.usersReducer;
+    const { claps, bookmarks, comments } = this.props.usersReducer;
 
     // Rendering articles user has clapped on
     const displayClappedArticles = claps.map((clap, i) => {
@@ -30,6 +36,11 @@ class User extends Component {
     // Rendering user's bookmarked articles
     const displayBookmarks = bookmarks.map((bookmark, i) => {
       return <BookmarkArticles uniqueKey={i} bookmark={bookmark} i={i} />;
+    });
+
+    // Rendering user's comments on articles
+    const displayComments = comments.map((comment, i) => {
+      return <CommentArticles uniqueKey={i} comment={comment} i={i} />;
     });
 
     return (
@@ -55,8 +66,9 @@ class User extends Component {
           <h2>Bookmarked Articles: </h2>
           {bookmarks && displayBookmarks}
         </div>
-        <div className="posts">
-          <h2>User's posts: </h2>
+        <div className="comments">
+          <h2>User's comments: </h2>
+          {comments && displayComments}
         </div>
       </div>
     );
@@ -69,5 +81,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserClaps, getUserBookmarks }
+  { getUserClaps, getUserBookmarks, getUserComments }
 )(User);

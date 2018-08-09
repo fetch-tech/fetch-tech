@@ -4,12 +4,14 @@ import axios from "axios";
 const initialState = {
   isLoading: false,
   claps: [],
-  bookmarks: []
+  bookmarks: [],
+  comments: []
 };
 
 /****** ACTION TYPES ******/
 const GET_USER_CLAPS = "GET_USER_CLAPS";
 const GET_USER_BOOKMARKS = "GET_USER_BOOKMARKS";
+const GET_USER_COMMENTS = "GET_USER_COMMENTS";
 
 /****** ACTION CREATORS ******/
 export function getUserClaps(user_id) {
@@ -23,6 +25,13 @@ export function getUserBookmarks(user_id) {
   return {
     type: GET_USER_BOOKMARKS,
     payload: axios.get(`/api/users/bookmarks/${user_id}`)
+  };
+}
+
+export function getUserComments(user_id) {
+  return {
+    type: GET_USER_COMMENTS,
+    payload: axios.get(`/api/users/comments/${user_id}`)
   };
 }
 
@@ -61,6 +70,25 @@ export default function usersReducer(state = initialState, action) {
         bookmarks: action.payload.data
       };
     case "GET_USER_BOOKMARKS_REJECTED":
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+      };
+
+    // GET USER COMMENTS
+    case "GET_USER_COMMENTS_PENDING":
+      return {
+        ...state,
+        isLoading: true
+      };
+    case "GET_USER_COMMENTS_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        comments: action.payload.data
+      };
+    case "GET_USER_COMMENTS_REJECTED":
       return {
         ...state,
         isLoading: true,
