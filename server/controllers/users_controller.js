@@ -5,13 +5,25 @@ const getUser = (req, res, next) => {
   // user_id from params
   const { id } = req.params;
 
-  const db = req.app.get('db');
+  const db = req.app.get("db");
 
   db.get_user([id])
     .then(user => res.status(200).send(user))
     .catch(err => res.status(500).send({ getUserError: err }));
-}
+};
+
+// Retrieves claps made on articles
+const getUserClaps = (req, res, next) => {
+  const { user_id } = req.params;
+
+  const db = req.app.get("db");
+
+  db.get_user_claps([user_id])
+    .then(userClaps => res.status(200).send(userClaps))
+    .catch(err => res.status(500).send({ getUserClapsError: err }));
+};
 
 module.exports = {
-  getUser
-}
+  getUser,
+  getUserClaps
+};

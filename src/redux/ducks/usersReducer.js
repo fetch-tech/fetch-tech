@@ -1,43 +1,44 @@
-import axios from 'axios';
+import axios from "axios";
 
 /****** INITIAL STAT ******/
 const initialState = {
   isLoading: false,
-  claps: []
-}
+  claps: [],
+  bookmarks: []
+};
 
 /****** ACTION TYPES ******/
-const GET_USER_CLAPS = 'GET_USR_CLAPS';
+const GET_USER_CLAPS = "GET_USER_CLAPS";
 
 /****** ACTION CREATORS ******/
 export function getUserClaps(user_id) {
   return {
     type: GET_USER_CLAPS,
-    payload: axios.get(`/api/claps/${ user_id }`)
-  }
+    payload: axios.get(`/api/user/claps/${user_id}`)
+  };
 }
 
 /****** REDUCER ******/
 export default function usersReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     // GET USER CLAPS
-    case 'GET_USER_CLAPS_PENDING':
+    case "GET_USER_CLAPS_PENDING":
       return {
         ...state,
         isLoading: true
-    };
-    case 'GET_USER_CLAPS_FULFILLED':
+      };
+    case "GET_USER_CLAPS_FULFILLED":
       return {
         ...state,
         isLoading: false,
         claps: action.payload.data
-    };
-    case 'GET_USER_CLAPS_REJECTED':
+      };
+    case "GET_USER_CLAPS_REJECTED":
       return {
         ...state,
         isLoading: true,
         error: action.payload
-    };
+      };
 
     // DEFAULT
     default:
