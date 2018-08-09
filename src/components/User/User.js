@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getUserClaps } from "../../redux/ducks/usersReducer";
+import { getUserClaps, getUserBookmarks } from "../../redux/ducks/usersReducer";
 import ClapArticles from "./ClapArticles";
+import BookmarkArticles from "./BookmarkArticles";
 
 class User extends Component {
   constructor(props) {
@@ -10,19 +11,25 @@ class User extends Component {
   }
 
   componentDidMount = () => {
-    const { getUserClaps } = this.props;
+    const { getUserClaps, getUserBookmarks } = this.props;
 
     getUserClaps("google-oauth2|105906369999808829473");
+    getUserBookmarks("google-oauth2|105906369999808829473");
   };
 
   render() {
     console.log("props: ", this.props);
 
-    const { claps } = this.props.usersReducer;
+    const { claps, bookmarks } = this.props.usersReducer;
 
     // Rendering articles user has clapped on
     const displayClappedArticles = claps.map((clap, i) => {
       return <ClapArticles uniqueKey={i} clap={clap} i={i} />;
+    });
+
+    // Rendering user's bookmarked articles
+    const displayBookmarks = bookmarks.map((bookmark, i) => {
+      return <BookmarkArticles uniqueKey={i} bookmark={bookmark} i={i} />;
     });
 
     return (
@@ -46,6 +53,7 @@ class User extends Component {
         </div>
         <div className="bookmarks">
           <h2>Bookmarked Articles: </h2>
+          {bookmarks && displayBookmarks}
         </div>
         <div className="posts">
           <h2>User's posts: </h2>
@@ -61,5 +69,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserClaps }
+  { getUserClaps, getUserBookmarks }
 )(User);

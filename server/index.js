@@ -86,9 +86,13 @@ app.get("/api/home/articles/search/:searchTerm", controllers.searchArticles);
 
 /****** NEWS ARTICLE API ******/
 
-/****** USER ENDPOINTS ******/
+/****** USERS ENDPOINTS ******/
 
-app.get("/api/user/claps/:user_id", users_controller.getUserClaps);
+// Gets list of the articles the user has clapped on and provides number of claps for that article
+app.get("/api/users/claps/:user_id", users_controller.getUserClaps);
+
+// Gets list of user's bookmarked articles
+app.get("/api/users/bookmarks/:user_id", users_controller.getUserBookmarks);
 
 /****** USER ENDPOINTS ******/
 

@@ -23,7 +23,19 @@ const getUserClaps = (req, res, next) => {
     .catch(err => res.status(500).send({ getUserClapsError: err }));
 };
 
+// Retrieves user's bookmarks
+const getUserBookmarks = (req, res, next) => {
+  const { user_id } = req.params;
+
+  const db = req.app.get("db");
+
+  db.get_user_bookmarks([user_id])
+    .then(userBookmarks => res.status(200).send(userBookmarks))
+    .catch(err => res.status(500).send({ getUserBookmarksError: err }));
+};
+
 module.exports = {
   getUser,
-  getUserClaps
+  getUserClaps,
+  getUserBookmarks
 };
