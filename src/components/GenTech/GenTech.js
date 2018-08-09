@@ -1,6 +1,8 @@
 import { Button, Card, Icon } from "antd";
 import axios from "axios";
 import React from "react";
+import Claps from "../Claps/Claps";
+import Comments from "../Comments/Comments";
 import Stories from "../Stories/Stories";
 import "./genTech.css";
 
@@ -18,41 +20,60 @@ export default class extends React.Component {
   render() {
     const { articles } = this.state;
     console.log(articles);
-    const articleDisplay = articles.map(article => {
+    const articleDisplay = articles.map((article, i) => {
       return (
-        <Card
-          hoverable
-          key={article.urlToImage}
-          style={{
-            marginLeft: 300,
-            marginRight: 300,
-            marginTop: 5,
-            display: "flex"
-          }}
-        >
-          <div className="articleWrapper">
-            <img className="urlToImage" src={article.urlToImage} alt="" />
-            <div className="aricle-center">
-              <h2>{article.title}</h2>
-              <div style={{ fontSize: "16px" }}>{article.description}</div>
-              <div className="article-bottom">
-                <div className="source">{article.source.name}</div>
+        <div className="wrapper" key={i}>
+          <div style={{ display: "flex" }}>
+            <Card
+              hoverable
+              style={{
+                marginLeft: 371,
+                width: 800,
+                marginTop: 5,
+                display: "flex"
+              }}
+            >
+              <div className="articleWrapper">
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div style={{ display: "flex" }}>
+                    <img
+                      className="urlToImage"
+                      src={article.urlToImage}
+                      alt=""
+                    />
+                    <div className="aricle-center">
+                      <h2>{article.title}</h2>
+                      <div style={{ fontSize: "16px" }}>
+                        {article.description}
+                      </div>
+                      <div className="article-bottom">
+                        <div className="source">{article.source.name}</div>
+                      </div>
+                      <a target="_blank" href={article.url} target="_blank">
+                        <Button>
+                          Read
+                          <Icon type="right" />
+                        </Button>
+                      </a>
+                    </div>
+                  </div>
+                  <div className="article-sidebar" />
+                </div>
               </div>
-              <a target="_blank" href={article.url} target="_blank">
-                <Button>
-                  Read
-                  <Icon type="right" />
-                </Button>
-              </a>
-            </div>
+            </Card>
+            <span style={{ marginRight: 300 }}>
+              <Claps clapped={article.author} />
+            </span>
           </div>
-        </Card>
+          <Comments />
+        </div>
       );
     });
     return (
       <div className="genNewsWrapper">
         <Stories />
-
         {articleDisplay}
       </div>
     );

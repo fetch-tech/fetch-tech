@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import ClapComponent from "react-clap";
+import ClapComponent from "react-clap-button";
 
-class Clap extends Component {
+class Claps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clapsCount: 0,
-      totalClapCount: 20
+      author: "",
+      children: null
     };
   }
 
@@ -17,16 +17,24 @@ class Clap extends Component {
     });
   };
 
+  onClap = () => {
+    this.setState({ author: this.props.clapped });
+    // console.log(this.props.clapped);
+  };
+
   render() {
+    console.log(this.state.author);
     return (
-      <div>
+      <div onClick={this.onClap}>
         <ClapComponent
-          popupClapCount={this.state.clapsCount}
-          maxClapCount={20}
-          onChange={this.handleClapChange}
+          maxCount={10}
+          theme={{
+            secondaryColor: "#e21bda"
+          }}
+          children={this.state.children}
         />
       </div>
     );
   }
 }
-export default Clap;
+export default Claps;
