@@ -3,17 +3,26 @@ import axios from "axios";
 /****** INITIAL STAT ******/
 const initialState = {
   isLoading: false,
+  user: [],
   claps: [],
   bookmarks: [],
   comments: []
 };
 
 /****** ACTION TYPES ******/
+const GET_USER = "GET_USER";
 const GET_USER_CLAPS = "GET_USER_CLAPS";
 const GET_USER_BOOKMARKS = "GET_USER_BOOKMARKS";
 const GET_USER_COMMENTS = "GET_USER_COMMENTS";
 
 /****** ACTION CREATORS ******/
+export function getUser() {
+  return {
+    type: GET_USER,
+    payload: axios.get("/me")
+  };
+}
+
 export function getUserClaps(user_id) {
   return {
     type: GET_USER_CLAPS,
@@ -38,6 +47,25 @@ export function getUserComments(user_id) {
 /****** REDUCER ******/
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
+    // GET CURRENT USER
+    case "GET_USER_PENDING":
+      return {
+        ...state,
+        isLoading: true
+      };
+    case "GET_USER_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload.data
+      };
+    case "GET_USER_REJECTED":
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+      };
+
     // GET USER CLAPS
     case "GET_USER_CLAPS_PENDING":
       return {

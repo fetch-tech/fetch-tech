@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import {
+  getUser,
   getUserClaps,
   getUserBookmarks,
   getUserComments
@@ -16,8 +17,14 @@ class User extends Component {
   }
 
   componentDidMount = () => {
-    const { getUserClaps, getUserBookmarks, getUserComments } = this.props;
+    const {
+      getUser,
+      getUserClaps,
+      getUserBookmarks,
+      getUserComments
+    } = this.props;
 
+    getUser();
     getUserClaps("google-oauth2|105906369999808829473");
     getUserBookmarks("google-oauth2|105906369999808829473");
     getUserComments("google-oauth2|105906369999808829473");
@@ -26,7 +33,7 @@ class User extends Component {
   render() {
     console.log("props: ", this.props);
 
-    const { claps, bookmarks, comments } = this.props.usersReducer;
+    const { user, claps, bookmarks, comments } = this.props.usersReducer;
 
     // Rendering articles user has clapped on
     const displayClappedArticles = claps.map((clap, i) => {
@@ -46,13 +53,14 @@ class User extends Component {
     return (
       <div>
         <div>
-          <h1>USER PROFILE</h1>
+          <h1>{user.username}</h1>
         </div>
         <div className="cover-photo">
           <h2>User cover photo goes here</h2>
         </div>
         <div className="avatar">
           <h2>User avatar goes here</h2>
+          <img src={user.profile_pic} alt="User Avatar" />
         </div>
         <div className="follow">
           <h2>Followers: </h2>
@@ -81,5 +89,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserClaps, getUserBookmarks, getUserComments }
+  { getUser, getUserClaps, getUserBookmarks, getUserComments }
 )(User);
