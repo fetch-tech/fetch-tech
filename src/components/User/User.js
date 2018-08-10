@@ -13,12 +13,20 @@ import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
 import CommentArticles from "./CommentArticles";
 
+/*
+ *  User component is responsible for displaying useful user data
+ *  User's default avatar is imported when first logging in with a Google account
+ *  User is able to change avatar and cover photo
+ *  Includes user's comment, clap, and bookmark activity
+ */
+
 class User extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount = () => {
+    // Pulled in from usersReducer
     const {
       getUser,
       getUserClaps,
@@ -28,12 +36,13 @@ class User extends Component {
       getUserFollowingCount
     } = this.props;
 
+    // Mounts user data to component
     getUser();
-    getUserClaps("google-oauth2|105906369999808829473");
-    getUserBookmarks("google-oauth2|105906369999808829473");
-    getUserComments("google-oauth2|105906369999808829473");
-    getUserFollowerCount("google-oauth2|105906369999808829473");
-    getUserFollowingCount("google-oauth2|105906369999808829473");
+    getUserClaps();
+    getUserBookmarks();
+    getUserComments();
+    getUserFollowerCount();
+    getUserFollowingCount();
   };
 
   render() {
@@ -76,21 +85,29 @@ class User extends Component {
           <img src={user.profile_pic} alt="User Avatar" />
         </div>
         <div className="follow">
-          <h2>Followers: {followerCount[0] && followerCount[0].count}</h2>
-          <h2>Following: {followingCount[0] && followingCount[0].count}</h2>
+          <h2>Followers: {followerCount[0] ? followerCount[0].count : 0}</h2>
+          <h2>Following: {followingCount[0] ? followingCount[0].count : 0}</h2>
         </div>
+        <br />
+        <br />
         <div className="claps">
           <h2>Article Claps: </h2>
           {claps && displayClappedArticles}
         </div>
+        <br />
+        <br />
         <div className="bookmarks">
           <h2>Bookmarked Articles: </h2>
           {bookmarks && displayBookmarks}
         </div>
+        <br />
+        <br />
         <div className="comments">
           <h2>User's comments: </h2>
           {comments && displayComments}
         </div>
+        <br />
+        <br />
       </div>
     );
   }

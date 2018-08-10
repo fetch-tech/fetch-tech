@@ -14,7 +14,7 @@ const getUser = (req, res, next) => {
 
 // Retrieves claps made on articles
 const getUserClaps = (req, res, next) => {
-  const { user_id } = req.params;
+  const { user_id } = req.session.passport.user;
 
   const db = req.app.get("db");
 
@@ -25,7 +25,7 @@ const getUserClaps = (req, res, next) => {
 
 // Retrieves user's bookmarks
 const getUserBookmarks = (req, res, next) => {
-  const { user_id } = req.params;
+  const { user_id } = req.session.passport.user;
 
   const db = req.app.get("db");
 
@@ -36,7 +36,7 @@ const getUserBookmarks = (req, res, next) => {
 
 // Retrieves user's article comments
 const getUserComments = (req, res, next) => {
-  const { user_id } = req.params;
+  const { user_id } = req.session.passport.user;
 
   const db = req.app.get("db");
 
@@ -47,7 +47,7 @@ const getUserComments = (req, res, next) => {
 
 // Retrieves user's follower count
 const getUserFollowerCount = (req, res, next) => {
-  const { user_id } = req.params;
+  const { user_id } = req.session.passport.user;
 
   const db = req.app.get("db");
 
@@ -58,7 +58,7 @@ const getUserFollowerCount = (req, res, next) => {
 
 // Retrieves user's following count
 const getUserFollowingCount = (req, res, next) => {
-  const { user_id } = req.params;
+  const { user_id } = req.session.passport.user;
 
   const db = req.app.get("db");
 

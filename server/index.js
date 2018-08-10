@@ -43,7 +43,7 @@ app.use(passport.session());
 passport.use(strat);
 
 passport.serializeUser((user, done) => {
-  console.log(user);
+  // console.log(user);
   const db = app.get("db");
 
   db.get_user([user.id])
@@ -89,22 +89,19 @@ app.get("/api/home/articles/search/:searchTerm", controllers.searchArticles);
 /****** USERS ENDPOINTS ******/
 
 // Gets list of the articles the user has clapped on and provides number of claps for that article
-app.get("/api/users/claps/:user_id", users_controller.getUserClaps);
+app.get("/api/users/claps", users_controller.getUserClaps);
 
 // Gets list of user's bookmarked articles
-app.get("/api/users/bookmarks/:user_id", users_controller.getUserBookmarks);
+app.get("/api/users/bookmarks", users_controller.getUserBookmarks);
 
 // Gets list of user's comments
-app.get("/api/users/comments/:user_id", users_controller.getUserComments);
+app.get("/api/users/comments", users_controller.getUserComments);
 
 // Gets user's follower count
-app.get("/api/users/followers/:user_id", users_controller.getUserFollowerCount);
+app.get("/api/users/followers", users_controller.getUserFollowerCount);
 
 // Gets user's following count
-app.get(
-  "/api/users/following/:user_id",
-  users_controller.getUserFollowingCount
-);
+app.get("/api/users/following", users_controller.getUserFollowingCount);
 
 /****** USER ENDPOINTS ******/
 

@@ -20,6 +20,8 @@ const GET_USER_FOLLOWER_COUNT = "GET_USER_FOLLOWER_COUNT";
 const GET_USER_FOLLOWING_COUNT = "GET_USER_FOLLOWING_COUNT";
 
 /****** ACTION CREATORS ******/
+
+// Gets current logged in user data
 export function getUser() {
   return {
     type: GET_USER,
@@ -27,38 +29,43 @@ export function getUser() {
   };
 }
 
-export function getUserClaps(user_id) {
+// Gets user's clap activity on articles
+export function getUserClaps() {
   return {
     type: GET_USER_CLAPS,
-    payload: axios.get(`/api/users/claps/${user_id}`)
+    payload: axios.get("/api/users/claps")
   };
 }
 
-export function getUserBookmarks(user_id) {
+// Gets user's bookmarks
+export function getUserBookmarks() {
   return {
     type: GET_USER_BOOKMARKS,
-    payload: axios.get(`/api/users/bookmarks/${user_id}`)
+    payload: axios.get("/api/users/bookmarks")
   };
 }
 
-export function getUserComments(user_id) {
+// Gets user's comments made on articles
+export function getUserComments() {
   return {
     type: GET_USER_COMMENTS,
-    payload: axios.get(`/api/users/comments/${user_id}`)
+    payload: axios.get("/api/users/comments")
   };
 }
 
-export function getUserFollowerCount(user_id) {
+// Gets user's follower count
+export function getUserFollowerCount() {
   return {
     type: GET_USER_FOLLOWER_COUNT,
-    payload: axios.get(`/api/users/followers/${user_id}`)
+    payload: axios.get("/api/users/followers")
   };
 }
 
-export function getUserFollowingCount(user_id) {
+// Gets the number of people the user is following
+export function getUserFollowingCount() {
   return {
     type: GET_USER_FOLLOWING_COUNT,
-    payload: axios.get(`/api/users/following/${user_id}`)
+    payload: axios.get("/api/users/following")
   };
 }
 
