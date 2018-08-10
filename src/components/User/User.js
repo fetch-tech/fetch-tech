@@ -6,7 +6,8 @@ import {
   getUserClaps,
   getUserBookmarks,
   getUserComments,
-  getUserFollowerCount
+  getUserFollowerCount,
+  getUserFollowingCount
 } from "../../redux/ducks/usersReducer";
 import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
@@ -23,7 +24,8 @@ class User extends Component {
       getUserClaps,
       getUserBookmarks,
       getUserComments,
-      getUserFollowerCount
+      getUserFollowerCount,
+      getUserFollowingCount
     } = this.props;
 
     getUser();
@@ -31,6 +33,7 @@ class User extends Component {
     getUserBookmarks("google-oauth2|105906369999808829473");
     getUserComments("google-oauth2|105906369999808829473");
     getUserFollowerCount("google-oauth2|105906369999808829473");
+    getUserFollowingCount("google-oauth2|105906369999808829473");
   };
 
   render() {
@@ -41,7 +44,8 @@ class User extends Component {
       claps,
       bookmarks,
       comments,
-      followerCount
+      followerCount,
+      followingCount
     } = this.props.usersReducer;
 
     // Rendering articles user has clapped on
@@ -73,7 +77,7 @@ class User extends Component {
         </div>
         <div className="follow">
           <h2>Followers: {followerCount[0] && followerCount[0].count}</h2>
-          <h2>Following: </h2>
+          <h2>Following: {followingCount[0] && followingCount[0].count}</h2>
         </div>
         <div className="claps">
           <h2>Article Claps: </h2>
@@ -103,6 +107,7 @@ export default connect(
     getUserClaps,
     getUserBookmarks,
     getUserComments,
-    getUserFollowerCount
+    getUserFollowerCount,
+    getUserFollowingCount
   }
 )(User);

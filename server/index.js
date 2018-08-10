@@ -100,6 +100,12 @@ app.get("/api/users/comments/:user_id", users_controller.getUserComments);
 // Gets user's follower count
 app.get("/api/users/followers/:user_id", users_controller.getUserFollowerCount);
 
+// Gets user's following count
+app.get(
+  "/api/users/following/:user_id",
+  users_controller.getUserFollowingCount
+);
+
 /****** USER ENDPOINTS ******/
 
 // Runs the server on localhost:3001

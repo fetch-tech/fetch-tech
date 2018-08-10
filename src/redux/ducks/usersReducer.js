@@ -7,7 +7,8 @@ const initialState = {
   claps: [],
   bookmarks: [],
   comments: [],
-  followerCount: []
+  followerCount: [],
+  followingCount: []
 };
 
 /****** ACTION TYPES ******/
@@ -16,6 +17,7 @@ const GET_USER_CLAPS = "GET_USER_CLAPS";
 const GET_USER_BOOKMARKS = "GET_USER_BOOKMARKS";
 const GET_USER_COMMENTS = "GET_USER_COMMENTS";
 const GET_USER_FOLLOWER_COUNT = "GET_USER_FOLLOWER_COUNT";
+const GET_USER_FOLLOWING_COUNT = "GET_USER_FOLLOWING_COUNT";
 
 /****** ACTION CREATORS ******/
 export function getUser() {
@@ -50,6 +52,13 @@ export function getUserFollowerCount(user_id) {
   return {
     type: GET_USER_FOLLOWER_COUNT,
     payload: axios.get(`/api/users/followers/${user_id}`)
+  };
+}
+
+export function getUserFollowingCount(user_id) {
+  return {
+    type: GET_USER_FOLLOWING_COUNT,
+    payload: axios.get(`/api/users/following/${user_id}`)
   };
 }
 
@@ -145,6 +154,25 @@ export default function usersReducer(state = initialState, action) {
         followerCount: action.payload.data
       };
     case "GET_USER_FOLLOWER_COUNT_REJECTED":
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+      };
+
+    // GET USER FOLLOWING COUNT
+    case "GET_USER_FOLLOWING_COUNT_PENDING":
+      return {
+        ...state,
+        isLoading: true
+      };
+    case "GET_USER_FOLLOWING_COUNT_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        followingCount: action.payload.data
+      };
+    case "GET_USER_FOLLOWING_COUNT_REJECTED":
       return {
         ...state,
         isLoading: true,

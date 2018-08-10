@@ -56,10 +56,22 @@ const getUserFollowerCount = (req, res, next) => {
     .catch(err => res.status(500).send({ getUserFollowerCountError: err }));
 };
 
+// Retrieves user's following count
+const getUserFollowingCount = (req, res, next) => {
+  const { user_id } = req.params;
+
+  const db = req.app.get("db");
+
+  db.get_user_following_count([user_id])
+    .then(followingCount => res.status(200).send(followingCount))
+    .catch(err => res.status(500).send({ getUserFollowingCountError: err }));
+};
+
 module.exports = {
   getUser,
   getUserClaps,
   getUserBookmarks,
   getUserComments,
-  getUserFollowerCount
+  getUserFollowerCount,
+  getUserFollowingCount
 };
