@@ -6,7 +6,8 @@ const initialState = {
   user: [],
   claps: [],
   bookmarks: [],
-  comments: []
+  comments: [],
+  followerCount: []
 };
 
 /****** ACTION TYPES ******/
@@ -14,6 +15,7 @@ const GET_USER = "GET_USER";
 const GET_USER_CLAPS = "GET_USER_CLAPS";
 const GET_USER_BOOKMARKS = "GET_USER_BOOKMARKS";
 const GET_USER_COMMENTS = "GET_USER_COMMENTS";
+const GET_USER_FOLLOWER_COUNT = "GET_USER_FOLLOWER_COUNT";
 
 /****** ACTION CREATORS ******/
 export function getUser() {
@@ -41,6 +43,13 @@ export function getUserComments(user_id) {
   return {
     type: GET_USER_COMMENTS,
     payload: axios.get(`/api/users/comments/${user_id}`)
+  };
+}
+
+export function getUserFollowerCount(user_id) {
+  return {
+    type: GET_USER_FOLLOWER_COUNT,
+    payload: axios.get(`/api/users/followers/${user_id}`)
   };
 }
 
@@ -117,6 +126,25 @@ export default function usersReducer(state = initialState, action) {
         comments: action.payload.data
       };
     case "GET_USER_COMMENTS_REJECTED":
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+      };
+
+    // GET USER FOLLOWER COUNT
+    case "GET_USER_FOLLOWER_COUNT_PENDING":
+      return {
+        ...state,
+        isLoading: true
+      };
+    case "GET_USER_FOLLOWER_COUNT_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        followerCount: action.payload.data
+      };
+    case "GET_USER_FOLLOWER_COUNT_REJECTED":
       return {
         ...state,
         isLoading: true,

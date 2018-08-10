@@ -97,6 +97,9 @@ app.get("/api/users/bookmarks/:user_id", users_controller.getUserBookmarks);
 // Gets list of user's comments
 app.get("/api/users/comments/:user_id", users_controller.getUserComments);
 
+// Gets user's follower count
+app.get("/api/users/followers/:user_id", users_controller.getUserFollowerCount);
+
 /****** USER ENDPOINTS ******/
 
 // Runs the server on localhost:3001

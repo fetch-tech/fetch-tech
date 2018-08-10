@@ -5,7 +5,8 @@ import {
   getUser,
   getUserClaps,
   getUserBookmarks,
-  getUserComments
+  getUserComments,
+  getUserFollowerCount
 } from "../../redux/ducks/usersReducer";
 import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
@@ -21,19 +22,27 @@ class User extends Component {
       getUser,
       getUserClaps,
       getUserBookmarks,
-      getUserComments
+      getUserComments,
+      getUserFollowerCount
     } = this.props;
 
     getUser();
     getUserClaps("google-oauth2|105906369999808829473");
     getUserBookmarks("google-oauth2|105906369999808829473");
     getUserComments("google-oauth2|105906369999808829473");
+    getUserFollowerCount("google-oauth2|105906369999808829473");
   };
 
   render() {
     console.log("props: ", this.props);
 
-    const { user, claps, bookmarks, comments } = this.props.usersReducer;
+    const {
+      user,
+      claps,
+      bookmarks,
+      comments,
+      followerCount
+    } = this.props.usersReducer;
 
     // Rendering articles user has clapped on
     const displayClappedArticles = claps.map((clap, i) => {
@@ -63,7 +72,7 @@ class User extends Component {
           <img src={user.profile_pic} alt="User Avatar" />
         </div>
         <div className="follow">
-          <h2>Followers: </h2>
+          <h2>Followers: {followerCount[0] && followerCount[0].count}</h2>
           <h2>Following: </h2>
         </div>
         <div className="claps">
@@ -89,5 +98,11 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUser, getUserClaps, getUserBookmarks, getUserComments }
+  {
+    getUser,
+    getUserClaps,
+    getUserBookmarks,
+    getUserComments,
+    getUserFollowerCount
+  }
 )(User);
