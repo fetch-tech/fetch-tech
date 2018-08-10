@@ -29,7 +29,7 @@ class Claps extends Component {
         <ClapComponent
           maxCount={10}
           theme={{
-            secondaryColor: "#e21bda"
+            secondaryColor: "#0b7fc6"
           }}
           children={this.state.children}
         />

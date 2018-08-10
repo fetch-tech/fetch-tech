@@ -10,6 +10,7 @@ const passport = require("passport");
 const { getUser, strat, logout } = require("./controllers/auth_controller");
 const controllers = require("./controller.js");
 const claps_controller = require("./controllers/claps_controller");
+const commentsController = require("./controllers/commentsController");
 
 // Sets up express server
 const app = express();
@@ -36,8 +37,6 @@ app.use(
   })
 );
 
-
-
 /****** AUTH0 ******/
 
 app.use(passport.initialize());
@@ -46,8 +45,8 @@ passport.use(strat);
 
 passport.serializeUser((user, done) => {
   // console.log(user);
-  const db = app.get('db');
-  
+  const db = app.get("db");
+
   db.get_user([user.id])
     .then(response => {
       // console.log(response);
@@ -55,26 +54,26 @@ passport.serializeUser((user, done) => {
         db.add_user([user.id, user.displayName])
           .then(res => done(null, res[0]))
           .catch(console.log);
-      }
-      else return done(null, response[0]);
+      } else return done(null, response[0]);
     })
     .catch(console.log);
 });
 
 passport.deserializeUser((user, done) => done(null, user));
 
-app.get('/me', getUser);
+app.get("/me", getUser);
 
-app.get('/login', passport.authenticate('auth0', {
-  successRedirect: 'http://localhost:3000/#/',
-  failureRedirect: '/login'
-}));
+app.get(
+  "/login",
+  passport.authenticate("auth0", {
+    successRedirect: "http://localhost:3000/#/",
+    failureRedirect: "/login"
+  })
+);
 
-app.get('/logout', logout);
+app.get("/logout", logout);
 
 /****** AUTH0 ******/
-
-
 
 /****** NEWS ARTICLE API ******/
 
@@ -88,15 +87,32 @@ app.get("/api/home/articles/search/:searchTerm", controllers.searchArticles);
 
 /****** NEWS ARTICLE API ******/
 
+/****** Comments API ******/
 
+app.post("/api/comments/articles", commentsController.createComment);
+app.get(
+  "/api/comments/commentArticles/:articleId",
+  commentsController.getComments
+);
+
+app.post("/api/commentArticles/comment/", commentsController.getArticleComment);
+app.post(
+  "/api/commentArticles/comment/comment",
+  commentsController.commentComment
+);
+
+app.get(
+  "/api/commentArticles/comment/comment/:comentId",
+  commentsController.getCommentComment
+);
+
+/****** Comments API ******/
 
 /****** USER ENDPOINTS ******/
 
-app.get('/api/claps/:user_id', claps_controller.getUserClaps);
+app.get("/api/claps/:user_id", claps_controller.getUserClaps);
 
 /****** USER ENDPOINTS ******/
-
-
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;

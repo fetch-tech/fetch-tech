@@ -1,0 +1,1 @@
+SELECT comments_comment_text, profile_pic, username from comments_comments join users on users.user_id=comments_comments.user_id where comment_id=$1

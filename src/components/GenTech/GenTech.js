@@ -19,7 +19,6 @@ export default class extends React.Component {
 
   render() {
     const { articles } = this.state;
-    console.log(articles);
     const articleDisplay = articles.map((article, i) => {
       return (
         <div className="wrapper" key={i}>
@@ -67,7 +66,11 @@ export default class extends React.Component {
               <Claps clapped={article.author} />
             </span>
           </div>
-          <Comments />
+          <Comments
+            article={article}
+            url={article.url}
+            desc={article.description}
+          />
         </div>
       );
     });
