@@ -6,6 +6,8 @@ import "antd/dist/antd.css";
 import store from "./redux/store";
 import routes from "./router";
 import Navbar from "./components/Navbar/Navbar";
+import DevTech from "./components/DevTech/DevTech";
+import "./components/DevTech/devTech.css";
 
 class App extends Component {
   render() {

@@ -105,6 +105,12 @@ app.get("/api/users/following", users_controller.getUserFollowingCount);
 
 /****** USER ENDPOINTS ******/
 
+/******* GIF API ENDPOINTS ********/
+app.get("/api/gifs/tech", controllers.giphyGifs);
+app.get("/api/gifs/tech2", controllers.giphyGifs2);
+app.get("/api/gifs/tech3", controllers.giphyGifs3);
+app.get("/api/gifs/tech4", controllers.giphyGifs4);
+
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

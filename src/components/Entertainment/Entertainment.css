@@ -1,0 +1,20 @@
+.gifButton {
+  display: flex;
+  position: absolute;
+  right: 300px;
+  top: 105px;
+  justify-content: right;
+}
+
+.gifButton {
+    
+    background: #662964;
+    color: #fff;
+    border-color: #d9d9d9;
+  }
+  .gifButton:active {
+    background: #e21bda;
+  }
+  .gifButton:hover {
+    background: #8c2888;
+  }
