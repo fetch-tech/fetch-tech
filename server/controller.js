@@ -8,6 +8,7 @@ const yesterdayDate = moment(todayDate)
   .subtract(1, "days")
   .format("YYYY-MM-DD");
 
+//1-  Trending / creating an API.
 const homePageArticles = (req, res, next) => {
   newsapi.v2
     .topHeadlines({
