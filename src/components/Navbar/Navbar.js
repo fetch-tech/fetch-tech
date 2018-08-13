@@ -20,13 +20,15 @@ export default () => {
         <div className="nav-items">
           <h4>Logo</h4>
           <div className="navButtons">
+          <Link to='/'>
             <Button className="nav_btn">Trending Tech</Button>
-
+            </Link>
             <Link to="/devtech">
               <Button className="nav_btn">Dev Tech</Button>
             </Link>
-
-            <Button className="nav_btn">Entertainment</Button>
+            <Link to="/entertainment">
+              <Button className="nav_btn">Entertainment</Button>
+            </Link>
           </div>
           <div>
             <Search
