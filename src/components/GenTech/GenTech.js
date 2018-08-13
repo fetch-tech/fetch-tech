@@ -12,6 +12,7 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
+    //2- fetch data, get API from "index.js"/ and calling API from the backend.
     axios.get("http://localhost:3001/api/home/articles").then(response => {
       this.setState({ articles: response.data.articles.articles });
     });
@@ -19,7 +20,9 @@ export default class extends React.Component {
 
   render() {
     const { articles } = this.state;
-    const articleDisplay = articles.map((article, i) => {
+    console.log(articles);
+    // 3-map
+    const articleDisplay = articles.map(article => {
       return (
         <div className="wrapper" key={i}>
           <div style={{ display: "flex" }}>

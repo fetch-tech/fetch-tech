@@ -8,4 +8,6 @@ let res = pm.response.json();
 // tests["Doesn't do much"] = true;
 tests["Receives 200 status"] = code === 200;
 tests["Response is an array"] = Array.isArray(res);
-tests["All products have number of claps"] = res.every(article => article.number);
+tests["All products have number of claps"] = res.every(
+  article => article.number
+);
