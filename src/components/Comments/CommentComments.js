@@ -1,17 +1,12 @@
-import { Avatar, Input } from "antd";
+import { Avatar } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
 import "./comments.css";
 
 class CommentComments extends Component {
   state = {
-    reply: this.props.reply,
-    comment: "",
     comments: [],
-    commentId: this.props.comment.comment_id,
-    userId: "google-oauth2|105906369999808829473",
-    userProfilePic:
-      "http://marketline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+    commentId: this.props.comment.comment_id
   };
 
   componentDidMount() {
@@ -25,28 +20,11 @@ class CommentComments extends Component {
       });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.reply !== this.props.reply) {
-      this.setState({ reply: nextProps.reply });
-    }
-  }
-
-  onInputChange = e => {
-    this.setState({ comment: e.target.value });
-  };
-  onCommentSubmit = e => {
-    e.preventDefault();
-    const { commentId, comment, userId } = this.state;
-    axios
-      .post("http://localhost:3001/api/commentArticles/comment/comment", {
-        commentId,
-        comment,
-        userId
-      })
-      .then(response => {
-        console.log(response.data);
-      });
-  };
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.reply !== this.props.reply) {
+  //     this.setState({ reply: nextProps.reply });
+  //   }
+  // }
 
   render() {
     const { comments } = this.state;
@@ -64,18 +42,6 @@ class CommentComments extends Component {
                     {comment.comments_comment_text}
                   </span>
                 </span>
-                {this.state.reply && (
-                  <form onSubmit={this.onCommentSubmit}>
-                    <span style={{ display: "flex", marginTop: "10px" }}>
-                      <Avatar src={this.state.userProfilePic} />
-                      <Input
-                        onChange={this.onInputChange}
-                        placeholder="write a comment"
-                        value={this.state.comment}
-                      />
-                    </span>
-                  </form>
-                )}
               </span>
             </div>
           );

@@ -19,6 +19,7 @@
   color: blue;
   margin-top: 18px;
   font-weight: 800;
+  width: 40px;
 }
 .reply-comment-button:hover {
   background: #e6ecf0;

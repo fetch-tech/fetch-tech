@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import CommentsComments from "./CommentComments";
 import "./comments.css";
+import SingleComment from "./SingleComment";
 
 class Comments extends Component {
   state = {
@@ -82,25 +83,11 @@ class Comments extends Component {
                   <span className="comments-username">{comment.username}</span>
                   {comment.comment_text}
                 </span>
-                {!this.state.reply ? (
-                  <span
-                    onClick={this.onReplyClick}
-                    className="reply-comment-button"
-                  >
-                    Reply
-                  </span>
-                ) : (
-                  <span
-                    onClick={this.onReplyClick}
-                    className="reply-comment-button"
-                    style={{ color: "red", fontSize: "16px" }}
-                  >
-                    X
-                  </span>
-                )}
               </span>
               <div>
-                <CommentsComments comment={comment} reply={reply} />
+                <SingleComment comment={comment}>
+                  <CommentsComments comment={comment} reply={reply} />
+                </SingleComment>
               </div>
             </div>
           );
@@ -114,7 +101,7 @@ class Comments extends Component {
       >
         {commentsDisplay}
         <form onSubmit={this.onCommentSubmit}>
-          <span style={{ display: "flex" }}>
+          <span style={{ display: "flex", margin: "10px" }}>
             <Avatar src={this.state.userProfilePic} />
             <Input
               onChange={this.onInputChange}
