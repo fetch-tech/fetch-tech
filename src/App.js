@@ -16,9 +16,7 @@ class App extends Component {
         <HashRouter>
           <React.Fragment>
             <Navbar />
-
             <div>{routes}</div>
-            <DevTech />
           </React.Fragment>
         </HashRouter>
       </Provider>

@@ -19,6 +19,8 @@ const strat = new Auth0Strategy(
 );
 
 const getUser = (req, res) => {
+  console.log("req.user: ", req.user);
+  console.log("req.session.passport.user: ", req.session.passport.user);
   if (req.user) res.status(200).json(req.user);
   else res.status(403).json({ message: "Not Logged In" });
 };

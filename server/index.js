@@ -9,7 +9,7 @@ const passport = require("passport");
 
 const { getUser, strat, logout } = require("./controllers/auth_controller");
 const controllers = require("./controller.js");
-const claps_controller = require("./controllers/claps_controller");
+const users_controller = require("./controllers/users_controller");
 
 // Sets up express server
 const app = express();
@@ -50,7 +50,7 @@ passport.serializeUser((user, done) => {
     .then(response => {
       // console.log(response);
       if (!response[0]) {
-        db.add_user([user.id, user.displayName])
+        db.add_user([user.id, user.displayName, user.picture])
           .then(res => done(null, res[0]))
           .catch(console.log);
       } else return done(null, response[0]);
@@ -86,9 +86,22 @@ app.get("/api/home/articles/search/:searchTerm", controllers.searchArticles);
 
 /****** NEWS ARTICLE API ******/
 
-/****** USER ENDPOINTS ******/
+/****** USERS ENDPOINTS ******/
 
-app.get("/api/claps/:user_id", claps_controller.getUserClaps);
+// Gets list of the articles the user has clapped on and provides number of claps for that article
+app.get("/api/users/claps", users_controller.getUserClaps);
+
+// Gets list of user's bookmarked articles
+app.get("/api/users/bookmarks", users_controller.getUserBookmarks);
+
+// Gets list of user's comments
+app.get("/api/users/comments", users_controller.getUserComments);
+
+// Gets user's follower count
+app.get("/api/users/followers", users_controller.getUserFollowerCount);
+
+// Gets user's following count
+app.get("/api/users/following", users_controller.getUserFollowingCount);
 
 /****** USER ENDPOINTS ******/
 
