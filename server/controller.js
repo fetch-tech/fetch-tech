@@ -1,12 +1,18 @@
 const NewsAPI = require("newsapi");
 var moment = require("moment");
+const giphy = require("giphy-api")(process.env.GIPHY_API_KEY);
 
 const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
+// const giphyapi = new GiphyAPI(process.env.GIPHY_API_KEY);
 
 const todayDate = moment().format("YYYY-MM-DD");
 const yesterdayDate = moment(todayDate)
   .subtract(1, "days")
   .format("YYYY-MM-DD");
+
+// const lastMonth = momment(todayDate)
+// .subtract(30, 'days')
+// .format('YYY-MM-DD');
 
 const homePageArticles = (req, res, next) => {
   newsapi.v2
@@ -72,9 +78,59 @@ const searchArticles = (req, res, next) => {
     });
 };
 
+//
+const giphyGifs = (req, res, next) => {
+  giphy
+    .search({
+      q: ["programming", "javascript", "python", "web programming"],
+      limit: 20,
+      rating: "PG-13"
+    })
+    .then(function(response) {
+      res.send({ gifs: response });
+    });
+};
+const giphyGifs2 = (req, res, next) => {
+  giphy
+    .search({
+      q: ["funny", "sad", "cats"],
+      limit: 20,
+      rating: "PG-13"
+    })
+    .then(function(response) {
+      res.send({ gifs2: response });
+    });
+};
+const giphyGifs3 = (req, res, next) => {
+  giphy
+    .search({
+      q: ["cars", "dogs", "babies"],
+      limit: 20,
+      rating: "PG-13"
+    })
+    .then(function(response) {
+      res.send({ gifs3: response });
+    });
+};
+const giphyGifs4 = (req, res, next) => {
+  giphy
+    .search({
+      q: ["vacation", "movie", "sky"],
+      limit: 20,
+      rating: "PG-13"
+    })
+    .then(function(response) {
+      res.send({ gifs4: response });
+   });
+};
+
 module.exports = {
   homePageArticles,
   devPageArticles,
   entertainmentPageArticles,
-  searchArticles
+  searchArticles,
+  giphyGifs,
+  giphyGifs2,
+  giphyGifs3,
+  giphyGifs4
 };

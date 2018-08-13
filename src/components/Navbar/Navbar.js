@@ -1,6 +1,7 @@
 import { Avatar, Button, Card, Input } from "antd";
 import React from "react";
 import "./Navbar.css";
+import {Link} from 'react-router-dom';
 
 const Search = Input.Search;
 
@@ -21,7 +22,9 @@ export default () => {
           <div className="navButtons">
             <Button className="nav_btn">Trending Tech</Button>
             <Button className="nav_btn">Dev Tech</Button>
+            <Link to='/entertainment'>
             <Button className="nav_btn">Entertainment</Button>
+            </Link>
           </div>
           <div>
             <Search

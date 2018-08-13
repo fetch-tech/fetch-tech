@@ -1,0 +1,14 @@
+
+.Gif{
+    align-content: center;
+    display: flex;
+}
+
+.giphies{
+    display: flex;
+    align-content: center;
+}
+    
+    .giphy {
+    margin: 5px;
+}
