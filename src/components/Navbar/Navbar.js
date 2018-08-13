@@ -1,4 +1,5 @@
 import { Avatar, Button, Card, Input } from "antd";
+import { Link } from "react-router-dom";
 import React from "react";
 import "./Navbar.css";
 
@@ -20,7 +21,11 @@ export default () => {
           <h4>Logo</h4>
           <div className="navButtons">
             <Button className="nav_btn">Trending Tech</Button>
-            <Button className="nav_btn">Dev Tech</Button>
+
+            <Link to="/devtech">
+              <Button className="nav_btn">Dev Tech</Button>
+            </Link>
+
             <Button className="nav_btn">Entertainment</Button>
           </div>
           <div>

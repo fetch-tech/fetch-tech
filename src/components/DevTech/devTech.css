@@ -1,0 +1,21 @@
+.genNewsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.articleWrapper {
+  display: flex;
+}
+.aricle-center {
+  margin-left: 3%;
+}
+.article-bottom {
+  margin: 15px;
+}
+.source {
+  font-family: "Bad Script", cursive;
+}
+
+.urlToImage {
+  width: 250px;
+  height: 150px;
+}
