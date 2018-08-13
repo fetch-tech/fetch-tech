@@ -1,8 +1,7 @@
-import { createStore, applyMiddleware } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import promiseMiddleWare from "redux-promise-middleware";
-import { combineReducers } from "redux";
-
 import articlesReducer from "./ducks/articlesReducer";
+import commentReducer from "./ducks/commentReducer";
 import storiesReducer from "./ducks/storiesReducer";
 import usersReducer from "./ducks/usersReducer";
 
@@ -17,7 +16,8 @@ const middleware = applyMiddleware(promiseMiddleWare());
 const combinedReducers = combineReducers({
   articlesReducer,
   storiesReducer,
-  usersReducer
+  usersReducer,
+  commentReducer
 });
 
 const store = createStore(combinedReducers, middleware);

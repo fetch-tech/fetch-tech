@@ -1,7 +1,6 @@
 import { Avatar, Card, Input } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
-import CommentsComments from "./CommentComments";
 import "./comments.css";
 import SingleComment from "./SingleComment";
 
@@ -78,16 +77,13 @@ class Comments extends Component {
             <div key={i}>
               <span style={{ display: "flex" }}>
                 <Avatar src={comment.profile_pic} />
-
                 <span className="comment-display">
                   <span className="comments-username">{comment.username}</span>
                   {comment.comment_text}
                 </span>
               </span>
               <div>
-                <SingleComment comment={comment}>
-                  <CommentsComments comment={comment} reply={reply} />
-                </SingleComment>
+                <SingleComment comment={comment} />
               </div>
             </div>
           );
