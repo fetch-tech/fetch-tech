@@ -75,6 +75,19 @@ class User extends Component {
     return (
       <div>
         <div>
+          <button>
+            {/* <a href="http://localhost:3001/login">Login</a> */}
+            <a href={process.env.REACT_APP_LOGIN}>Login</a>
+          </button>
+        </div>
+        <br />
+        <div>
+          <button>
+            <a href="http://localhost:3001/logout">Logout</a>
+            {/* <a href={process.env.REACT_APP_LOGOUT}>Logout</a> */}
+          </button>
+        </div>
+        <div>
           <h1>{user.username}</h1>
         </div>
         <div className="cover-photo">
