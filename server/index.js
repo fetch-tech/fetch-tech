@@ -10,6 +10,7 @@ const passport = require("passport");
 const { getUser, strat, logout } = require("./controllers/auth_controller");
 const controllers = require("./controller.js");
 const users_controller = require("./controllers/users_controller");
+const commentsController = require("./controllers/commentsController");
 
 // Sets up express server
 const app = express();
@@ -85,6 +86,27 @@ app.get(
 app.get("/api/home/articles/search/:searchTerm", controllers.searchArticles);
 
 /****** NEWS ARTICLE API ******/
+
+/****** Comments API ******/
+
+app.post("/api/comments/articles", commentsController.createComment);
+app.get(
+  "/api/comments/commentArticles/:articleId",
+  commentsController.getComments
+);
+
+app.post("/api/commentArticles/comment/", commentsController.getArticleComment);
+app.post(
+  "/api/commentArticles/comment/comment",
+  commentsController.commentComment
+);
+
+app.get(
+  "/api/commentArticles/comment/comment/:comentId",
+  commentsController.getCommentComment
+);
+
+/****** Comments API ******/
 
 /****** USERS ENDPOINTS ******/
 
