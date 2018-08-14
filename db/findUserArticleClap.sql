@@ -1,0 +1,1 @@
+select * from claps where user_id=$1 and article_id=$2;

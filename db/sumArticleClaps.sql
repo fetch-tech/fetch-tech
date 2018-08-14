@@ -1,0 +1,1 @@
+select sum(number) from claps where article_id=$1

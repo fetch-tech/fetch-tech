@@ -11,6 +11,7 @@ const { getUser, strat, logout } = require("./controllers/auth_controller");
 const controllers = require("./controller.js");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
+const clapsController = require("./controllers/clapsController");
 
 // Sets up express server
 const app = express();
@@ -107,6 +108,15 @@ app.get(
 );
 
 /****** Comments API ******/
+
+/****************claps Api*********************/
+app.post("/api/clapArticle/clap", clapsController.ArticleClap);
+app.get(
+  "/api/userArticleClap/:articleId/:userId",
+  clapsController.UserArticleClap
+);
+app.get("/api/articleClaps/:articleId", clapsController.getArticleClaps);
+/****************claps Api*********************/
 
 /****** USERS ENDPOINTS ******/
 

@@ -62,8 +62,8 @@ export default class extends React.Component {
                 </div>
               </div>
             </Card>
-            <span style={{ marginRight: 300 }}>
-              <Claps clapped={article.author} />
+            <span style={{ marginRight: 270 }}>
+              <Claps article={article} url={article.url} />
             </span>
           </div>
           <Comments

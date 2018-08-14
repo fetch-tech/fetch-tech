@@ -1,40 +1,126 @@
+import { Badge } from "antd";
+import axios from "axios";
 import React, { Component } from "react";
-import ClapComponent from "react-clap-button";
+import SVG from "react-inlinesvg";
+import "./claps.css";
+import leftHand from "./leftHand.svg";
+import rightHand from "./rightHand.svg";
 
-class Claps extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      author: "",
-      children: null
-    };
+export default class Claps extends Component {
+  state = {
+    article: this.props.article,
+    url: this.props.url,
+    classesLeft: "clap hand-left",
+    classesRight: "clap hand-right",
+    count: 0,
+    initialUserCount: 0,
+    userCount: 0,
+    userId: "google-oauth2|105906369999808829473",
+    articleId: null
+  };
+  checkAndFetchClaps = async () => {
+    const articleId = await axios
+      .post("http://localhost:3001/api/commentArticles/comment/", {
+        url: this.state.url
+      })
+      .then(response => {
+        response.data.article.length &&
+          this.setState({ articleId: response.data.article[0].article_id });
+      });
+    const claps =
+      this.state.articleId &&
+      (await axios
+        .get(
+          `http://localhost:3001/api/userArticleClap/${this.state.articleId}/${
+            this.state.userId
+          }`
+        )
+        .then(response => {
+          // response.data.userClaps.length > 0 &&
+          //   this.setState({
+          //     initialUserCount: response.data.userClaps[0].number
+          //   });
+        }));
+    const clapsNumber =
+      this.state.articleId &&
+      (await axios
+        .get(`http://localhost:3001/api/articleClaps/${this.state.articleId}`)
+        .then(response => {
+          this.setState({ count: response.data.claps[0].sum });
+        }));
+    return articleId;
+  };
+
+  componentDidMount() {
+    this.checkAndFetchClaps();
   }
-
-  handleClapChange = (newClapCount, diff) => {
-    this.setState({
-      clapsCount: newClapCount,
-      totalClapCount: this.state.totalClapCount + diff
-    });
+  handleMouseEnter = () => {
+    this.setState({ classesLeft: "clap hand-left clap-start" });
+    this.setState({ classesRight: "clap hand-right clap-start" });
   };
-
-  onClap = () => {
-    this.setState({ author: this.props.clapped });
-    // console.log(this.props.clapped);
+  handleMouseLeave = async () => {
+    const { initialUserCount, userCount, article, userId } = this.state;
+    await this.setState({ classesLeft: "clap hand-left" });
+    await this.setState({ classesRight: "clap hand-right" });
+    if (initialUserCount !== userCount && initialUserCount !== 20) {
+      axios
+        .post("http://localhost:3001/api/clapArticle/clap", {
+          article,
+          number: userCount,
+          initialNumber: initialUserCount,
+          userId
+        })
+        .then(response => {
+          // console.log(response);
+        });
+    }
   };
-
+  handleMouseDown = () => {
+    this.setState({ classesLeft: "clap hand-left clapping" });
+    this.setState({ classesRight: "clap hand-right clapping" });
+    this.setState({ userCount: this.state.userCount + 1 });
+    if (this.state.userCount < 20) {
+      console.log(this.state.count);
+      this.setState({ count: parseInt(this.state.count) + 1 });
+    }
+  };
+  handleMouseUp = () => {
+    this.setState({ classesLeft: "clap hand-left clap-start" });
+    this.setState({ classesRight: "clap hand-right clap-start" });
+  };
   render() {
-    console.log(this.state.author);
+    const { classesRight, classesLeft, count, userCount } = this.state;
     return (
-      <div onClick={this.onClap}>
-        <ClapComponent
-          maxCount={10}
-          theme={{
-            secondaryColor: "#0b7fc6"
+      <div>
+        <Badge
+          count={count}
+          overflowCount={99999}
+          style={{
+            backgroundColor: "#fff",
+            color: "#999",
+            boxShadow: "0 0 0 1px #d9d9d9 inset"
           }}
-          children={this.state.children}
-        />
+        >
+          <div className="clapcontainer">
+            <div
+              className="clap-button"
+              onMouseEnter={this.handleMouseEnter}
+              onMouseLeave={this.handleMouseLeave}
+              onMouseDown={this.handleMouseDown}
+              onMouseUp={this.handleMouseUp}
+            >
+              <div className="clap-animation">
+                <div className={classesLeft}>
+                  <SVG src={leftHand} preloader={<p>loading...</p>} />
+                </div>
+                <div className={classesRight}>
+                  <SVG src={rightHand} preloader={<p>loading...</p>} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Badge>
       </div>
     );
   }
 }
-export default Claps;
