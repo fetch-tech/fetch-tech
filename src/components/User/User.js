@@ -13,6 +13,8 @@ import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
 import CommentArticles from "./CommentArticles";
 
+import "./user.css";
+
 /*
  *  User component is responsible for displaying useful user data
  *  User's default avatar is imported when first logging in with a Google account
@@ -87,6 +89,8 @@ class User extends Component {
             {/* <a href={process.env.REACT_APP_LOGOUT}>Logout</a> */}
           </button>
         </div>
+        <br />
+        <br />
         <div>
           <h1>{user.username}</h1>
         </div>
@@ -94,12 +98,17 @@ class User extends Component {
           <h2>User cover photo goes here</h2>
         </div>
         <div className="avatar">
-          <h2>User avatar goes here</h2>
-          <img src={user.profile_pic} alt="User Avatar" />
+          <img id="profile-pic" src={user.profile_pic} alt="User Avatar" />
         </div>
         <div className="follow">
-          <h2>Followers: {followerCount[0] ? followerCount[0].count : 0}</h2>
-          <h2>Following: {followingCount[0] ? followingCount[0].count : 0}</h2>
+          <div className="follow-display">
+            <h2>Followers</h2>
+            <h2>{followerCount[0] ? followerCount[0].count : 0}</h2>
+          </div>
+          <div className="follow-display">
+            <h2>Following</h2>
+            <h2>{followingCount[0] ? followingCount[0].count : 0}</h2>
+          </div>
         </div>
         <br />
         <br />
