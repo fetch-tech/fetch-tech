@@ -125,6 +125,9 @@ app.get("/api/users/followers", users_controller.getUserFollowerCount);
 // Gets user's following count
 app.get("/api/users/following", users_controller.getUserFollowingCount);
 
+// Gets user's stories
+app.get("/api/users/stories/:user_id", users_controller.getUserStories);
+
 /****** USER ENDPOINTS ******/
 
 /******* GIF API ENDPOINTS ********/

@@ -67,11 +67,23 @@ const getUserFollowingCount = (req, res, next) => {
     .catch(err => res.status(500).send({ getUserFollowingCountError: err }));
 };
 
+// Retrieves user's stories
+const getUserStories = (req, res, next) => {
+  const { user_id } = req.session.passport.user;
+
+  const db = req.app.get("db");
+
+  db.get_user_stories([user_id])
+    .then(stories => res.status(200).send(stories))
+    .catch(err => res.status(500).send({ getUserStoriesError: err }));
+};
+
 module.exports = {
   getUser,
   getUserClaps,
   getUserBookmarks,
   getUserComments,
   getUserFollowerCount,
-  getUserFollowingCount
+  getUserFollowingCount,
+  getUserStories
 };
