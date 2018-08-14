@@ -7,7 +7,8 @@ import {
   getUserBookmarks,
   getUserComments,
   getUserFollowerCount,
-  getUserFollowingCount
+  getUserFollowingCount,
+  getUserStories
 } from "../../redux/ducks/usersReducer";
 import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
@@ -35,7 +36,8 @@ class User extends Component {
       getUserBookmarks,
       getUserComments,
       getUserFollowerCount,
-      getUserFollowingCount
+      getUserFollowingCount,
+      getUserStories
     } = this.props;
 
     // Mounts user data to component
@@ -45,6 +47,7 @@ class User extends Component {
     getUserComments();
     getUserFollowerCount();
     getUserFollowingCount();
+    getUserStories();
   };
 
   render() {
@@ -147,6 +150,7 @@ export default connect(
     getUserBookmarks,
     getUserComments,
     getUserFollowerCount,
-    getUserFollowingCount
+    getUserFollowingCount,
+    getUserStories
   }
 )(User);

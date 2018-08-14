@@ -8,7 +8,8 @@ const initialState = {
   bookmarks: [],
   comments: [],
   followerCount: [],
-  followingCount: []
+  followingCount: [],
+  stories: []
 };
 
 /****** ACTION TYPES ******/
@@ -18,6 +19,7 @@ const GET_USER_BOOKMARKS = "GET_USER_BOOKMARKS";
 const GET_USER_COMMENTS = "GET_USER_COMMENTS";
 const GET_USER_FOLLOWER_COUNT = "GET_USER_FOLLOWER_COUNT";
 const GET_USER_FOLLOWING_COUNT = "GET_USER_FOLLOWING_COUNT";
+const GET_USER_STORIES = "GET_USER_STORIES";
 
 /****** ACTION CREATORS ******/
 
@@ -66,6 +68,14 @@ export function getUserFollowingCount() {
   return {
     type: GET_USER_FOLLOWING_COUNT,
     payload: axios.get("/api/users/following")
+  };
+}
+
+// Gets user's saved stories
+export function getUserStories() {
+  return {
+    type: GET_USER_STORIES,
+    payload: axios.get("/api/users/stories")
   };
 }
 
@@ -180,6 +190,25 @@ export default function usersReducer(state = initialState, action) {
         followingCount: action.payload.data
       };
     case "GET_USER_FOLLOWING_COUNT_REJECTED":
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+      };
+
+    // GET USER'S SAVED STORIES
+    case "GET_USER_STORIES_PENDING":
+      return {
+        ...state,
+        isLoading: true
+      };
+    case "GET_USER_STORIES_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        stories: action.payload.data
+      };
+    case "GET_USER_STORIES_REJECTED":
       return {
         ...state,
         isLoading: true,
