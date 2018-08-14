@@ -94,14 +94,14 @@ class User extends Component {
         </div>
         <br />
         <br />
-        <div>
-          <h1>{user.username}</h1>
-        </div>
         <div className="cover-photo">
           <h2>User cover photo goes here</h2>
         </div>
         <div className="avatar">
           <img id="profile-pic" src={user.profile_pic} alt="User Avatar" />
+        </div>
+        <div>
+          <h1>{user.username}</h1>
         </div>
         <div className="follow">
           <div className="follow-display">
