@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Modal, Button } from "antd";
 
 import {
   getUser,
@@ -27,6 +28,10 @@ import "./user.css";
 class User extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      followerVisible: false,
+      followingVisible: false
+    };
   }
 
   componentDidMount = () => {
@@ -51,8 +56,56 @@ class User extends Component {
     getUserStories();
   };
 
+  /****** FOLLOWER MODAL ******/
+
+  showFollowerModal = () => {
+    this.setState({
+      followerVisible: true
+    });
+  };
+
+  handleOkFollower = event => {
+    // console.log(event);
+    this.setState({
+      followerVisible: false
+    });
+  };
+
+  handleCancelFollower = event => {
+    // console.log(event);
+    this.setState({
+      followerVisible: false
+    });
+  };
+
+  /****** FOLLOWER MODAL ******/
+
+  /****** FOLLOWING MODAL ******/
+
+  showFollowingModal = () => {
+    this.setState({
+      followingVisible: true
+    });
+  };
+
+  handleOkFollowing = event => {
+    // console.log(event);
+    this.setState({
+      followingVisible: false
+    });
+  };
+
+  handleCancelFollowing = event => {
+    // console.log(event);
+    this.setState({
+      followingVisible: false
+    });
+  };
+
+  /****** FOLLOWING MODAL ******/
+
   render() {
-    console.log("props: ", this.props);
+    // console.log("props: ", this.props);
 
     const {
       user,
@@ -110,14 +163,32 @@ class User extends Component {
           <h1>{user.username}</h1>
         </div>
         <div className="follow">
-          <div className="follow-display">
+          <div className="follow-display" onClick={this.showFollowerModal}>
             <h2>Followers</h2>
             <h2>{followerCount[0] ? followerCount[0].count : 0}</h2>
           </div>
-          <div className="follow-display">
+          <div className="follow-display" onClick={this.showFollowingModal}>
             <h2>Following</h2>
             <h2>{followingCount[0] ? followingCount[0].count : 0}</h2>
           </div>
+        </div>
+        <div className="follower-modal">
+          <Modal
+            title="Followers"
+            visible={this.state.followerVisible}
+            onOk={this.handleOkFollower}
+            onCancel={this.handleCancelFollower}
+          >
+            <p>Followers</p>
+          </Modal>
+          <Modal
+            title="Following"
+            visible={this.state.followingVisible}
+            onOk={this.handleOkFollowing}
+            onCancel={this.handleCancelFollowing}
+          >
+            <p>Following</p>
+          </Modal>
         </div>
         <br />
         <br />
