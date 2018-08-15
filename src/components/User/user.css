@@ -22,3 +22,7 @@ h2 {
   width: 150px;
   margin: 0;
 }
+
+.hover-cursor {
+  cursor: pointer;
+}

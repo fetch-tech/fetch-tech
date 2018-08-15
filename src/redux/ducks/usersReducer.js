@@ -7,8 +7,8 @@ const initialState = {
   claps: [],
   bookmarks: [],
   comments: [],
-  followerCount: [],
-  followingCount: [],
+  followers: [],
+  following: [],
   stories: []
 };
 
@@ -17,8 +17,8 @@ const GET_USER = "GET_USER";
 const GET_USER_CLAPS = "GET_USER_CLAPS";
 const GET_USER_BOOKMARKS = "GET_USER_BOOKMARKS";
 const GET_USER_COMMENTS = "GET_USER_COMMENTS";
-const GET_USER_FOLLOWER_COUNT = "GET_USER_FOLLOWER_COUNT";
-const GET_USER_FOLLOWING_COUNT = "GET_USER_FOLLOWING_COUNT";
+const GET_USER_FOLLOWERS = "GET_USER_FOLLOWERS";
+const GET_USER_FOLLOWING = "GET_USER_FOLLOWING";
 const GET_USER_STORIES = "GET_USER_STORIES";
 
 /****** ACTION CREATORS ******/
@@ -56,17 +56,17 @@ export function getUserComments() {
 }
 
 // Gets user's follower count
-export function getUserFollowerCount() {
+export function getUserFollowers() {
   return {
-    type: GET_USER_FOLLOWER_COUNT,
+    type: GET_USER_FOLLOWERS,
     payload: axios.get("/api/users/followers")
   };
 }
 
 // Gets the number of people the user is following
-export function getUserFollowingCount() {
+export function getUserFollowing() {
   return {
-    type: GET_USER_FOLLOWING_COUNT,
+    type: GET_USER_FOLLOWING,
     payload: axios.get("/api/users/following")
   };
 }
@@ -159,18 +159,18 @@ export default function usersReducer(state = initialState, action) {
       };
 
     // GET USER FOLLOWER COUNT
-    case "GET_USER_FOLLOWER_COUNT_PENDING":
+    case "GET_USER_FOLLOWERS_PENDING":
       return {
         ...state,
         isLoading: true
       };
-    case "GET_USER_FOLLOWER_COUNT_FULFILLED":
+    case "GET_USER_FOLLOWERS_FULFILLED":
       return {
         ...state,
         isLoading: false,
-        followerCount: action.payload.data
+        followers: action.payload.data
       };
-    case "GET_USER_FOLLOWER_COUNT_REJECTED":
+    case "GET_USER_FOLLOWERS_REJECTED":
       return {
         ...state,
         isLoading: true,
@@ -178,18 +178,18 @@ export default function usersReducer(state = initialState, action) {
       };
 
     // GET USER FOLLOWING COUNT
-    case "GET_USER_FOLLOWING_COUNT_PENDING":
+    case "GET_USER_FOLLOWING_PENDING":
       return {
         ...state,
         isLoading: true
       };
-    case "GET_USER_FOLLOWING_COUNT_FULFILLED":
+    case "GET_USER_FOLLOWING_FULFILLED":
       return {
         ...state,
         isLoading: false,
-        followingCount: action.payload.data
+        following: action.payload.data
       };
-    case "GET_USER_FOLLOWING_COUNT_REJECTED":
+    case "GET_USER_FOLLOWING_REJECTED":
       return {
         ...state,
         isLoading: true,

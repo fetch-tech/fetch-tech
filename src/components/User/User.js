@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 
 import {
   getUser,
   getUserClaps,
   getUserBookmarks,
   getUserComments,
-  getUserFollowerCount,
-  getUserFollowingCount,
+  getUserFollowers,
+  getUserFollowing,
   getUserStories
 } from "../../redux/ducks/usersReducer";
 import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
 import CommentArticles from "./CommentArticles";
 import StoryArticles from "./StoryArticles";
+import FollowerList from "./FollowerList";
 
 import "./user.css";
 
@@ -41,8 +42,8 @@ class User extends Component {
       getUserClaps,
       getUserBookmarks,
       getUserComments,
-      getUserFollowerCount,
-      getUserFollowingCount,
+      getUserFollowers,
+      getUserFollowing,
       getUserStories
     } = this.props;
 
@@ -51,8 +52,8 @@ class User extends Component {
     getUserClaps();
     getUserBookmarks();
     getUserComments();
-    getUserFollowerCount();
-    getUserFollowingCount();
+    getUserFollowers();
+    getUserFollowing();
     getUserStories();
   };
 
@@ -105,15 +106,15 @@ class User extends Component {
   /****** FOLLOWING MODAL ******/
 
   render() {
-    // console.log("props: ", this.props);
+    console.log("props: ", this.props);
 
     const {
       user,
       claps,
       bookmarks,
       comments,
-      followerCount,
-      followingCount,
+      followers,
+      following,
       stories
     } = this.props.usersReducer;
 
@@ -132,9 +133,23 @@ class User extends Component {
       return <CommentArticles uniqueKey={i} comment={comment} i={i} />;
     });
 
+    // Rendering user's stories
     const displayStories = stories.map((story, i) => {
       return <StoryArticles uniqueKey={i} story={story} i={i} />;
     });
+
+    // Displaying user's follower count
+    let followerCount = 0;
+    followers.forEach(follower => (followerCount += 1));
+
+    // Rendering user's list of followers
+    const displayFollowers = followers.map((follower, i) => {
+      return <FollowerList uniqueKey={i} follower={follower} i={i} />;
+    });
+
+    // Displaying user's following count
+    let followingCount = 0;
+    following.forEach(following => (followingCount += 1));
 
     return (
       <div>
@@ -163,13 +178,19 @@ class User extends Component {
           <h1>{user.username}</h1>
         </div>
         <div className="follow">
-          <div className="follow-display" onClick={this.showFollowerModal}>
+          <div
+            className="follow-display hover-cursor"
+            onClick={this.showFollowerModal}
+          >
             <h2>Followers</h2>
-            <h2>{followerCount[0] ? followerCount[0].count : 0}</h2>
+            <h2>{followerCount}</h2>
           </div>
-          <div className="follow-display" onClick={this.showFollowingModal}>
+          <div
+            className="follow-display hover-cursor"
+            onClick={this.showFollowingModal}
+          >
             <h2>Following</h2>
-            <h2>{followingCount[0] ? followingCount[0].count : 0}</h2>
+            <h2>{followingCount}</h2>
           </div>
         </div>
         <div className="follower-modal">
@@ -179,7 +200,7 @@ class User extends Component {
             onOk={this.handleOkFollower}
             onCancel={this.handleCancelFollower}
           >
-            <p>Followers</p>
+            {followers[0] ? displayFollowers : "User has no follower :("}
           </Modal>
           <Modal
             title="Following"
@@ -232,8 +253,8 @@ export default connect(
     getUserClaps,
     getUserBookmarks,
     getUserComments,
-    getUserFollowerCount,
-    getUserFollowingCount,
+    getUserFollowers,
+    getUserFollowing,
     getUserStories
   }
 )(User);

@@ -120,10 +120,10 @@ app.get("/api/users/bookmarks", users_controller.getUserBookmarks);
 app.get("/api/users/comments", users_controller.getUserComments);
 
 // Gets user's follower count
-app.get("/api/users/followers", users_controller.getUserFollowerCount);
+app.get("/api/users/followers", users_controller.getUserFollowers);
 
 // Gets user's following count
-app.get("/api/users/following", users_controller.getUserFollowingCount);
+app.get("/api/users/following", users_controller.getUserFollowing);
 
 // Gets user's stories
 app.get("/api/users/stories", users_controller.getUserStories);
