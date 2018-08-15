@@ -13,6 +13,7 @@ import {
 import ClapArticles from "./ClapArticles";
 import BookmarkArticles from "./BookmarkArticles";
 import CommentArticles from "./CommentArticles";
+import StoryArticles from "./StoryArticles";
 
 import "./user.css";
 
@@ -59,7 +60,8 @@ class User extends Component {
       bookmarks,
       comments,
       followerCount,
-      followingCount
+      followingCount,
+      stories
     } = this.props.usersReducer;
 
     // Rendering articles user has clapped on
@@ -75,6 +77,10 @@ class User extends Component {
     // Rendering user's comments on articles
     const displayComments = comments.map((comment, i) => {
       return <CommentArticles uniqueKey={i} comment={comment} i={i} />;
+    });
+
+    const displayStories = stories.map((story, i) => {
+      return <StoryArticles uniqueKey={i} story={story} i={i} />;
     });
 
     return (
@@ -112,6 +118,12 @@ class User extends Component {
             <h2>Following</h2>
             <h2>{followingCount[0] ? followingCount[0].count : 0}</h2>
           </div>
+        </div>
+        <br />
+        <br />
+        <div className="user-stories">
+          <h2>Stories:</h2>
+          {stories && displayStories}
         </div>
         <br />
         <br />
