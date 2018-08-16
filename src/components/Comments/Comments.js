@@ -97,10 +97,10 @@ class Comments extends Component {
       <Card
         hoverable
         className="commentsWrapper"
-        style={{ width: "42%", cursor: "default" }}
+        style={{ width: "46%", cursor: "default" }}
       >
         {commentsDisplay}
-        <form onSubmit={this.onCommentSubmit}>
+        <form className="commentForm" onSubmit={this.onCommentSubmit}>
           <span style={{ display: "flex", margin: "10px" }}>
             <Avatar src={this.state.userProfilePic} />
             <Input

@@ -8,7 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 
 const { getUser, strat, logout } = require("./controllers/auth_controller");
-const controllers = require("./controller.js");
+const controllers = require("./controller");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
 const twitter_controller = require("./controllers/twitter_controller");

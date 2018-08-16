@@ -9,7 +9,7 @@ export default class Gif extends Component {
     gifs: [],
     gifs2: [],
     gifs3: [],
-  gifs4: []
+    gifs4: []
   };
 
   componentDidMount() {
@@ -23,21 +23,20 @@ export default class Gif extends Component {
       });
     });
     axios.get("http://localhost:3001/api/gifs/tech3").then(response => {
-      console.log(response);
-    this.setState({ gifs3: response.data.gifs3.data });
-   
+      //console.log(response);
+      this.setState({ gifs3: response.data.gifs3.data });
     });
     axios.get("http://localhost:3001/api/gifs/tech4").then(response => {
-      console.log(response);
-   this.setState({ gifs4: response.data.gifs4.data });
+      //console.log(response);
+      this.setState({ gifs4: response.data.gifs4.data });
     });
   }
 
   render() {
     const { gifs } = this.state;
     const { gifs2 } = this.state;
-    const { gifs3} = this.state;
-    const { gifs4} = this.state;
+    const { gifs3 } = this.state;
+    const { gifs4 } = this.state;
 
     // console.log(gifs);
     // console.log(gifs2);
@@ -52,7 +51,7 @@ export default class Gif extends Component {
       // console.log(gif);
       //const gifDisplay2 = gifs2.map(gif2 => {
       return (
-        <div>
+        <div className="gifColm1">
           <Row gutter={16}>
             <Col span={4}>
               <img
@@ -66,54 +65,57 @@ export default class Gif extends Component {
         </div>
       );
     });
-    
+
     const gifDisplay2 = this.state.gifs2.map(gif2Item => {
-      console.log("gif2Item", gif2Item.images.original.url);
+      //console.log("gif2Item", gif2Item.images.original.url);
       return (
-        <Row gutter={16}>
-      
-          <Col span={4}>
-            <img
-              style={{ width: 425 }}
-              src={gif2Item.images.original.url}
-              alt="gif2"
-            />
-          </Col>
-        </Row>
+        <div className="gifColm2">
+          <Row gutter={16}>
+            <Col span={4}>
+              <img
+                style={{ width: 425 }}
+                src={gif2Item.images.original.url}
+                alt="gif2"
+              />
+            </Col>
+          </Row>
+        </div>
       );
     });
     const gifDisplay3 = this.state.gifs3.map(gif3 => {
-      console.log("gif3", gif3.images.original.url);
+      //console.log("gif3", gif3.images.original.url);
       return (
-        <Row gutter={16}>
-          
-          <Col span={4}>
-            <img
-              style={{ width: 425 }}
-              src={gif3.images.original.url}
-              alt="gif3"
-            />
-          </Col>
-        </Row>
+        <div className="gifColm1">
+          <Row gutter={16}>
+            <Col span={4}>
+              <img
+                style={{ width: 425 }}
+                src={gif3.images.original.url}
+                alt="gif3"
+              />
+            </Col>
+          </Row>
+        </div>
       );
     });
     const gifDisplay4 = this.state.gifs4.map(gif4 => {
-      console.log("gif3", gif4.images.original.url);
+      //console.log("gif3", gif4.images.original.url);
       return (
-        <Row gutter={16}>
-          
-          <Col span={4}>
-            <img
-              style={{ width: 425 }}
-              src={gif4.images.original.url}
-              alt="gif4"
-            />
-          </Col>
-        </Row>
-  );
-});
+        <div className="gifColm2">
+          <Row gutter={16}>
+            <Col span={4}>
+              <img
+                style={{ width: 425 }}
+                src={gif4.images.original.url}
+                alt="gif4"
+              />
+            </Col>
+          </Row>
+        </div>
+      );
+    });
     return (
-      <div className = 'giphies'>
+      <div className="giphies">
         <div className="giphy">{gifDisplay}</div>
         <div className="giphy"> {gifDisplay2}</div>
         <div className="giphy">{gifDisplay3}</div>

@@ -4,6 +4,7 @@ import DevTech from "./components/DevTech/DevTech";
 import Entertainment from "./components/Entertainment/Entertainment";
 import Gif from "./components/Gif/Gif";
 import User from "./components/User/User";
+import GitHub_Repos from './components/GitHub_Repos/GitHub_Repos'
 
 import { Switch, Route } from "react-router-dom";
 
@@ -16,5 +17,6 @@ export default (
     <Route component={Entertainment} path="/entertainment" />
     <Route component={Gif} path="/gif" />
     <Route component={User} path="/user" />
+    <Route component={GitHub_Repos} path='/githubrepos'/>
   </Switch>
 );
