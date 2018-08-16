@@ -1,8 +1,10 @@
 import { Button, Card, Icon } from "antd";
 import axios from "axios";
 import React from "react";
+import Bookmark from "../Bookmark/Bookmark";
 import Claps from "../Claps/Claps";
 import Comments from "../Comments/Comments";
+import AddToStories from "../Stories/AddToStories";
 import Stories from "../Stories/Stories";
 import "./genTech.css";
 
@@ -64,6 +66,12 @@ export default class extends React.Component {
             </Card>
             <span style={{ marginRight: 270 }}>
               <Claps article={article} url={article.url} />
+              <span style={{ margin: 10 }}>
+                <Bookmark article={article} url={article.url} />
+              </span>
+              <span style={{ margin: 10 }}>
+                <AddToStories article={article} url={article.url} />
+              </span>
             </span>
           </div>
           <Comments

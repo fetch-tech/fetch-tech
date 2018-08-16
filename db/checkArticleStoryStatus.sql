@@ -1,0 +1,1 @@
+select * from stories where article_id=$1 and user_id=$2

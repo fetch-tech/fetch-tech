@@ -1,0 +1,1 @@
+delete from bookmarks where article_id=$1 and user_id=$2;
