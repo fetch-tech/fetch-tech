@@ -16,6 +16,7 @@ import BookmarkArticles from "./BookmarkArticles";
 import CommentArticles from "./CommentArticles";
 import StoryArticles from "./StoryArticles";
 import FollowerList from "./FollowerList";
+import FollowingList from "./FollowingList";
 
 import "./user.css";
 
@@ -151,6 +152,11 @@ class User extends Component {
     let followingCount = 0;
     following.forEach(following => (followingCount += 1));
 
+    // Rendering user's following list
+    const displayFollowing = following.map((followedUser, i) => {
+      return <FollowingList uniqueKey={i} followedUser={followedUser} i={i} />;
+    });
+
     return (
       <div>
         <div>
@@ -208,7 +214,9 @@ class User extends Component {
             onOk={this.handleOkFollowing}
             onCancel={this.handleCancelFollowing}
           >
-            <p>Following</p>
+            {following[0]
+              ? displayFollowing
+              : "User is not following anyone :("}
           </Modal>
         </div>
         <br />
