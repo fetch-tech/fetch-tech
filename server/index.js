@@ -12,6 +12,9 @@ const controllers = require("./controller");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
 const twitter_controller = require("./controllers/twitter_controller");
+const clapsController = require("./controllers/clapsController");
+const bookmarksController = require("./controllers/bookmarksController");
+const storiesController = require("./controllers/storiesController");
 
 // Sets up express server
 const app = express();
@@ -115,6 +118,47 @@ app.get(
 );
 
 /****** Comments API ******/
+
+/****************claps Api*********************/
+app.post("/api/clapArticle/clap", clapsController.ArticleClap);
+app.get(
+  "/api/userArticleClap/:articleId/:userId",
+  clapsController.UserArticleClap
+);
+app.get("/api/articleClaps/:articleId", clapsController.getArticleClaps);
+/****************claps Api*********************/
+
+/************************Bookmars*********************/
+app.post("/api/articles/bookmarks", bookmarksController.addBookmark);
+app.get(
+  "/api/articles/bookmartStatus/:articleId/:userId",
+  bookmarksController.checkArticleStatus
+);
+app.post(
+  "/api/articles/articleExistence",
+  bookmarksController.checkArticleExistence
+);
+app.post(
+  "/api/articles/removeBookmark/:articleId/:userId",
+  bookmarksController.removeBookmark
+);
+/************************Bookmars*********************/
+
+/************************Stories*********************/
+app.post("/api/articles/stories", storiesController.addStories);
+app.get(
+  "/api/articles/storyStatus/:articleId/:userId",
+  storiesController.checkArticleStatus
+);
+app.post(
+  "/api/articles/articleExistence",
+  storiesController.checkArticleExistence
+);
+app.post(
+  "/api/articles/removeStory/:articleId/:userId",
+  storiesController.removeStory
+);
+/************************Stories*********************/
 
 /****** USERS ENDPOINTS ******/
 

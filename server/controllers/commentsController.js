@@ -82,7 +82,9 @@ const commentComment = (req, res, next) => {
       user_id: userId
     })
     .then(comment => {
-      res.send({ insertedComment: comment });
+      db.get_comments_comments([comment.comment_id]).then(comments => {
+        res.send({ insertedComment: comments });
+      });
     });
 };
 

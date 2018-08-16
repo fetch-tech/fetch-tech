@@ -1,4 +1,101 @@
-.clap-container .clap-icon {
-  width: 69px;
-  height: 69px;
+.clap-button {
+  border: 1px solid #4298f4;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+.clap-button:hover {
+  animation: none;
+}
+.clap-animation {
+  position: relative;
+  top: 20px;
+  left: 10px;
+}
+.clap {
+  position: relative;
+  transition: all 100ms;
+  transition-timing-function: ease-in-out;
+}
+.hand-left {
+  top: 10px;
+  left: 5px;
+  z-index: +1;
+}
+.hand-right {
+  z-index: -1;
+  top: -45px;
+  left: 15px;
+}
+.clap-start.hand-right {
+  top: -65px;
+  left: 20px;
+  transform: rotate(-20deg) scale(0.9);
+}
+.clap-start.hand-left {
+  top: 30px;
+  left: -15px;
+  transform: rotate(50deg) scale(1.1);
+}
+.clapping.hand-left {
+  top: 35px;
+  left: -5px;
+  transform: rotate(60deg) scale(1);
+}
+.clapping.hand-right {
+  top: -55px;
+  left: 25px;
+  transform: rotate(-10deg) scale(1);
+}
+.credits {
+  position: relative;
+  top: 25px;
+  left: -45px;
+  text-decoration: none;
+  width: 200px;
+  text-align: center;
+  font-family: MONOSPACE;
+  color: #4f4f4f;
+}
+a {
+  color: #4d4d4d;
+  text-decoration: none;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+            supported by Chrome and Opera */
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(7, 83, 184, 0.4);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba(3, 168, 124, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(3, 168, 124, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(3, 80, 168, 0.4);
+    box-shadow: 0 0 0 0 rgba(3, 61, 168, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba(3, 168, 124, 0);
+    box-shadow: 0 0 0 10px rgba(3, 168, 124, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(3, 168, 124, 0);
+    box-shadow: 0 0 0 0 rgba(3, 168, 124, 0);
+  }
 }

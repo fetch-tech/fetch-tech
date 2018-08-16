@@ -1,0 +1,1 @@
+update claps set number = $1 where user_id=$2 and article_id=$3
