@@ -1,16 +1,19 @@
 /****** LOCAL SERVER ******/
 require("dotenv").config();
 const express = require("express");
-const { json } = require("body-parser");
+const {
+  json
+} = require("body-parser");
 const cors = require("cors");
 const massive = require("massive");
 const session = require("express-session");
 const passport = require("passport");
 
 const { getUser, strat, logout } = require("./controllers/auth_controller");
-const controllers = require("./controller.js");
+const controllers = require("./controller");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
+const githubRepos_controller = require('./controllers/githubRepos_controller')
 
 // Sets up express server
 const app = express();
@@ -132,6 +135,9 @@ app.get("/api/gifs/tech", controllers.giphyGifs);
 app.get("/api/gifs/tech2", controllers.giphyGifs2);
 app.get("/api/gifs/tech3", controllers.giphyGifs3);
 app.get("/api/gifs/tech4", controllers.giphyGifs4);
+
+/*****************gitHub API ENDPOINTS************** */
+//app.get('/api/gitHub/devtrends', githubRepos_controller.developertrends);
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
