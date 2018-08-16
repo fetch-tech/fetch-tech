@@ -11,10 +11,11 @@ import {
   getUserFollowing,
   getUserStories
 } from "../../redux/ducks/usersReducer";
-import ClapArticles from "./userContent/ClapArticles";
-import BookmarkArticles from "./userContent/BookmarkArticles";
-import CommentArticles from "./userContent/CommentArticles";
-import StoryArticles from "./userContent/StoryArticles";
+import UserNav from "./UserNav/UserNav";
+// import ClapArticles from "./userContent/ClapArticles";
+// import BookmarkArticles from "./userContent/BookmarkArticles";
+// import CommentArticles from "./userContent/CommentArticles";
+// import StoryArticles from "./userContent/StoryArticles";
 import FollowerList from "./userContent/FollowerList";
 import FollowingList from "./userContent/FollowingList";
 
@@ -109,7 +110,7 @@ class User extends Component {
   /****** FOLLOWING MODAL ******/
 
   render() {
-    console.log("props: ", this.props);
+    // console.log("props: ", this.props);
 
     const {
       user,
@@ -121,25 +122,25 @@ class User extends Component {
       stories
     } = this.props.usersReducer;
 
-    // Rendering articles user has clapped on
-    const displayClappedArticles = claps.map((clap, i) => {
-      return <ClapArticles uniqueKey={i} clap={clap} i={i} />;
-    });
+    // // Rendering articles user has clapped on
+    // const displayClappedArticles = claps.map((clap, i) => {
+    //   return <ClapArticles uniqueKey={i} clap={clap} i={i} />;
+    // });
 
-    // Rendering user's bookmarked articles
-    const displayBookmarks = bookmarks.map((bookmark, i) => {
-      return <BookmarkArticles uniqueKey={i} bookmark={bookmark} i={i} />;
-    });
+    // // Rendering user's bookmarked articles
+    // const displayBookmarks = bookmarks.map((bookmark, i) => {
+    //   return <BookmarkArticles uniqueKey={i} bookmark={bookmark} i={i} />;
+    // });
 
-    // Rendering user's comments on articles
-    const displayComments = comments.map((comment, i) => {
-      return <CommentArticles uniqueKey={i} comment={comment} i={i} />;
-    });
+    // // Rendering user's comments on articles
+    // const displayComments = comments.map((comment, i) => {
+    //   return <CommentArticles uniqueKey={i} comment={comment} i={i} />;
+    // });
 
-    // Rendering user's stories
-    const displayStories = stories.map((story, i) => {
-      return <StoryArticles uniqueKey={i} story={story} i={i} />;
-    });
+    // // Rendering user's stories
+    // const displayStories = stories.map((story, i) => {
+    //   return <StoryArticles uniqueKey={i} story={story} i={i} />;
+    // });
 
     // Displaying user's follower count
     let followerCount = 0;
@@ -201,6 +202,7 @@ class User extends Component {
             <h2>{followingCount}</h2>
           </div>
         </div>
+        <UserNav />
         <div className="follower-modal">
           <Modal
             title="Followers"
@@ -223,19 +225,7 @@ class User extends Component {
         </div>
         <br />
         <br />
-        <div className="Stories">
-          <h2>Stories</h2>
-        </div>
-        <div className="Claps">
-          <h2>Claps</h2>
-        </div>
-        <div className="Bookmarks">
-          <h2>Bookmarks</h2>
-        </div>
-        <div className="Comments">
-          <h2>Comments</h2>
-        </div>
-        <Collapse bordered={false}>
+        {/* <Collapse bordered={false}>
           <Panel header="Stories" key="1">
             <div className="user-stories">
               {stories ? displayStories : "No stories to show :("}
@@ -258,7 +248,7 @@ class User extends Component {
               {comments ? displayComments : "No comments to show :("}
             </div>
           </Panel>
-        </Collapse>
+        </Collapse> */}
       </div>
     );
   }
