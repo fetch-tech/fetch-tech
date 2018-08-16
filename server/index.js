@@ -8,12 +8,10 @@ const session = require("express-session");
 const passport = require("passport");
 
 const { getUser, strat, logout } = require("./controllers/auth_controller");
-const controllers = require("./controller.js");
+const controllers = require("./controller");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
-const clapsController = require("./controllers/clapsController");
-const bookmarksController = require("./controllers/bookmarksController");
-const storiesController = require("./controllers/storiesController");
+const twitter_controller = require("./controllers/twitter_controller");
 
 // Sets up express server
 const app = express();
@@ -54,9 +52,16 @@ passport.serializeUser((user, done) => {
     .then(response => {
       // console.log(response);
       if (!response[0]) {
-        db.add_user([user.id, user.displayName, user.picture])
-          .then(res => done(null, res[0]))
-          .catch(console.log);
+        db.users
+          .insert({
+            user_id: user.id,
+            username: user.displayName,
+            profile_pic: user.picture
+          })
+          .then(res => {
+            console.log(res);
+            return done(null, res);
+          });
       } else return done(null, response[0]);
     })
     .catch(console.log);
@@ -164,10 +169,13 @@ app.get("/api/users/bookmarks", users_controller.getUserBookmarks);
 app.get("/api/users/comments", users_controller.getUserComments);
 
 // Gets user's follower count
-app.get("/api/users/followers", users_controller.getUserFollowerCount);
+app.get("/api/users/followers", users_controller.getUserFollowers);
 
 // Gets user's following count
-app.get("/api/users/following", users_controller.getUserFollowingCount);
+app.get("/api/users/following", users_controller.getUserFollowing);
+
+// Gets user's stories
+app.get("/api/users/stories", users_controller.getUserStories);
 
 /****** USER ENDPOINTS ******/
 
@@ -176,6 +184,14 @@ app.get("/api/gifs/tech", controllers.giphyGifs);
 app.get("/api/gifs/tech2", controllers.giphyGifs2);
 app.get("/api/gifs/tech3", controllers.giphyGifs3);
 app.get("/api/gifs/tech4", controllers.giphyGifs4);
+
+/****** TWITTER ******/
+app.get("/api/tweet/javascript", twitter_controller.searchTweet);
+app.get("/api/tweet/react", twitter_controller.searchReact);
+app.get("/api/tweet/redux", twitter_controller.searchRedux);
+app.get("/api/tweet/vue", twitter_controller.searchVue);
+app.get("/api/tweet/angular", twitter_controller.searchAngular);
+/****** TWITTER ******/
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;

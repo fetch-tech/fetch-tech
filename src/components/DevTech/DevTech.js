@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Button, Card, Icon } from "antd";
+import Twitter from "../Twitter/Twitter";
 
 export default class DevTech extends Component {
   constructor() {
@@ -17,7 +18,7 @@ export default class DevTech extends Component {
 
   render() {
     const { devArticles } = this.state;
-    console.log(devArticles);
+    // console.log("ART-----> ", devArticles);
 
     const displayDevArticle = devArticles.map(devArticle => {
       return (
@@ -54,6 +55,11 @@ export default class DevTech extends Component {
       );
     });
 
-    return <div>{displayDevArticle}</div>;
+    return (
+      <div style={{ display: "flex" }}>
+        <Twitter />
+        <div>{displayDevArticle}</div>
+      </div>
+    );
   }
 }

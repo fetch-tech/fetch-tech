@@ -1,0 +1,31 @@
+.genNewsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.articleWrapperG {
+  display: flex;
+}
+.aricle-centerG {
+  margin-left: 3%;
+}
+.article-bottomG {
+  margin: 15px;
+}
+
+.urlToImageG {
+  width: 350px;
+  height: 250px;
+}
+
+.article-sidebarG {
+  margin-right: 0%;
+}
+
+.wrapperG {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 15px;
+}
