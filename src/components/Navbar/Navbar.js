@@ -2,7 +2,7 @@ import { Avatar, Button, Card, Input } from "antd";
 import { Link } from "react-router-dom";
 import React from "react";
 import "./Navbar.css";
-import FETCH_TECH_LOGO_TRANS3 from "../../Images/FETCH_TECH_LOGO_TRANS3.png";
+// import FETCH_TECH_LOGO_TRANS3 from "../../Images/FETCH_TECH_LOGO_TRANS3.png";
 
 const Search = Input.Search;
 
@@ -21,7 +21,7 @@ export default () => {
           <div className="Logo">
             <img
               className="logoPic"
-              src={FETCH_TECH_LOGO_TRANS3}
+              src=""
               // marginTop="0"
               // width="140"
               // height="100"

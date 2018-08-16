@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 import "./App.css";
 import "./components/DevTech/devTech.css";
+import "./components/Twitter/twitter.css";
 import Navbar from "./components/Navbar/Navbar";
 import store from "./redux/store";
 import routes from "./router";

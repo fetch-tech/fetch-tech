@@ -34,7 +34,9 @@
     "react-select": "^2.0.0",
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
-    "trending-github": "^1.1.0"
+    "trending-github": "^1.1.0",
+    "twit": "^2.2.11",
+    "twitter": "^1.7.1"
   },
   "scripts": {
     "start": "react-scripts start",
