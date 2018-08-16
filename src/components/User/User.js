@@ -11,12 +11,12 @@ import {
   getUserFollowing,
   getUserStories
 } from "../../redux/ducks/usersReducer";
-import ClapArticles from "./ClapArticles";
-import BookmarkArticles from "./BookmarkArticles";
-import CommentArticles from "./CommentArticles";
-import StoryArticles from "./StoryArticles";
-import FollowerList from "./FollowerList";
-import FollowingList from "./FollowingList";
+import ClapArticles from "./userContent/ClapArticles";
+import BookmarkArticles from "./userContent/BookmarkArticles";
+import CommentArticles from "./userContent/CommentArticles";
+import StoryArticles from "./userContent/StoryArticles";
+import FollowerList from "./userContent/FollowerList";
+import FollowingList from "./userContent/FollowingList";
 
 import "./user.css";
 
@@ -223,6 +223,18 @@ class User extends Component {
         </div>
         <br />
         <br />
+        <div className="Stories">
+          <h2>Stories</h2>
+        </div>
+        <div className="Claps">
+          <h2>Claps</h2>
+        </div>
+        <div className="Bookmarks">
+          <h2>Bookmarks</h2>
+        </div>
+        <div className="Comments">
+          <h2>Comments</h2>
+        </div>
         <Collapse bordered={false}>
           <Panel header="Stories" key="1">
             <div className="user-stories">
