@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Modal } from "antd";
+import { Modal, Collapse } from "antd";
 
 import {
   getUser,
@@ -19,6 +19,8 @@ import FollowerList from "./FollowerList";
 import FollowingList from "./FollowingList";
 
 import "./user.css";
+
+const Panel = Collapse.Panel;
 
 /*
  *  User component is responsible for displaying useful user data
@@ -221,30 +223,30 @@ class User extends Component {
         </div>
         <br />
         <br />
-        <div className="user-stories">
-          <h2>Stories:</h2>
-          {stories && displayStories}
-        </div>
-        <br />
-        <br />
-        <div className="claps">
-          <h2>Article Claps: </h2>
-          {claps && displayClappedArticles}
-        </div>
-        <br />
-        <br />
-        <div className="bookmarks">
-          <h2>Bookmarked Articles: </h2>
-          {bookmarks && displayBookmarks}
-        </div>
-        <br />
-        <br />
-        <div className="comments">
-          <h2>User's comments: </h2>
-          {comments && displayComments}
-        </div>
-        <br />
-        <br />
+        <Collapse bordered={false}>
+          <Panel header="Stories" key="1">
+            <div className="user-stories">
+              {stories ? displayStories : "No stories to show :("}
+            </div>
+          </Panel>
+          <Panel header="Article Claps" key="2">
+            <div className="claps">
+              {claps
+                ? displayClappedArticles
+                : "No clapped articles to show :("}
+            </div>
+          </Panel>
+          <Panel header="Bookmarked Articles" key="3">
+            <div className="bookmarks">
+              {bookmarks ? displayBookmarks : "No bookmarks to show :("}
+            </div>
+          </Panel>
+          <Panel header="User's Comments" key="4">
+            <div className="comments">
+              {comments ? displayComments : "No comments to show :("}
+            </div>
+          </Panel>
+        </Collapse>
       </div>
     );
   }
