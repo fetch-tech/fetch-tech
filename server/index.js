@@ -12,6 +12,9 @@ const controllers = require("./controller");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
 const twitter_controller = require("./controllers/twitter_controller");
+const clapsController = require("./controllers/clapsController");
+const bookmarksController = require("./controllers/bookmarksController");
+const storiesController = require("./controllers/storiesController");
 
 // Sets up express server
 const app = express();
