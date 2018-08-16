@@ -1,9 +1,7 @@
 /****** LOCAL SERVER ******/
 require("dotenv").config();
 const express = require("express");
-const {
-  json
-} = require("body-parser");
+const { json } = require("body-parser");
 const cors = require("cors");
 const massive = require("massive");
 const session = require("express-session");
@@ -13,7 +11,6 @@ const { getUser, strat, logout } = require("./controllers/auth_controller");
 const controllers = require("./controller");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
-const githubRepos_controller = require('./controllers/githubRepos_controller')
 
 // Sets up express server
 const app = express();
