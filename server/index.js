@@ -51,9 +51,16 @@ passport.serializeUser((user, done) => {
     .then(response => {
       // console.log(response);
       if (!response[0]) {
-        db.add_user([user.id, user.displayName, user.picture])
-          .then(res => done(null, res[0]))
-          .catch(console.log);
+        db.users
+          .insert({
+            user_id: user.id,
+            username: user.displayName,
+            profile_pic: user.picture
+          })
+          .then(res => {
+            console.log(res);
+            return done(null, res);
+          });
       } else return done(null, response[0]);
     })
     .catch(console.log);
