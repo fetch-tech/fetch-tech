@@ -46,25 +46,36 @@ const getUserComments = (req, res, next) => {
 };
 
 // Retrieves user's follower count
-const getUserFollowerCount = (req, res, next) => {
+const getUserFollowers = (req, res, next) => {
   const { user_id } = req.session.passport.user;
 
   const db = req.app.get("db");
 
-  db.get_user_follower_count([user_id])
-    .then(followerCount => res.status(200).send(followerCount))
-    .catch(err => res.status(500).send({ getUserFollowerCountError: err }));
+  db.get_user_followers([user_id])
+    .then(followers => res.status(200).send(followers))
+    .catch(err => res.status(500).send({ getUserFollowersError: err }));
 };
 
 // Retrieves user's following count
-const getUserFollowingCount = (req, res, next) => {
+const getUserFollowing = (req, res, next) => {
   const { user_id } = req.session.passport.user;
 
   const db = req.app.get("db");
 
-  db.get_user_following_count([user_id])
-    .then(followingCount => res.status(200).send(followingCount))
-    .catch(err => res.status(500).send({ getUserFollowingCountError: err }));
+  db.get_user_following([user_id])
+    .then(following => res.status(200).send(following))
+    .catch(err => res.status(500).send({ getUserFollowingError: err }));
+};
+
+// Retrieves user's stories
+const getUserStories = (req, res, next) => {
+  const { user_id } = req.session.passport.user;
+
+  const db = req.app.get("db");
+
+  db.get_user_stories([user_id])
+    .then(stories => res.status(200).send(stories))
+    .catch(err => res.status(500).send({ getUserStoriesError: err }));
 };
 
 module.exports = {
@@ -72,6 +83,7 @@ module.exports = {
   getUserClaps,
   getUserBookmarks,
   getUserComments,
-  getUserFollowerCount,
-  getUserFollowingCount
+  getUserFollowers,
+  getUserFollowing,
+  getUserStories
 };
