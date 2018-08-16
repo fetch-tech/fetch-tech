@@ -31,3 +31,10 @@
 .nav_btn:hover {
   background: #8c2888;
 }
+.logoPic {
+  position: relative;
+  top: -27px;
+  /* border: 1px solid black; */
+  width: 170px;
+  height: 140px;
+}

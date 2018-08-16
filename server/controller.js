@@ -82,19 +82,20 @@ const searchArticles = (req, res, next) => {
 const giphyGifs = (req, res, next) => {
   giphy
     .search({
-      q: ["programming", "javascript", "python", "web programming"],
-      limit: 20,
+      q: ["programmer", "javascript", "web programming"],
+      limit: 58,
       rating: "PG-13"
     })
     .then(function(response) {
       res.send({ gifs: response });
+      console.log(response);
     });
 };
 const giphyGifs2 = (req, res, next) => {
   giphy
     .search({
-      q: ["funny", "sad", "cats"],
-      limit: 20,
+      q: ["Boss", "co-workers", "computer", "funny"],
+      limit: 54,
       rating: "PG-13"
     })
     .then(function(response) {
@@ -104,8 +105,8 @@ const giphyGifs2 = (req, res, next) => {
 const giphyGifs3 = (req, res, next) => {
   giphy
     .search({
-      q: ["cars", "dogs", "babies"],
-      limit: 20,
+      q: ["gamming", "robots", "teacher"],
+      limit: 50,
       rating: "PG-13"
     })
     .then(function(response) {
@@ -115,13 +116,13 @@ const giphyGifs3 = (req, res, next) => {
 const giphyGifs4 = (req, res, next) => {
   giphy
     .search({
-      q: ["vacation", "movie", "sky"],
-      limit: 20,
+      q: ["knockout", "movie quotes", "fails", "sports"],
+      limit: 62,
       rating: "PG-13"
     })
     .then(function(response) {
       res.send({ gifs4: response });
-   });
+    });
 };
 
 module.exports = {
