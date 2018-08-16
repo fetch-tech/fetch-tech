@@ -56,7 +56,7 @@ export default class DevTech extends Component {
     });
 
     return (
-      <div style={{ display: "flex", width: "100vw", marginRight: "1000px" }}>
+      <div style={{ display: "flex" }}>
         <Twitter />
         <div>{displayDevArticle}</div>
       </div>
