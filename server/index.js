@@ -8,9 +8,10 @@ const session = require("express-session");
 const passport = require("passport");
 
 const { getUser, strat, logout } = require("./controllers/auth_controller");
-const controllers = require("./controller.js");
+const controllers = require("./controller");
 const users_controller = require("./controllers/users_controller");
 const commentsController = require("./controllers/commentsController");
+const twitter_controller = require("./controllers/twitter_controller");
 
 // Sets up express server
 const app = express();
@@ -142,6 +143,14 @@ app.get("/api/gifs/tech", controllers.giphyGifs);
 app.get("/api/gifs/tech2", controllers.giphyGifs2);
 app.get("/api/gifs/tech3", controllers.giphyGifs3);
 app.get("/api/gifs/tech4", controllers.giphyGifs4);
+
+/****** TWITTER ******/
+app.get("/api/tweet/javascript", twitter_controller.searchTweet);
+app.get("/api/tweet/react", twitter_controller.searchReact);
+app.get("/api/tweet/redux", twitter_controller.searchRedux);
+app.get("/api/tweet/vue", twitter_controller.searchVue);
+app.get("/api/tweet/angular", twitter_controller.searchAngular);
+/****** TWITTER ******/
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;

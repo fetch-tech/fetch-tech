@@ -1,14 +1,23 @@
-
-.Gif{
-    align-content: center;
-    display: flex;
+.Gif {
+  align-content: center;
+  display: flex;
 }
 
-.giphies{
-    display: flex;
-    align-content: center;
+.giphies {
+  display: flex;
+  align-content: center;
 }
-    
-    .giphy {
-    margin: 5px;
+
+.giphy {
+  margin: 5px;
+}
+
+.gifColm1 {
+  position: relative;
+  top: 20px;
+}
+
+.gifColm2 {
+  position: relative;
+  top: 20px;
 }
