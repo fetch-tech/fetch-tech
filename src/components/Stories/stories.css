@@ -1,7 +1,9 @@
 .stories_wrapper {
   display: flex;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 .stories_border {
   margin: 10px;
@@ -11,4 +13,8 @@
 }
 .trending-opening {
   margin-right: -11px;
+}
+.storyWrapper {
+  margin-left: 10px;
+  margin-left: 10px;
 }
