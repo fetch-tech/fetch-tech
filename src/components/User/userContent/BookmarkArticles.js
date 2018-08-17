@@ -27,7 +27,7 @@ class BookmarkArticles extends Component {
     });
 
     return (
-      <div key={this.props.uniqueKey}>
+      <div>
         {bookmarks[0]
           ? displayBookmarks
           : "User does not have any bookmarks :("}
@@ -36,11 +36,11 @@ class BookmarkArticles extends Component {
   }
 }
 
-const mapStateToProp = state => {
+const mapStateToProps = state => {
   return state;
 };
 
 export default connect(
-  mapStateToProp,
+  mapStateToProps,
   { getUserBookmarks }
 )(BookmarkArticles);

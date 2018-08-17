@@ -28,7 +28,7 @@ class ClapArticles extends Component {
     });
 
     return (
-      <div key={this.props.uniqueKey}>
+      <div>
         {claps[0] ? displayClaps : "User has not clapped for any articles :("}
       </div>
     );
