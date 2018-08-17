@@ -32,6 +32,8 @@ class Twitter extends Component {
     });
   }
 
+  addFavorite = () => {};
+
   render() {
     // -----------------JavaScript-----------------------
     const { twitterJS } = this.state;

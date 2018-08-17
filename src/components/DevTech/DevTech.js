@@ -18,7 +18,6 @@ export default class DevTech extends Component {
 
   render() {
     const { devArticles } = this.state;
-    // console.log("ART-----> ", devArticles);
 
     const displayDevArticle = devArticles.map(devArticle => {
       return (
