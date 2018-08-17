@@ -12,10 +12,6 @@ import {
   getUserStories
 } from "../../redux/ducks/usersReducer";
 import UserNav from "./UserNav/UserNav";
-// import ClapArticles from "./userContent/ClapArticles";
-// import BookmarkArticles from "./userContent/BookmarkArticles";
-// import CommentArticles from "./userContent/CommentArticles";
-// import StoryArticles from "./userContent/StoryArticles";
 import FollowerList from "./userContent/FollowerList";
 import FollowingList from "./userContent/FollowingList";
 import UserRoutes from "./UserRoutes/UserRoutes";
@@ -42,15 +38,7 @@ class User extends Component {
 
   componentDidMount = () => {
     // Pulled in from usersReducer
-    const {
-      getUser,
-      getUserClaps,
-      getUserBookmarks,
-      getUserComments,
-      getUserFollowers,
-      getUserFollowing,
-      getUserStories
-    } = this.props;
+    const { getUser, getUserFollowers, getUserFollowing } = this.props;
 
     // Mounts user data to component
     getUser();
@@ -113,35 +101,7 @@ class User extends Component {
   render() {
     // console.log("props: ", this.props);
 
-    const {
-      user,
-      claps,
-      bookmarks,
-      comments,
-      followers,
-      following,
-      stories
-    } = this.props.usersReducer;
-
-    // // Rendering articles user has clapped on
-    // const displayClappedArticles = claps.map((clap, i) => {
-    //   return <ClapArticles uniqueKey={i} clap={clap} i={i} />;
-    // });
-
-    // // Rendering user's bookmarked articles
-    // const displayBookmarks = bookmarks.map((bookmark, i) => {
-    //   return <BookmarkArticles uniqueKey={i} bookmark={bookmark} i={i} />;
-    // });
-
-    // // Rendering user's comments on articles
-    // const displayComments = comments.map((comment, i) => {
-    //   return <CommentArticles uniqueKey={i} comment={comment} i={i} />;
-    // });
-
-    // // Rendering user's stories
-    // const displayStories = stories.map((story, i) => {
-    //   return <StoryArticles uniqueKey={i} story={story} i={i} />;
-    // });
+    const { user, followers, following } = this.props.usersReducer;
 
     // Displaying user's follower count
     let followerCount = 0;
@@ -227,30 +187,6 @@ class User extends Component {
         <br />
         <br />
         {UserRoutes}
-        {/* <Collapse bordered={false}>
-          <Panel header="Stories" key="1">
-            <div className="user-stories">
-              {stories ? displayStories : "No stories to show :("}
-            </div>
-          </Panel>
-          <Panel header="Article Claps" key="2">
-            <div className="claps">
-              {claps
-                ? displayClappedArticles
-                : "No clapped articles to show :("}
-            </div>
-          </Panel>
-          <Panel header="Bookmarked Articles" key="3">
-            <div className="bookmarks">
-              {bookmarks ? displayBookmarks : "No bookmarks to show :("}
-            </div>
-          </Panel>
-          <Panel header="User's Comments" key="4">
-            <div className="comments">
-              {comments ? displayComments : "No comments to show :("}
-            </div>
-          </Panel>
-        </Collapse> */}
       </div>
     );
   }
@@ -264,11 +200,7 @@ export default connect(
   mapStateToProps,
   {
     getUser,
-    getUserClaps,
-    getUserBookmarks,
-    getUserComments,
     getUserFollowers,
-    getUserFollowing,
-    getUserStories
+    getUserFollowing
   }
 )(User);
