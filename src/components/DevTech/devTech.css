@@ -19,3 +19,18 @@
   width: 250px;
   height: 150px;
 }
+.devPage{
+  display:flex;
+
+}
+
+.devCard {
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 20px;
+  display: "flex";
+  width: 800px;
+}
+.devArticleDescript{
+  font-size: 16px;
+}
