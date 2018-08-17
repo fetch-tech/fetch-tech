@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import Stories from "../Stories/Stories";
 import fetch from "node-fetch";
 
 import "./GitHub_Repos.css";
@@ -25,23 +24,11 @@ export default class GitHub_Repos extends Component {
     const { trends } = this.state;
     // console.log(this.state);
     const trendsDisplay = trends.map((gitTrend, t) => {
-      // console.log(gitTrend);
+      console.log(gitTrend);
       return (
         <div className="wrapperG" key={t}>
           <div style={{ display: "flex" }}>
-            <a
-              className="gitBoxG"
-              target="_blank"
-              href={gitTrend.url}
-              style={{
-                marginLeft: 700,
-                width: 300,
-                marginTop: 5,
-                display: "flex",
-                padding: 2,
-                border: "1px solid black"
-              }}
-            >
+            <a className="gitBoxG" target="_blank" href={gitTrend.url}>
               <div className="articleWrapperG">
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -61,12 +48,6 @@ export default class GitHub_Repos extends Component {
         </div>
       );
     });
-    return (
-      <div>
-        <Stories />
-
-        {trendsDisplay}
-      </div>
-    );
+    return <div>{trendsDisplay}</div>;
   }
 }

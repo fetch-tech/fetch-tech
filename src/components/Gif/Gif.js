@@ -34,9 +34,9 @@ export default class Gif extends Component {
 
   render() {
     const { gifs } = this.state;
-    const { gifs2 } = this.state;
-    const { gifs3 } = this.state;
-    const { gifs4 } = this.state;
+    // const { gifs2 } = this.state;
+    // const { gifs3 } = this.state;
+    // const { gifs4 } = this.state;
 
     // console.log(gifs);
     // console.log(gifs2);
