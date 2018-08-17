@@ -17,13 +17,19 @@ class UserNav extends Component {
           </Link>
         </div>
         <div className="claps hover-cursor">
-          <h2>Claps</h2>
+          <Link to="/user/claps">
+            <h2>Claps</h2>
+          </Link>
         </div>
         <div className="bookmarks hover-cursor">
-          <h2>Bookmarks</h2>
+          <Link to="/user/bookmarks">
+            <h2>Bookmarks</h2>
+          </Link>
         </div>
         <div className="comments hover-cursor">
-          <h2>Comments</h2>
+          <Link to="/user/comments">
+            <h2>Comments</h2>
+          </Link>
         </div>
       </div>
     );
