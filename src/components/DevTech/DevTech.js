@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Button, Card, Icon } from "antd";
 import Twitter from "../Twitter/Twitter";
+import GitHub_Repos from "../GitHub_Repos/GitHub_Repos";
+import "./devTech.css";
 
 export default class DevTech extends Component {
   constructor() {
@@ -20,25 +22,31 @@ export default class DevTech extends Component {
     const { devArticles } = this.state;
     // console.log("ART-----> ", devArticles);
 
-    const displayDevArticle = devArticles.map(devArticle => {
+    const displayDevArticle = devArticles.map((devArticle, d) => {
       return (
-        <div className="line-tech">
+        <div className="line-tech" key={d}>
           <Card
+            className="devCard"
             hoverable
             key={devArticle.urlToImage}
-            style={{
-              marginLeft: 300,
-              marginRight: 300,
-              marginTop: 5,
-              display: "flex"
-            }}
+            // style={{
+            //   marginLeft: 80,
+            //   marginRight: 80,
+            //   marginTop: 5,
+            //   display: "flex"
+            // }}
           >
             <div className="articleWrapper ">
               <img className="urlToImage" src={devArticle.urlToImage} alt="" />
 
               <div className="aricle-center">
                 <h2>{devArticle.title}</h2>
-                <div style={{ fontSize: "16px" }}>{devArticle.description}</div>
+                <div
+                  className="devArticleDescript"
+                  
+                >
+                  {devArticle.description}
+                </div>
                 <div className="article-bottom">
                   <div className="source">{devArticle.author}</div>
                 </div>
@@ -56,9 +64,11 @@ export default class DevTech extends Component {
     });
 
     return (
-      <div style={{ display: "flex" }}>
+      <div className="devPage">
         <Twitter />
+
         <div>{displayDevArticle}</div>
+        <GitHub_Repos />
       </div>
     );
   }

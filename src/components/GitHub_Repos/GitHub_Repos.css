@@ -1,4 +1,5 @@
 .genNewsWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -10,22 +11,31 @@
 }
 .article-bottomG {
   margin: 15px;
+  display: flex;
 }
 
 .urlToImageG {
+  display: flex;
   width: 350px;
   height: 250px;
-}
-
-.article-sidebarG {
-  margin-right: 0%;
 }
 
 .wrapperG {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  width: 100%;
+  align-items: right;
+  margin: 30px auto;
+
   margin-bottom: 15px;
+}
+
+.gitBoxG {
+  display: flex;
+  margin-left: 50px;
+  width: 300px;
+  margin-top: 5;
+  margin-right: 20px;
+  border: 1px solid black;
+  padding: 2;
+  border: "1px solid black";
 }
