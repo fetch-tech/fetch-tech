@@ -29,7 +29,6 @@ export default class AddStories extends Component {
           }/${this.state.userId}`
         )
         .then(res => {
-          console.log(res.data.story);
           if (res.data.story.length > 0) {
             this.setState({ selected: true });
             this.setState({ type: "close-circle" });
@@ -70,7 +69,6 @@ export default class AddStories extends Component {
     }
   };
   render() {
-    console.log(this.state.selected);
     return (
       <div>
         <div style={{ marginTop: 70, marginLeft: 25 }}>
