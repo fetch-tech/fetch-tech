@@ -18,6 +18,7 @@ import UserNav from "./UserNav/UserNav";
 // import StoryArticles from "./userContent/StoryArticles";
 import FollowerList from "./userContent/FollowerList";
 import FollowingList from "./userContent/FollowingList";
+import UserRoutes from "./UserRoutes/UserRoutes";
 
 import "./user.css";
 
@@ -225,6 +226,7 @@ class User extends Component {
         </div>
         <br />
         <br />
+        {UserRoutes}
         {/* <Collapse bordered={false}>
           <Panel header="Stories" key="1">
             <div className="user-stories">

@@ -28,7 +28,11 @@ class StoryArticles extends Component {
       );
     });
 
-    return <div className="new-stories">Stories</div>;
+    return (
+      <div className="new-stories">
+        {stories[0] ? displayStories : "No stories to show :("}
+      </div>
+    );
   }
 }
 
