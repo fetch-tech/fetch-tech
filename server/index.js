@@ -15,6 +15,7 @@ const twitter_controller = require("./controllers/twitter_controller");
 const clapsController = require("./controllers/clapsController");
 const bookmarksController = require("./controllers/bookmarksController");
 const storiesController = require("./controllers/storiesController");
+const genStories = require("./controllers/genStories");
 
 // Sets up express server
 const app = express();
@@ -158,6 +159,8 @@ app.post(
   "/api/articles/removeStory/:articleId/:userId",
   storiesController.removeStory
 );
+
+app.post("/api/stories/genStories", genStories.getGenStories);
 /************************Stories*********************/
 
 /****** USERS ENDPOINTS ******/
