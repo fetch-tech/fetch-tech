@@ -42,12 +42,8 @@ class User extends Component {
 
     // Mounts user data to component
     getUser();
-    getUserClaps();
-    getUserBookmarks();
-    getUserComments();
     getUserFollowers();
     getUserFollowing();
-    getUserStories();
   };
 
   /****** FOLLOWER MODAL ******/
