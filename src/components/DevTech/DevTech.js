@@ -41,10 +41,7 @@ export default class DevTech extends Component {
 
               <div className="aricle-center">
                 <h2>{devArticle.title}</h2>
-                <div
-                  className="devArticleDescript"
-                  
-                >
+                <div className="devArticleDescript">
                   {devArticle.description}
                 </div>
                 <div className="article-bottom">
