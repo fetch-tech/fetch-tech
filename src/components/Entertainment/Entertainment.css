@@ -1,8 +1,8 @@
 .gifButton {
   display: flex;
-  position: absolute;
+  /* position: absolute;
   right: 300px;
-  top: 110px;
+  top: 110px; */
   justify-content: right;
 }
 
