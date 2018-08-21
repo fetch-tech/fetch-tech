@@ -27,7 +27,6 @@ class Search extends Component {
     }
   }
   render() {
-    console.log(this.state);
     const { articles, tweets } = this.state;
     const tweetsDisplay = tweets.map((tweet, i) => {
       return (

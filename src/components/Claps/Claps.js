@@ -2,11 +2,13 @@ import { Badge } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
 import SVG from "react-inlinesvg";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/ducks/usersReducer";
 import "./claps.css";
 import leftHand from "./leftHand.svg";
 import rightHand from "./rightHand.svg";
 
-export default class Claps extends Component {
+class Claps extends Component {
   state = {
     article: this.props.article,
     url: this.props.url,
@@ -15,7 +17,7 @@ export default class Claps extends Component {
     count: 0,
     initialUserCount: 0,
     userCount: 0,
-    userId: "google-oauth2|105906369999808829473",
+    userId: "",
     articleId: null
   };
   checkAndFetchClaps = async () => {
@@ -51,8 +53,11 @@ export default class Claps extends Component {
     return articleId;
   };
 
-  componentDidMount() {
-    this.checkAndFetchClaps();
+  async componentDidMount() {
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
+    await this.checkAndFetchClaps();
   }
   handleMouseEnter = () => {
     this.setState({ classesLeft: "clap hand-left clap-start" });
@@ -70,17 +75,14 @@ export default class Claps extends Component {
           initialNumber: initialUserCount,
           userId
         })
-        .then(response => {
-          // console.log(response);
-        });
+        .then(response => {});
     }
   };
   handleMouseDown = () => {
     this.setState({ classesLeft: "clap hand-left clapping" });
     this.setState({ classesRight: "clap hand-right clapping" });
-    this.setState({ userCount: this.state.userCount + 1 });
+    this.setState({ userCount: parseInt(this.state.userCount) + 1 });
     if (this.state.userCount < 20) {
-      console.log(this.state.count);
       this.setState({ count: parseInt(this.state.count) + 1 });
     }
   };
@@ -124,3 +126,14 @@ export default class Claps extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser
+  }
+)(Claps);

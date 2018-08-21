@@ -9,8 +9,10 @@ import {
   Tooltip
 } from "antd";
 import React from "react";
+import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import FETCH_TECH_LOGO_TRANS3 from "../../Images/FETCH_TECH_LOGO_TRANS3.png";
+import { getUser } from "../../redux/ducks/usersReducer";
 import "./Navbar.css";
 
 class Navbar extends React.Component {
@@ -32,9 +34,20 @@ class Navbar extends React.Component {
       search: "",
       optionsVisible: false,
       value: "general",
-      userId: "google-oauth2|105906369999808829473"
+      userId: "",
+      avatarUrl: ""
     };
   }
+
+  async componentDidMount() {
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
+    await this.setState({
+      avatarUrl: this.props.usersReducer.user.profile_pic
+    });
+  }
+
   onAreaFocus = () => {
     this.setState({ optionsVisible: true });
   };
@@ -61,8 +74,14 @@ class Navbar extends React.Component {
   };
 
   render() {
-    const { dataSource, search, optionsVisible, value, userId } = this.state;
-    console.log(value);
+    const {
+      dataSource,
+      search,
+      optionsVisible,
+      value,
+      userId,
+      avatarUrl
+    } = this.state;
 
     return (
       <div className="nav">
@@ -166,11 +185,12 @@ class Navbar extends React.Component {
               <Link to={`/user/claps/${userId}`}>
                 <Avatar
                   style={{ marginLeft: "15%" }}
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                  src={avatarUrl}
                   size={36}
                   icon="user"
                 />
               </Link>
+              <a href="http://localhost:3001/login">LOGIN</a>
             </div>
           </div>
         </Card>
@@ -179,4 +199,13 @@ class Navbar extends React.Component {
   }
 }
 
-export default withRouter(Navbar);
+const mapStateToProps = state => {
+  return state;
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getUser }
+  )(Navbar)
+);

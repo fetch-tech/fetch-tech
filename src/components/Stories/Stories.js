@@ -34,7 +34,6 @@ export default class Stories extends Component {
     const { stories } = this.state;
     const storiesDisplay = stories.length ? (
       stories.map((story, i) => {
-        console.log(this.state);
         return (
           <div className="storyWrapper" key={i}>
             <Avatar
@@ -53,7 +52,6 @@ export default class Stories extends Component {
               <Carousel>
                 {story.stories.map((single, i) => {
                   {
-                    console.log(single, i);
                   }
                   return (
                     <div key={i} className="articleWrapper">

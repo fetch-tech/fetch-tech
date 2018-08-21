@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import { Button, Card, Icon } from "antd";
 import axios from "axios";
-import "./Entertainment.css";
-import Stories from "../Stories/Stories";
+import React, { Component } from "react";
 import Claps from "../Claps/Claps";
 import Comments from "../Comments/Comments";
-import { Button, Card, Icon } from "antd";
+import Stories from "../Stories/Stories";
+import "./Entertainment.css";
 
 export default class Entertainment extends Component {
   state = {
@@ -21,7 +21,6 @@ export default class Entertainment extends Component {
 
   render() {
     const { entertainments } = this.state;
-    // console.log(entertainments);
     const entertainmentDisplay = entertainments.map((entertainment, e) => {
       return (
         <div className="wrapper" key={e}>

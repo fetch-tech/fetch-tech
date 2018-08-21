@@ -72,11 +72,8 @@ const checkArticleStatus = (req, res, next) => {
 
 const removeStory = (req, res, next) => {
   const { articleId, userId } = req.params;
-  console.log("hit");
   const db = req.app.get("db");
-  db.deleteStory([articleId, userId]).then(response => {
-    // console.log("success");
-  });
+  db.deleteStory([articleId, userId]).then(response => {});
 };
 
 module.exports = {

@@ -3,22 +3,20 @@
 // Retrieves specific user's data from database
 const getUser = (req, res, next) => {
   // user_id from params
-  const { id } = req.params;
-
-  const db = req.app.get("db");
-
-  db.get_user([id])
-    .then(user => res.status(200).send(user))
-    .catch(err => res.status(500).send({ getUserError: err }));
+  // const { user_id } = req.session.passport.user;
+  // const db = req.app.get("db");
+  // db.get_user([user_id])
+  //   .then(user => res.status(200).send(user))
+  //   .catch(err => res.status(500).send({ getUserError: err }));
 };
 
 const getUserInfo = (req, res, next) => {
-  const {userId} = req.body;
+  const { userId } = req.body;
   const db = req.app.get("db");
   db.get_user([userId]).then(user => {
-    res.send({user})
-  })
-}
+    res.send({ user });
+  });
+};
 
 // Retrieves claps made on articles
 const getUserClaps = (req, res, next) => {
@@ -56,7 +54,6 @@ const getUserComments = (req, res, next) => {
 // Retrieves user's follower count
 const getUserFollowers = (req, res, next) => {
   const { userId } = req.body;
-  console.log(req.body.userId);
 
   const db = req.app.get("db");
 

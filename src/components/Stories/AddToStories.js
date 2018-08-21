@@ -1,14 +1,16 @@
 import { Icon } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/ducks/usersReducer";
 
-export default class AddStories extends Component {
+class AddStories extends Component {
   state = {
     article: this.props.article,
     url: this.props.url,
     type: "plus-circle-o",
     selected: false,
-    userId: "google-oauth2|105906369999808829473",
+    userId: "",
     articleId: null
   };
 
@@ -36,8 +38,11 @@ export default class AddStories extends Component {
         }));
   };
 
-  componentDidMount() {
-    this.checkforArticle();
+  async componentDidMount() {
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
+    await this.checkforArticle();
   }
   onModifyStoryClick = () => {
     this.setState({ selected: !this.state.selected });
@@ -90,3 +95,14 @@ export default class AddStories extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser
+  }
+)(AddStories);

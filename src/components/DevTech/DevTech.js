@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import axios from "axios";
 import { Button, Card, Icon } from "antd";
-import Twitter from "../Twitter/Twitter";
+import axios from "axios";
+import React, { Component } from "react";
 import GitHub_Repos from "../GitHub_Repos/GitHub_Repos";
+import Twitter from "../Twitter/Twitter";
 import "./devTech.css";
 
 export default class DevTech extends Component {
@@ -20,7 +20,6 @@ export default class DevTech extends Component {
 
   render() {
     const { devArticles } = this.state;
-    // console.log("ART-----> ", devArticles);
 
     const displayDevArticle = devArticles.map((devArticle, d) => {
       return (
@@ -41,10 +40,7 @@ export default class DevTech extends Component {
 
               <div className="aricle-center">
                 <h2>{devArticle.title}</h2>
-                <div
-                  className="devArticleDescript"
-                  
-                >
+                <div className="devArticleDescript">
                   {devArticle.description}
                 </div>
                 <div className="article-bottom">

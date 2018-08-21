@@ -2,12 +2,14 @@ import { Card, Icon } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
+import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { getUser } from "../../../redux/ducks/usersReducer";
 import "./profile.css";
 
 class UserProfile extends Component {
   state = {
-    userId: "google-oauth2|105906369999808829473",
+    userId: "",
     viewUserId: "",
     acceptedCover: [],
     rejectedCover: [],
@@ -17,20 +19,19 @@ class UserProfile extends Component {
     profilePic: ""
   };
   async componentDidMount() {
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
     await this.setState({ viewUserId: this.props.match.params.userId });
     await axios
       .post("http://localhost:3001/api/user", {
         userId: this.state.viewUserId
       })
       .then(res => {
-        console.log(res.data.user);
         this.setState({ coverPic: res.data.user[0].cover_pic });
         this.setState({ profilePic: res.data.user[0].profile_pic });
       });
   }
-  onTabsChange = key => {
-    console.log(key);
-  };
 
   uploadCoverToCloudinary = files => {
     const uploaders = files.map(file => {
@@ -57,9 +58,7 @@ class UserProfile extends Component {
               userId: this.state.userId,
               coverUrl: fileURL
             })
-            .then(res => {
-              // console.log(res.data);
-            });
+            .then(res => {});
         });
     });
   };
@@ -89,9 +88,7 @@ class UserProfile extends Component {
               userId: this.state.userId,
               profilerUrl: fileURL
             })
-            .then(res => {
-              // console.log(res.data);
-            });
+            .then(res => {});
         });
     });
   };
@@ -218,4 +215,13 @@ class UserProfile extends Component {
   }
 }
 
-export default withRouter(UserProfile);
+const mapStateToProps = state => {
+  return state;
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getUser }
+  )(UserProfile)
+);

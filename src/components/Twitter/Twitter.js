@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import axios from "axios";
+import React, { Component } from "react";
 
 class Twitter extends Component {
   constructor() {
@@ -18,7 +18,6 @@ class Twitter extends Component {
     });
     axios.get("http://localhost:3001/api/tweet/react").then(response => {
       this.setState({ twitterReact: response.data });
-      console.log("----->", this.state.twitterReact);
     });
     axios.get("http://localhost:3001/api/tweet/redux").then(response => {
       this.setState({ twitterRedux: response.data });
@@ -28,7 +27,6 @@ class Twitter extends Component {
     });
     axios.get("http://localhost:3001/api/tweet/redux").then(response => {
       this.setState({ twitterAngular: response.data });
-      console.log("----->", this.state.twitterAngular);
     });
   }
 

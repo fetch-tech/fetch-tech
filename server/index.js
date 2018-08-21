@@ -50,12 +50,10 @@ app.use(passport.session());
 passport.use(strat);
 
 passport.serializeUser((user, done) => {
-  // console.log(user);
   const db = app.get("db");
 
   db.get_user([user.id])
     .then(response => {
-      // console.log(response);
       if (!response[0]) {
         db.users
           .insert({
@@ -64,7 +62,6 @@ passport.serializeUser((user, done) => {
             profile_pic: user.picture
           })
           .then(res => {
-            console.log(res);
             return done(null, res);
           });
       } else return done(null, response[0]);
@@ -79,7 +76,7 @@ app.get("/me", getUser);
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
+    successRedirect: "http://localhost:3000/",
     failureRedirect: "/login"
   })
 );
@@ -191,7 +188,7 @@ app.post("/api/users/following", users_controller.getUserFollowing);
 app.get("/api/users/stories", users_controller.getUserStories);
 app.post("/api/user/coverImage", users_controller.postCoverImage);
 app.post("/api/user/profileImage", users_controller.postProfileImage);
-app.post("/api/user", users_controller.getUserInfo)
+app.post("/api/user", users_controller.getUserInfo);
 
 /****** USER ENDPOINTS ******/
 

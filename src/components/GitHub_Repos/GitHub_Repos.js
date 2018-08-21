@@ -1,7 +1,5 @@
-import React, { Component } from "react";
-
 import fetch from "node-fetch";
-
+import React, { Component } from "react";
 import "./GitHub_Repos.css";
 
 export default class GitHub_Repos extends Component {
@@ -16,15 +14,12 @@ export default class GitHub_Repos extends Component {
       })
       .then(gitTrends => {
         this.setState({ trends: gitTrends });
-        // console.log(gitTrends);
       });
   }
 
   render() {
     const { trends } = this.state;
-    // console.log(this.state);
     const trendsDisplay = trends.map((gitTrend, t) => {
-      console.log(gitTrend);
       return (
         <div className="wrapperG" key={t}>
           <div style={{ display: "flex" }}>

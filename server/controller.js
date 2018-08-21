@@ -88,7 +88,6 @@ const giphyGifs = (req, res, next) => {
     })
     .then(function(response) {
       res.send({ gifs: response });
-      console.log(response);
     });
 };
 const giphyGifs2 = (req, res, next) => {

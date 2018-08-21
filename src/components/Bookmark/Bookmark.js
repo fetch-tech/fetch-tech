@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/ducks/usersReducer";
 import "./boomark.css";
-
-export default class Bookmark extends Component {
+class Bookmark extends Component {
   state = {
     article: this.props.article,
     url: this.props.url,
     class: "bookmark far fa-bookmark fa-3x",
     selected: false,
-    userId: "google-oauth2|105906369999808829473",
+    userId: "",
     articleId: null
   };
 
@@ -29,7 +30,6 @@ export default class Bookmark extends Component {
           }/${this.state.userId}`
         )
         .then(res => {
-          console.log(res.data.bookmark);
           if (res.data.bookmark.length > 0) {
             this.setState({ selected: true });
             this.setState({ class: "bookmark fas fa-bookmark fa-3x" });
@@ -37,8 +37,11 @@ export default class Bookmark extends Component {
         }));
   };
 
-  componentDidMount() {
-    this.checkforArticle();
+  async componentDidMount() {
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
+    await this.checkforArticle();
   }
   onBookmarkClick = () => {
     if (this.state.selected) {
@@ -54,9 +57,7 @@ export default class Bookmark extends Component {
           article,
           userId
         })
-        .then(response => {
-          // console.log(response);
-        });
+        .then(response => {});
     } else {
       axios
         .post(
@@ -64,9 +65,7 @@ export default class Bookmark extends Component {
             this.state.articleId
           }/${this.state.userId}`
         )
-        .then(res => {
-          console.log("success");
-        });
+        .then(res => {});
     }
   };
   render() {
@@ -79,3 +78,14 @@ export default class Bookmark extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser
+  }
+)(Bookmark);

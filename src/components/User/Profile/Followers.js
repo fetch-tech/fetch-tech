@@ -21,7 +21,6 @@ export default class Following extends Component {
   }
   render() {
     const { following } = this.state;
-    console.log(following);
     const followersDisplay = following.map((user, i) => {
       return (
         <div key={i}>
