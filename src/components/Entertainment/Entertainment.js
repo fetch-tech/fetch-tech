@@ -2,6 +2,7 @@ import { Button } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
 import Article from "../Article/Article";
+import Stories from "../Stories/Stories";
 
 export default class Entertainment extends Component {
   state = {
