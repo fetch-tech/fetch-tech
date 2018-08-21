@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import FETCH_TECH_LOGO_TRANS3 from "../../Images/FETCH_TECH_LOGO_TRANS3.png";
+import FETCH_TECH_LOGO_TRANS3 from "../../images/FETCH_TECH_LOGO_TRANS3.png";
 import { getUser } from "../../redux/ducks/usersReducer";
 import "./Navbar.css";
 
