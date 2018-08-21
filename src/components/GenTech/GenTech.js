@@ -79,6 +79,7 @@ export default class extends React.Component {
         </div>
       );
     });
+
     return (
       <div className="parentWrapper">
         <Stories />
