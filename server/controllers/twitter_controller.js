@@ -31,7 +31,7 @@ const searchTweet = (req, res) => {
     (err, data) => {
       // console.log("DATA FROM TODAY", data);
       const searchArr = data.statuses;
-      // console.log("TODAY SEARCH ARRRAY ", searchArr);
+      console.log("TODAY SEARCH ARRRAY ", searchArr);
 
       const searchArrWithIndex = searchArr.map((object, index) => {
         return object;

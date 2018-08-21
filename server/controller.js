@@ -64,7 +64,7 @@ const entertainmentPageArticles = (req, res, next) => {
 };
 
 const searchArticles = (req, res, next) => {
-  const q = req.params.searchTerm;
+  const q = req.params.item;
   newsapi.v2
     .everything({
       q: q,
