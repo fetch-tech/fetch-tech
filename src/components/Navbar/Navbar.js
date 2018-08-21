@@ -10,7 +10,7 @@ import {
 } from "antd";
 import React from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 import FETCH_TECH_LOGO_TRANS3 from "../../images/FETCH_TECH_LOGO_TRANS3.png";
 import { getUser } from "../../redux/ducks/usersReducer";
 import "./Navbar.css";
@@ -35,7 +35,10 @@ class Navbar extends React.Component {
       optionsVisible: false,
       value: "general",
       userId: "",
-      avatarUrl: ""
+      avatarUrl: "",
+      genTech: false,
+      devTech: false,
+      entertainmentTech: false
     };
   }
 
@@ -73,6 +76,30 @@ class Navbar extends React.Component {
     this.props.history.push(`/search/${value}/${searchItem}`);
   };
 
+  genTechHandler = () => {
+    this.setState({
+      genTech: true,
+      devTech: false,
+      entertainmentTech: false
+    });
+  };
+
+  devTechHandler = () => {
+    this.setState({
+      genTech: false,
+      devTech: true,
+      entertainmentTech: false
+    });
+  };
+
+  entertainmentTechHandler = () => {
+    this.setState({
+      genTech: false,
+      devTech: false,
+      entertainmentTech: true
+    });
+  };
+
   render() {
     const {
       dataSource,
@@ -83,117 +110,123 @@ class Navbar extends React.Component {
       avatarUrl
     } = this.state;
 
+    const active = "no-link active-link";
+    const notActive = "no-link nav-link";
+
     return (
       <div className="nav">
-        <Card
-          style={{
-            width: "100vw",
-            color: "red",
-            cursor: "pointer",
-            height: "110px"
-          }}
-        >
-          <div className="nav-items">
-            <div className="Logo">
-              <img
-                className="logoPic"
-                src={FETCH_TECH_LOGO_TRANS3}
-                width="140"
-                height="100"
-                // border="1px solid black"
-
-                alt="logo"
+        <div>
+          <img className="logoPic" src={FETCH_TECH_LOGO_TRANS3} alt="logo" />
+        </div>
+        <div className="navButtons">
+          <Link
+            // className="no-link nav-link"
+            className={this.state.genTech ? active : notActive}
+            onClick={this.genTechHandler}
+            // activeClassName="active-link"
+            to="/"
+          >
+            {/* <Button className="nav_btn">Trending Tech</Button> */}
+            TRENDING TECH
+          </Link>
+          <Link
+            // className="no-link nav-link"
+            className={this.state.devTech ? active : notActive}
+            onClick={this.devTechHandler}
+            // activeClassName="active-link"
+            to="/devtech"
+          >
+            {/* <Button className="nav_btn">Dev Tech</Button> */}
+            DEV TECH
+          </Link>
+          <Link
+            // className="no-link nav-link"
+            className={this.state.entertainmentTech ? active : notActive}
+            onClick={this.entertainmentTechHandler}
+            // activeClassName="active-link"
+            to="/entertainment"
+          >
+            {/* <Button className="nav_btn">Entertainment</Button> */}
+            ENTERTAINMENT
+          </Link>
+        </div>
+        <div className="right-corner">
+          <div className="search-userPic">
+            <Link to={`/user/claps/${userId}`}>
+              <Avatar
+                style={{ marginLeft: "15%" }}
+                src={avatarUrl}
+                size={36}
+                icon="user"
               />
-            </div>
-            <div className="navButtons">
-              <Link to="/">
-                <Button className="nav_btn">Trending Tech</Button>
-              </Link>
-              <Link to="/devtech">
-                <Button className="nav_btn">Dev Tech</Button>
-              </Link>
-              <Link to="/entertainment">
-                <Button className="nav_btn">Entertainment</Button>
-              </Link>
-            </div>
-            <div className="search-userPic">
-              <div
-                className="certain-category-search-wrapper"
-                style={{ width: 250 }}
-              >
-                {optionsVisible && (
-                  <Radio.Group
-                    defaultValue="a"
-                    buttonStyle="solid"
-                    size="small"
-                    value={value}
-                    onChange={this.onOptionChange}
-                  >
-                    <Tooltip
-                      placement="topLeft"
-                      title="Search In General"
-                      arrowPointAtCenter
-                    >
-                      <Radio.Button value="general">General</Radio.Button>
-                    </Tooltip>
-
-                    <Tooltip
-                      placement="topLeft"
-                      title="Search In Twitter"
-                      arrowPointAtCenter
-                    >
-                      <Radio.Button value="twitter">Twitter</Radio.Button>
-                    </Tooltip>
-                    <Tooltip
-                      placement="topLeft"
-                      title="Search For People"
-                      arrowPointAtCenter
-                    >
-                      <Radio.Button value="people">People</Radio.Button>
-                    </Tooltip>
-                  </Radio.Group>
-                )}
-                <AutoComplete
-                  className="certain-category-search"
-                  dropdownClassName="certain-category-search-dropdown"
-                  dropdownMatchSelectWidth={false}
-                  dropdownStyle={{ width: 300 }}
-                  size="large"
-                  style={{ width: "100%" }}
-                  dataSource={dataSource}
-                  placeholder="Search"
-                  optionLabelProp="value"
-                  filterOption={(inputValue, option) =>
-                    option.props.children
-                      .toUpperCase()
-                      .indexOf(inputValue.toUpperCase()) !== -1
-                  }
-                  onSelect={this.onSearchSelect}
-                  defaultActiveFirstOption={false}
-                  value={search}
-                  onChange={this.onInputChange}
-                  onFocus={this.onAreaFocus}
+            </Link>
+            <div className="certain-category-search-wrapper">
+              {optionsVisible && (
+                <Radio.Group
+                  defaultValue="a"
+                  buttonStyle="solid"
+                  size="small"
+                  value={value}
+                  onChange={this.onOptionChange}
                 >
-                  <Input
-                    onPressEnter={this.onEnterKeyPress}
-                    suffix={
-                      <Icon type="search" className="certain-category-icon" />
-                    }
-                  />
-                </AutoComplete>
-              </div>
-              <Link to={`/user/claps/${userId}`}>
-                <Avatar
-                  style={{ marginLeft: "15%" }}
-                  src={avatarUrl}
-                  size={36}
-                  icon="user"
+                  <Tooltip
+                    placement="topLeft"
+                    title="Search In General"
+                    arrowPointAtCenter
+                  >
+                    <Radio.Button value="general">General</Radio.Button>
+                  </Tooltip>
+
+                  <Tooltip
+                    placement="topLeft"
+                    title="Search In Twitter"
+                    arrowPointAtCenter
+                  >
+                    <Radio.Button value="twitter">Twitter</Radio.Button>
+                  </Tooltip>
+                  <Tooltip
+                    placement="topLeft"
+                    title="Search For People"
+                    arrowPointAtCenter
+                  >
+                    <Radio.Button value="people">People</Radio.Button>
+                  </Tooltip>
+                </Radio.Group>
+              )}
+              <AutoComplete
+                className="certain-category-search"
+                dropdownClassName="certain-category-search-dropdown"
+                dropdownMatchSelectWidth={false}
+                dropdownStyle={{ width: 200 }}
+                size="large"
+                style={{ width: "100%" }}
+                dataSource={dataSource}
+                placeholder="Search"
+                optionLabelProp="value"
+                filterOption={(inputValue, option) =>
+                  option.props.children
+                    .toUpperCase()
+                    .indexOf(inputValue.toUpperCase()) !== -1
+                }
+                onSelect={this.onSearchSelect}
+                defaultActiveFirstOption={false}
+                value={search}
+                onChange={this.onInputChange}
+                onFocus={this.onAreaFocus}
+              >
+                <Input
+                  onPressEnter={this.onEnterKeyPress}
+                  suffix={
+                    <Icon type="search" className="certain-category-icon" />
+                  }
                 />
-              </Link>
-              <a href="http://localhost:3001/login">LOGIN</a>
+              </AutoComplete>
             </div>
           </div>
-        </Card>
+          <a className="login" href="http://localhost:3001/login">
+            LOGIN
+          </a>
+        </div>
       </div>
     );
   }

@@ -1,24 +1,38 @@
 .nav {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100vw;
+  height: 124px;
+  background: #ffffff;
 }
+
 .logoImg {
   margin-top: 0px;
   height: 80px;
   width: 120px;
 }
+
 .NavContainer {
   height: 8vh;
 }
+
 .nav-items {
   display: flex;
   justify-content: space-between;
+  height: auto;
+  width: auto;
 }
+
 .navButtons {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  margin-right: 10%;
+  align-items: center;
+  width: 500px;
 }
+
 .nav_btn {
   margin-left: 10%;
   margin-right: 10%;
@@ -26,19 +40,62 @@
   color: #fff;
   border-color: #d9d9d9;
 }
+
 .nav_btn:active {
   background: #e21bda;
 }
+
 .nav_btn:hover {
   background: #8c2888;
 }
+
 .logoPic {
-  position: relative;
-  top: -27px;
-  /* border: 1px solid black; */
-  width: 170px;
-  height: 140px;
+  max-width: 170px;
+  max-height: 140px;
 }
+
+.right-corner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+}
+
 .search-userPic {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 300px;
+  height: 100px;
+}
+
+.login {
+  margin-right: 20px;
+}
+
+.no-link,
+.no-link:hover,
+.no-link:active,
+.no-link:visited,
+.no-link:focus {
+  text-decoration: none;
+}
+
+.nav-link {
+  color: #8f8f8f;
+}
+
+.nav-link:hover {
+  color: #000000;
+}
+
+.active-link,
+.active-link:hover,
+.active-link:active,
+.active-link:visited,
+.active-link:focus {
+  color: #000000;
+  border-bottom: 1px solid #000000;
 }
