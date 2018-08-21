@@ -100,7 +100,7 @@ class SingleComment extends Component {
                 marginTop: "10px",
                 marginBottom: "10px",
                 marginLeft: 100,
-                width: 500
+                width: "inherit"
               }}
             >
               <Avatar src={this.state.userProfilePic} />

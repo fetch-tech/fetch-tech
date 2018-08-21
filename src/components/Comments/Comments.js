@@ -98,11 +98,7 @@ class Comments extends Component {
         })
       : null;
     return (
-      <Card
-        hoverable
-        className="commentsWrapper"
-        style={{ width: "46%", cursor: "default" }}
-      >
+      <Card hoverable className="commentsWrapper">
         {commentsDisplay}
         <form className="commentForm" onSubmit={this.onCommentSubmit}>
           <span style={{ display: "flex", margin: "10px" }}>

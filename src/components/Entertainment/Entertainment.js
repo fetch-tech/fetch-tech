@@ -1,10 +1,7 @@
-import { Button, Card, Icon } from "antd";
+import { Button } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
-import Claps from "../Claps/Claps";
-import Comments from "../Comments/Comments";
-import Stories from "../Stories/Stories";
-import "./Entertainment.css";
+import Article from "../Article/Article";
 
 export default class Entertainment extends Component {
   state = {
@@ -20,71 +17,73 @@ export default class Entertainment extends Component {
   }
 
   render() {
+    const noImage =
+      "http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg";
     const { entertainments } = this.state;
     const entertainmentDisplay = entertainments.map((entertainment, e) => {
       return (
-        <div className="wrapper" key={e}>
-          <div style={{ display: "flex" }}>
-            <Card
-              hoverable
-              // key={entertainment.urlToImage}
-              style={{
-                marginLeft: 371,
-                width: 800,
-                marginTop: 5,
-                display: "flex"
-              }}
-            >
-              <div className="articleWrapper">
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div style={{ display: "flex" }} />
-                  <img
-                    className="urlToImage"
-                    src={entertainment.urlToImage}
-                    alt=""
-                  />
-                  <div className="aricle-center">
-                    <h2>{entertainment.title}</h2>
-                    <div style={{ fontSize: "16px" }}>
-                      {entertainment.description}
-                    </div>
-                    <div className="article-bottom">
-                      <div className="source">{entertainment.source.name}</div>
-                    </div>
-                    <a target="_blank" href={entertainment.url} target="_blank">
-                      <Button>
-                        Read
-                        <Icon type="right" />
-                      </Button>
-                    </a>
-                  </div>
-                  <div className="article-sidebar" />
-                </div>
-              </div>
-            </Card>
+        // <div className="wrapper" key={e}>
+        //   <div className="card-sidebar">
+        //     <div className="card-comment">
+        //       <Card
+        //         hoverable
+        //         // key={entertainment.urlToImage}
+        //         className="card-body"
+        //       >
+        //         <div className="articleWrapper">
+        //           <img
+        //             className="urlToImage"
+        //             src={
+        //               entertainment.urlToImage
+        //                 ? entertainment.urlToImage
+        //                 : noImage
+        //             }
+        //             alt=""
+        //           />
+        //           <div className="aricle-center">
+        //             <h2>{entertainment.title}</h2>
+        //             <div className="article-description">
+        //               {entertainment.description}
+        //             </div>
+        //           </div>
+        //         </div>
+        //         <div className="card-bottom">
+        //           <div className="article-bottom">
+        //             <div className="source">{entertainment.source.name}</div>
+        //           </div>
+        //           <a target="_blank" href={entertainment.url} target="_blank">
+        //             <Button>
+        //               Read
+        //               <Icon type="right" />
+        //             </Button>
+        //           </a>
+        //         </div>
+        //       </Card>
+        //       <Comments
+        //         article={entertainment}
+        //         url={entertainment.url}
+        //         desc={entertainment.description}
+        //       />
+        //     </div>
 
-            <span style={{ marginRight: 300 }}>
-              <Claps clapped={entertainment.author} />
-            </span>
-          </div>
-          <Comments
-            article={entertainment}
-            url={entertainment.url}
-            desc={entertainment.description}
-          />
+        //     <div className="sidebar">
+        //       <Claps clapped={entertainment.author} />
+        //     </div>
+        //   </div>
+        // </div>
+        <div>
+          <Article article={entertainment} i={e} noImage={noImage} />
         </div>
       );
     });
+
     return (
-      <div className="genNewsWrapper">
+      <div>
+        <Stories />
         <div>
           <Button className="gifButton">Gifs</Button>
         </div>
-        <Stories />
-
-        {entertainmentDisplay}
+        <div className="genNewsWrapper">{entertainmentDisplay}</div>
       </div>
     );
   }
