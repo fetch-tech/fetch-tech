@@ -1,7 +1,7 @@
 .clap-button {
   border: 1px solid #4298f4;
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   cursor: pointer;
   animation: pulse 2s infinite;
@@ -20,34 +20,38 @@
   transition-timing-function: ease-in-out;
 }
 .hand-left {
-  top: 10px;
-  left: 5px;
+  /* top: 10px;
+  left: 5px; */
+  top: -5px;
+  left: -7px;
   z-index: +1;
+  transform: scale(0.8);
 }
 .hand-right {
   z-index: -1;
-  top: -45px;
-  left: 15px;
+  top: -60px;
+  left: 4px;
+  transform: scale(0.8);
 }
 .clap-start.hand-right {
-  top: -65px;
-  left: 20px;
-  transform: rotate(-20deg) scale(0.9);
+  top: -75px;
+  left: 10px;
+  transform: rotate(-20deg) scale(0.6);
 }
 .clap-start.hand-left {
-  top: 30px;
+  top: 6px;
   left: -15px;
-  transform: rotate(50deg) scale(1.1);
+  transform: rotate(50deg) scale(0.9);
 }
 .clapping.hand-left {
-  top: 35px;
+  top: 5px;
   left: -5px;
-  transform: rotate(60deg) scale(1);
+  transform: rotate(60deg) scale(0.8);
 }
 .clapping.hand-right {
-  top: -55px;
-  left: 25px;
-  transform: rotate(-10deg) scale(1);
+  top: -65px;
+  left: 0px;
+  transform: rotate(-10deg) scale(0.8);
 }
 .credits {
   position: relative;

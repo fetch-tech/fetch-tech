@@ -80,9 +80,9 @@ export default class extends React.Component {
       );
     });
     return (
-      <div className="genNewsWrapper">
-        {/* <Stories /> */}
-        {articleDisplay}
+      <div className="parentWrapper">
+        <Stories />
+        <div className="genNewsWrapper">{articleDisplay}</div>
       </div>
     );
   }
