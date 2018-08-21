@@ -32,84 +32,86 @@ export default class Stories extends Component {
 
   render() {
     const { stories } = this.state;
-    const storiesDisplay = stories.map((story, i) => {
-      console.log(this.state);
-      return (
-        <div className="storyWrapper" key={i}>
-          <Avatar
-            onClick={() => this.onAvatarClick(story.username)}
-            style={{ marginLeft: "15px" }}
-            size={64}
-            src=""
-          />
-          <Modal
-            title={story.username}
-            visible={this.state[story.username]}
-            onCancel={() => this.handleCancel(story.username)}
-            bodyStyle={{ height: "50vh" }}
-            footer={null}
-          >
-            <Carousel>
-              {story.stories.map((single, i) => {
-                {
-                  console.log(single, i);
-                }
-                return (
-                  <div key={i} className="articleWrapper">
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between"
-                      }}
-                    >
-                      <div style={{ display: "flex" }}>
-                        <div>
+    const storiesDisplay = stories.length ? (
+      stories.map((story, i) => {
+        return (
+          <div className="storyWrapper" key={i}>
+            <Avatar
+              onClick={() => this.onAvatarClick(story.username)}
+              style={{ marginLeft: "15px" }}
+              size={64}
+              src=""
+            />
+            <Modal
+              title={story.username}
+              visible={this.state[story.username]}
+              onCancel={() => this.handleCancel(story.username)}
+              bodyStyle={{ height: "50vh" }}
+              footer={null}
+            >
+              <Carousel>
+                {story.stories.map((single, i) => {
+                  {
+                  }
+                  return (
+                    <div key={i} className="articleWrapper">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between"
+                        }}
+                      >
+                        <div style={{ display: "flex" }}>
                           <div>
-                            <img
-                              className="urlToImage"
-                              style={{ height: "200px", width: "100%" }}
-                              src={single.image_url}
-                              alt=""
-                            />
-                          </div>
-                          <div>
-                            <div className="aricle-center">
-                              <h2>{single.title}</h2>
-                              <div style={{ fontSize: "16px" }}>
-                                {single.description}
-                              </div>
-                              <div className="article-bottom">
-                                <div className="source">
-                                  {single.source_name}
+                            <div>
+                              <img
+                                className="urlToImage"
+                                style={{ height: "200px", width: "100%" }}
+                                src={single.image_url}
+                                alt=""
+                              />
+                            </div>
+                            <div>
+                              <div className="aricle-center">
+                                <h2>{single.title}</h2>
+                                <div style={{ fontSize: "16px" }}>
+                                  {single.description}
                                 </div>
+                                <div className="article-bottom">
+                                  <div className="source">
+                                    {single.source_name}
+                                  </div>
+                                </div>
+                                <a
+                                  target="_blank"
+                                  href={single.url}
+                                  target="_blank"
+                                >
+                                  <Button>
+                                    Read
+                                    <Icon type="right" />
+                                  </Button>
+                                </a>
                               </div>
-                              <a
-                                target="_blank"
-                                href={single.url}
-                                target="_blank"
-                              >
-                                <Button>
-                                  Read
-                                  <Icon type="right" />
-                                </Button>
-                              </a>
                             </div>
                           </div>
                         </div>
+                        <div className="article-sidebar" />
                       </div>
-                      <div className="article-sidebar" />
                     </div>
-                  </div>
-                );
-              })}
-            </Carousel>
-          </Modal>
-          <h4 style={{ marginLeft: "24px" }}>
-            {story.username.replace(/ .*/, "")}
-          </h4>
-        </div>
-      );
-    });
+                  );
+                })}
+              </Carousel>
+            </Modal>
+            <h2 style={{ marginLeft: "24px" }}>
+              {story.username.replace(/ .*/, "")}
+            </h2>
+          </div>
+        );
+      })
+    ) : (
+      <h4>Follow More People To See Their Stories</h4>
+    );
     return <div className="stories_wrapper">{storiesDisplay}</div>;
   }
 }

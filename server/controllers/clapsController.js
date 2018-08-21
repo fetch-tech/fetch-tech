@@ -28,9 +28,7 @@ const ArticleClap = (req, res, next) => {
             });
         } else {
           db.findAndUpdate_user_clap([number, userId, article_id]).then(
-            respose => {
-              //   console.log("yeey");
-            }
+            respose => {}
           );
         }
       }

@@ -16,9 +16,6 @@ const { parse } = require("node-html-parser");
 //       dom[openningTagPosition + 2]
 //     );
 
-//     console.log("open", openningTag);
-//     console.log("close", closingTag);
-//     console.log(dom.search(closingTag));
 //   }
 // };
 
@@ -33,9 +30,7 @@ const scrape = async url => {
     const parsedDom = parse(dom, [{ script: false }]);
 
     return parsedDom;
-  } catch (e) {
-    console.log("from internal", e);
-  }
+  } catch (e) {}
 };
 
 module.exports = {

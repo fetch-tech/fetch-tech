@@ -1,6 +1,8 @@
 import { Avatar, Card, Input } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/ducks/usersReducer";
 import "./comments.css";
 import SingleComment from "./SingleComment";
 
@@ -11,8 +13,8 @@ class Comments extends Component {
     url: this.props.url,
     desc: this.props.desc,
     comments: [],
-    userProfilePic:
-      "http://marketline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
+    userId: "",
+    userProfilePic: "",
     articleId: null
   };
 
@@ -39,8 +41,14 @@ class Comments extends Component {
     return articleId;
   };
 
-  componentDidMount() {
-    this.checkOrAddComment();
+  async componentDidMount() {
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
+    await this.setState({
+      userProfilePic: this.props.usersReducer.user.profile_pic
+    });
+    await this.checkOrAddComment();
   }
 
   onReplyClick = () => {
@@ -55,12 +63,12 @@ class Comments extends Component {
 
   onCommentSubmit = e => {
     e.preventDefault();
-    const { article, comment } = this.state;
+    const { article, comment, userId } = this.state;
     axios
       .post("http://localhost:3001/api/comments/articles", {
         article,
         comment,
-        userId: "google-oauth2|105906369999808829473"
+        userId
       })
       .then(response => {
         this.checkOrAddComment(this.state.url);
@@ -107,4 +115,13 @@ class Comments extends Component {
   }
 }
 
-export default Comments;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser
+  }
+)(Comments);

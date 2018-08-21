@@ -73,9 +73,7 @@ const checkArticleStatus = (req, res, next) => {
 const removeBookmark = (req, res, next) => {
   const { articleId, userId } = req.params;
   const db = req.app.get("db");
-  db.deleteBookmark([articleId, userId]).then(response => {
-    // console.log("success");
-  });
+  db.deleteBookmark([articleId, userId]).then(response => {});
 };
 
 module.exports = {

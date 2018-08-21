@@ -1,0 +1,1 @@
+UPDATE users SET cover_pic = $1 WHERE user_id=$2

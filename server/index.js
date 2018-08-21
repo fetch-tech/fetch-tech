@@ -16,6 +16,7 @@ const clapsController = require("./controllers/clapsController");
 const bookmarksController = require("./controllers/bookmarksController");
 const storiesController = require("./controllers/storiesController");
 const genStories = require("./controllers/genStories");
+const searchTwit = require("./controllers/searchTwit");
 
 // Sets up express server
 const app = express();
@@ -49,12 +50,10 @@ app.use(passport.session());
 passport.use(strat);
 
 passport.serializeUser((user, done) => {
-  // console.log(user);
   const db = app.get("db");
 
   db.get_user([user.id])
     .then(response => {
-      // console.log(response);
       if (!response[0]) {
         db.users
           .insert({
@@ -63,7 +62,6 @@ passport.serializeUser((user, done) => {
             profile_pic: user.picture
           })
           .then(res => {
-            console.log(res);
             return done(null, res);
           });
       } else return done(null, response[0]);
@@ -78,7 +76,7 @@ app.get("/me", getUser);
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
+    successRedirect: "http://localhost:3000/",
     failureRedirect: "/login"
   })
 );
@@ -163,25 +161,34 @@ app.post(
 app.post("/api/stories/genStories", genStories.getGenStories);
 /************************Stories*********************/
 
+/**********************************Search****************************************/
+app.get("/api/search/general/:item", controllers.searchArticles);
+app.get("/api/search/twitter/:item", searchTwit.searchTwitter);
+
+/**********************************Search****************************************/
+
 /****** USERS ENDPOINTS ******/
 
 // Gets list of the articles the user has clapped on and provides number of claps for that article
-app.get("/api/users/claps", users_controller.getUserClaps);
+app.post("/api/users/claps", users_controller.getUserClaps);
 
 // Gets list of user's bookmarked articles
-app.get("/api/users/bookmarks", users_controller.getUserBookmarks);
+app.post("/api/users/bookmarks", users_controller.getUserBookmarks);
 
 // Gets list of user's comments
 app.get("/api/users/comments", users_controller.getUserComments);
 
 // Gets user's follower count
-app.get("/api/users/followers", users_controller.getUserFollowers);
+app.post("/api/users/followers", users_controller.getUserFollowers);
 
 // Gets user's following count
-app.get("/api/users/following", users_controller.getUserFollowing);
+app.post("/api/users/following", users_controller.getUserFollowing);
 
 // Gets user's stories
 app.get("/api/users/stories", users_controller.getUserStories);
+app.post("/api/user/coverImage", users_controller.postCoverImage);
+app.post("/api/user/profileImage", users_controller.postProfileImage);
+app.post("/api/user", users_controller.getUserInfo);
 
 /****** USER ENDPOINTS ******/
 

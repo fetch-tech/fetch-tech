@@ -1,21 +1,52 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import DevTech from "./components/DevTech/DevTech";
 import Entertainment from "./components/Entertainment/Entertainment";
 import GenTech from "./components/GenTech/GenTech";
 import Gif from "./components/Gif/Gif";
-import User from "./components/User/User";
-import GitHub_Repos from './components/GitHub_Repos/GitHub_Repos'
+import GitHub_Repos from "./components/GitHub_Repos/GitHub_Repos";
+import Search from "./components/Search/Search";
+import Bookmarks from "./components/User/Profile/Bookmarks";
+import Claps from "./components/User/Profile/Claps";
+import Followers from "./components/User/Profile/Followers";
+import Following from "./components/User/Profile/Following";
+import Login from "./Login";
+import store from "./redux/store";
 
-//import and route Followers & Following plus your bookmarks.
+const isAuthenticated = () => {
+  const user = store.getState().usersReducer.user;
+  return !!user.user_id;
+};
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/login"
+          }}
+        />
+      )
+    }
+  />
+);
 
 export default (
   <Switch>
-    <Route exact component={GenTech} path="/" />
-    <Route component={DevTech} path="/devtech" />
-    <Route component={Entertainment} path="/entertainment" />
-    <Route component={Gif} path="/gif" />
-    <Route component={User} path="/user" />
-    <Route component={GitHub_Repos} path='/githubrepos'/>
+    <Route path="/login" exact component={Login} />
+    <PrivateRoute exact component={GenTech} path="/" />
+    <PrivateRoute component={DevTech} path="/devtech" />
+    <PrivateRoute component={Entertainment} path="/entertainment" />
+    <PrivateRoute component={Gif} path="/gif" />
+    <PrivateRoute component={GitHub_Repos} path="/githubrepos" />
+    <PrivateRoute path="/search/:search/:item" exact component={Search} />
+    <PrivateRoute path="/user/claps/:userId" exact component={Claps} />
+    <PrivateRoute path="/user/bookmarks/:userId" exact component={Bookmarks} />
+    <PrivateRoute path="/user/following/:userId" exact component={Following} />
+    <PrivateRoute path="/user/followers/:userId" exact component={Followers} />
   </Switch>
 );

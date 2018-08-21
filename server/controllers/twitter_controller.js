@@ -29,9 +29,7 @@ const searchTweet = (req, res) => {
     "search/tweets",
     { q: query, count: 2, language: "en" },
     (err, data) => {
-      // console.log("DATA FROM TODAY", data);
       const searchArr = data.statuses;
-      // console.log("TODAY SEARCH ARRRAY ", searchArr);
 
       const searchArrWithIndex = searchArr.map((object, index) => {
         return object;

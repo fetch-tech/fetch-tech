@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import { Button } from "antd";
 import axios from "axios";
-import "./Entertainment.css";
-import Stories from "../Stories/Stories";
-import Claps from "../Claps/Claps";
-import Comments from "../Comments/Comments";
+import React, { Component } from "react";
 import Article from "../Article/Article";
-import { Button, Card, Icon } from "antd";
+import Stories from "../Stories/Stories";
 
 export default class Entertainment extends Component {
   state = {
@@ -24,7 +21,6 @@ export default class Entertainment extends Component {
     const noImage =
       "http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg";
     const { entertainments } = this.state;
-    // console.log(entertainments);
     const entertainmentDisplay = entertainments.map((entertainment, e) => {
       return (
         // <div className="wrapper" key={e}>

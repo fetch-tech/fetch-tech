@@ -64,7 +64,7 @@ const entertainmentPageArticles = (req, res, next) => {
 };
 
 const searchArticles = (req, res, next) => {
-  const q = req.params.searchTerm;
+  const q = req.params.item;
   newsapi.v2
     .everything({
       q: q,
@@ -88,7 +88,6 @@ const giphyGifs = (req, res, next) => {
     })
     .then(function(response) {
       res.send({ gifs: response });
-      console.log(response);
     });
 };
 const giphyGifs2 = (req, res, next) => {

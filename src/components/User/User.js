@@ -1,22 +1,12 @@
+import { Collapse, Modal } from "antd";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Modal, Collapse } from "antd";
-
-import {
-  getUser,
-  getUserClaps,
-  getUserBookmarks,
-  getUserComments,
-  getUserFollowers,
-  getUserFollowing,
-  getUserStories
-} from "../../redux/ducks/usersReducer";
-import UserNav from "./UserNav/UserNav";
+import { getUser, getUserFollowers, getUserFollowing } from "../../redux/ducks/usersReducer";
+import "./user.css";
 import FollowerList from "./userContent/FollowerList";
 import FollowingList from "./userContent/FollowingList";
+import UserNav from "./UserNav/UserNav";
 import UserRoutes from "./UserRoutes/UserRoutes";
-
-import "./user.css";
 
 const Panel = Collapse.Panel;
 
@@ -55,14 +45,12 @@ class User extends Component {
   };
 
   handleOkFollower = event => {
-    // console.log(event);
     this.setState({
       followerVisible: false
     });
   };
 
   handleCancelFollower = event => {
-    // console.log(event);
     this.setState({
       followerVisible: false
     });
@@ -79,14 +67,12 @@ class User extends Component {
   };
 
   handleOkFollowing = event => {
-    // console.log(event);
     this.setState({
       followingVisible: false
     });
   };
 
   handleCancelFollowing = event => {
-    // console.log(event);
     this.setState({
       followingVisible: false
     });
@@ -95,7 +81,6 @@ class User extends Component {
   /****** FOLLOWING MODAL ******/
 
   render() {
-    // console.log("props: ", this.props);
 
     const { user, followers, following } = this.props.usersReducer;
 
@@ -121,8 +106,8 @@ class User extends Component {
       <div>
         <div>
           <button>
-            {/* <a href="http://localhost:3001/login">Login</a> */}
-            <a href={process.env.REACT_APP_LOGIN}>Login</a>
+            <a href="http://localhost:3001/login">Login</a>
+            {/* <a href={process.env.REACT_APP_LOGIN}>Login</a> */}
           </button>
         </div>
         <br />

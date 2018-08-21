@@ -1,22 +1,29 @@
 import { Avatar, Input } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/ducks/usersReducer";
 import "./comments.css";
 
-export default class SingleComment extends Component {
+class SingleComment extends Component {
   state = {
     reply: false,
     comment: "",
     commentId: this.props.comment.comment_id,
-    userId: "google-oauth2|105906369999808829473",
+    userId: "",
     comments: [],
-    userProfilePic:
-      "http://marketline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+    userProfilePic: ""
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { commentId } = this.state;
-    axios
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
+    await this.setState({
+      userProfilePic: this.props.usersReducer.user.profile_pic
+    });
+    await axios
       .get(
         `http://localhost:3001/api/commentArticles/comment/comment/${commentId}`
       )
@@ -109,3 +116,14 @@ export default class SingleComment extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser
+  }
+)(SingleComment);

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { getUserStories } from "../../../redux/ducks/usersReducer";
 
 /*
@@ -22,8 +21,6 @@ class StoryArticles extends Component {
   }
 
   render() {
-    // console.log("props: ", this.props);
-
     const { stories } = this.props.usersReducer;
 
     // Display template for user's stories
