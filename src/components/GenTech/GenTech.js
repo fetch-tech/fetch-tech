@@ -6,6 +6,7 @@ import Claps from "../Claps/Claps";
 import Comments from "../Comments/Comments";
 import AddToStories from "../Stories/AddToStories";
 import Stories from "../Stories/Stories";
+import Article from "../Article/Article";
 import "./genTech.css";
 
 export default class extends React.Component {
@@ -20,71 +21,67 @@ export default class extends React.Component {
   }
 
   render() {
+    const noImage =
+      "http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg";
     const { articles } = this.state;
     const articleDisplay = articles.map((article, i) => {
       return (
-        <div className="wrapper" key={i}>
-          <div style={{ display: "flex" }}>
-            <Card
-              hoverable
-              style={{
-                marginLeft: 371,
-                width: 800,
-                marginTop: 5,
-                display: "flex"
-              }}
-            >
-              <div className="articleWrapper">
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div style={{ display: "flex" }}>
-                    <img
-                      className="urlToImage"
-                      src={article.urlToImage}
-                      alt=""
-                    />
-                    <div className="aricle-center">
-                      <h2>{article.title}</h2>
-                      <div style={{ fontSize: "16px" }}>
-                        {article.description}
-                      </div>
-                      <div className="article-bottom">
-                        <div className="source">{article.source.name}</div>
-                      </div>
-                      <a target="_blank" href={article.url} target="_blank">
-                        <Button>
-                          Read
-                          <Icon type="right" />
-                        </Button>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="article-sidebar" />
-                </div>
-              </div>
-            </Card>
-            <span style={{ marginRight: 270 }}>
-              <Claps article={article} url={article.url} />
-              <span style={{ margin: 10 }}>
-                <Bookmark article={article} url={article.url} />
-              </span>
-              <span style={{ margin: 10 }}>
-                <AddToStories article={article} url={article.url} />
-              </span>
-            </span>
-          </div>
-          <Comments
-            article={article}
-            url={article.url}
-            desc={article.description}
-          />
+        // <div className="wrapper" key={i}>
+        //   <div className="card-sidebar">
+        //     <div className="card-comment">
+        //       <Card hoverable className="card-body">
+        //         <div className="articleWrapper">
+        //           <img
+        //             className="urlToImage"
+        //             src={article.urlToImage ? article.urlToImage : noImage}
+        //             alt=""
+        //           />
+        //           <div className="aricle-center">
+        //             <h2>{article.title}</h2>
+        //             <div className="article-description">
+        //               {article.description}
+        //             </div>
+        //           </div>
+        //         </div>
+        //         <div className="card-bottom">
+        //           <div className="article-bottom">
+        //             <div className="source">{article.source.name}</div>
+        //           </div>
+        //           <a target="_blank" href={article.url}>
+        //             <Button>
+        //               Read
+        //               <Icon type="right" />
+        //             </Button>
+        //           </a>
+        //         </div>
+        //       </Card>
+        //       <Comments
+        //         article={article}
+        //         url={article.url}
+        //         desc={article.description}
+        //       />
+        //     </div>
+        //     <div className="sidebar">
+        //       <div>
+        //         <Claps article={article} url={article.url} />
+        //       </div>
+        //       <div>
+        //         <Bookmark article={article} url={article.url} />
+        //       </div>
+        //       <div>
+        //         <AddToStories article={article} url={article.url} />
+        //       </div>
+        //     </div>
+        //   </div>
+        // </div>
+        <div>
+          <Article article={article} i={i} noImage={noImage} />
         </div>
       );
     });
     return (
       <div className="genNewsWrapper">
-        <Stories />
+        {/* <Stories /> */}
         {articleDisplay}
       </div>
     );

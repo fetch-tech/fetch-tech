@@ -1,6 +1,10 @@
 .commentsWrapper {
-  /* margin: 0 auto; */
-  /* width: 42%; */
+  margin: 0 auto;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .comment-display {

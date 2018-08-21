@@ -71,7 +71,7 @@ export default class AddStories extends Component {
   render() {
     return (
       <div>
-        <div style={{ marginTop: 70, marginLeft: 25 }}>
+        <div style={{ marginTop: 70 }}>
           {this.state.selected ? (
             <Icon
               onClick={this.onModifyStoryClick}
