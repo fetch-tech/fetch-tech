@@ -100,3 +100,15 @@
   justify-content: space space-between;
   align-items: center;
 }
+
+.page-title {
+  width: 90vw;
+}
+
+.page-title h1 {
+  font-size: 40px;
+}
+
+.underline {
+  border-bottom: 1px solid #c4c4c4;
+}
