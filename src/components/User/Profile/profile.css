@@ -107,9 +107,14 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  width: auto;
 }
 
 .follow-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   margin-left: 30px;
 }
 

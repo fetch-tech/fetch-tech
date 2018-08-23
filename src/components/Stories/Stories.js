@@ -34,12 +34,12 @@ export default class Stories extends Component {
     const { stories } = this.state;
     const storiesDisplay = stories.length ? (
       stories.map((story, i) => {
+        console.log("story: ", story);
         return (
           <div className="storyWrapper" key={i}>
             <Avatar
               onClick={() => this.onAvatarClick(story.username)}
-              style={{ marginLeft: "15px" }}
-              size={64}
+              size={60}
               src=""
             />
             <Modal
@@ -107,7 +107,7 @@ export default class Stories extends Component {
                 })}
               </Carousel>
             </Modal>
-            <h2 style={{ marginLeft: "24px" }}>
+            <h2 className="story-username">
               {story.username.replace(/ .*/, "")}
             </h2>
           </div>
