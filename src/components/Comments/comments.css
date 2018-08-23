@@ -50,3 +50,10 @@ img {
   margin-bottom: 20px;
   margin-left: 40px;
 }
+
+.display-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
