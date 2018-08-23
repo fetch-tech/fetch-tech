@@ -107,7 +107,11 @@ class Navbar extends React.Component {
     return (
       <div className="nav">
         <div>
-          <img className="logoPic" src="" alt="logo" />
+          <img
+            className="logoPic"
+            src="https://s3.us-east-2.amazonaws.com/fetch-tech/fetch-dog.png"
+            alt="logo"
+          />
         </div>
         <div className="navButtons">
           <Link
