@@ -24,10 +24,10 @@ export default class Following extends Component {
     const followersDisplay = following.map((user, i) => {
       return (
         <div key={i}>
-          <Card style={{ width: 500, margin: "0 auto" }}>
+          <Card className="follow-card-body">
             <div className="user-following">
               <Avatar src={user.profile_pic} size={64} icon="user" />
-              <div style={{ marginLeft: 100 }}>
+              <div className="follow-name">
                 <h1>{user.username}</h1>
               </div>
             </div>
@@ -36,11 +36,11 @@ export default class Following extends Component {
       );
     });
     return (
-      <div>
+      <div className="user-page-follow">
         <div>
           <UserProfile />
         </div>
-        <div className="following">{followersDisplay}</div>
+        <div className="display-following">{followersDisplay}</div>
       </div>
     );
   }

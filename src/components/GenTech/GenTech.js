@@ -79,10 +79,14 @@ export default class extends React.Component {
         </div>
       );
     });
+
     return (
-      <div className="genNewsWrapper">
-        {/* <Stories /> */}
-        {articleDisplay}
+      <div className="parentWrapper">
+        <Stories />
+        <div className="page-title">
+          <h1 className="underline">Trending Tech</h1>
+        </div>
+        <div className="genNewsWrapper">{articleDisplay}</div>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 .top-section {
-  height: 100px;
+  width: 100vw;
+  height: 500px;
 }
 
 .avatar-wrapper {
@@ -80,10 +81,91 @@
   margin-top: 350px;
 }
 
-.user-following {
+.user-page-follow {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.following {
-  margin-top: 350px;
+.display-following {
+  margin-top: 40px;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-following {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.follow-name {
+  margin-left: 30px;
+}
+
+.user-page-claps {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.display-clap-articles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-between;
+  width: 90vw;
+  margin-top: 40px;
+}
+
+.clap-article-wrapper {
+  width: 350px;
+  height: 350px;
+  margin-bottom: 20px;
+}
+
+.clap-article-card {
+  width: auto;
+  height: auto;
+}
+
+.clap-article-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+}
+
+.clap-article-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.clap-article-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-top: 20px;
+}
+
+.follow-card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 450px;
+  height: auto;
+  margin-bottom: 20px;
 }

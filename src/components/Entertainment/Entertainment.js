@@ -79,10 +79,13 @@ export default class Entertainment extends Component {
     });
 
     return (
-      <div>
+      <div className="parentWrapper">
         <Stories />
-        <div>
+        {/* <div>
           <Button className="gifButton">Gifs</Button>
+        </div> */}
+        <div className="page-title">
+          <h1 className="underline">Entertainment</h1>
         </div>
         <div className="genNewsWrapper">{entertainmentDisplay}</div>
       </div>

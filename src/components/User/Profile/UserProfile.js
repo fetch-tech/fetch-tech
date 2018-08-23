@@ -16,7 +16,11 @@ class UserProfile extends Component {
     acceptedProfilePic: [],
     rejectedProfilePic: [],
     coverPic: "",
-    profilePic: ""
+    profilePic: "",
+    clapsTab: true,
+    bookmarksTab: false,
+    followingTab: false,
+    followersTab: false
   };
   async componentDidMount() {
     const { getUser } = this.props;
@@ -93,6 +97,42 @@ class UserProfile extends Component {
     });
   };
 
+  clapsHandler = () => {
+    this.setState({
+      clapsTab: true,
+      bookmarksTab: false,
+      followingTab: false,
+      followersTab: false
+    });
+  };
+
+  bookmarksHandler = () => {
+    this.setState({
+      clapsTab: false,
+      bookmarksTab: true,
+      followingTab: false,
+      followersTab: false
+    });
+  };
+
+  followingHandler = () => {
+    this.setState({
+      clapsTab: false,
+      bookmarksTab: false,
+      followingTab: true,
+      followersTab: false
+    });
+  };
+
+  followersHandler = () => {
+    this.setState({
+      clapsTab: false,
+      bookmarksTab: false,
+      followingTab: false,
+      followersTab: true
+    });
+  };
+
   render() {
     const {
       userId,
@@ -102,111 +142,127 @@ class UserProfile extends Component {
       coverPic,
       profilePic
     } = this.state;
+    const active = "no-link active-link";
+    const notActive = "no-link nav-link";
 
     return (
-      <div>
-        <div className="top-section">
-          <div className="top-wrapper">
-            <div className="cover-wrapper">
-              <div className="cover-section">
-                <div className="cover-img">
+      <div className="top-section">
+        <div className="top-wrapper">
+          <div className="cover-wrapper">
+            <div className="cover-section">
+              <div className="cover-img">
+                <Dropzone
+                  style={{ width: "100%" }}
+                  disabled={userId !== viewUserId && true}
+                  accept="image/jpeg, image/png"
+                  onDrop={(acceptedCover, rejectedCover) => {
+                    this.setState({ acceptedCover, rejectedCover });
+                    this.uploadCoverToCloudinary(acceptedCover);
+                  }}
+                >
+                  {userId === viewUserId && (
+                    <Icon
+                      style={{
+                        fontSize: "24px",
+                        marginLeft: "50%",
+                        cursor: "pointer"
+                      }}
+                      type="edit"
+                    />
+                  )}
+
+                  <img
+                    className="cover"
+                    alt="COVER IMAGE"
+                    src={
+                      acceptedCover.length > 0
+                        ? acceptedCover[0].preview
+                        : coverPic
+                    }
+                  />
+                </Dropzone>
+              </div>
+              <div className="avatar-wrapper">
+                <div className="avatar">
                   <Dropzone
                     style={{ width: "100%" }}
                     disabled={userId !== viewUserId && true}
                     accept="image/jpeg, image/png"
-                    onDrop={(acceptedCover, rejectedCover) => {
-                      this.setState({ acceptedCover, rejectedCover });
-                      this.uploadCoverToCloudinary(acceptedCover);
+                    onDrop={(acceptedProfilePic, rejectedProfilePic) => {
+                      this.setState({
+                        acceptedProfilePic,
+                        rejectedProfilePic
+                      });
+                      this.uploadAvatarToCloudinary(acceptedProfilePic);
                     }}
                   >
-                    {userId === viewUserId && (
-                      <Icon
-                        style={{
-                          fontSize: "24px",
-                          marginLeft: "50%",
-                          cursor: "pointer"
-                        }}
-                        type="edit"
-                      />
-                    )}
-
                     <img
-                      className="cover"
-                      alt="COVER IMAGE"
                       src={
-                        acceptedCover.length > 0
-                          ? acceptedCover[0].preview
-                          : coverPic
+                        acceptedProfilePic.length > 0
+                          ? acceptedProfilePic[0].preview
+                          : profilePic
                       }
+                      alt="PROFILE IMAGE"
                     />
                   </Dropzone>
                 </div>
-                <div className="avatar-wrapper">
-                  <div className="avatar">
-                    <Dropzone
-                      style={{ width: "100%" }}
-                      disabled={userId !== viewUserId && true}
-                      accept="image/jpeg, image/png"
-                      onDrop={(acceptedProfilePic, rejectedProfilePic) => {
-                        this.setState({
-                          acceptedProfilePic,
-                          rejectedProfilePic
-                        });
-                        this.uploadAvatarToCloudinary(acceptedProfilePic);
-                      }}
+              </div>
+            </div>
+            <div className="lower-section-wrapper">
+              <Card hoverable className="tabs-wrapper">
+                <div className="tab-items">
+                  <div className="tabs">
+                    <Link
+                      to={`/user/claps/${viewUserId}`}
+                      className={this.state.clapsTab ? active : notActive}
+                      onClick={this.clapsHandler}
                     >
-                      <img
-                        src={
-                          acceptedProfilePic.length > 0
-                            ? acceptedProfilePic[0].preview
-                            : profilePic
-                        }
-                        alt="PROFILE IMAGE"
-                      />
-                    </Dropzone>
+                      <div>
+                        <span>
+                          <i className="fas fa-hands" />
+                          CLAPS
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      to={`/user/bookmarks/${viewUserId}`}
+                      className={this.state.bookmarksTab ? active : notActive}
+                      onClick={this.bookmarksHandler}
+                    >
+                      <div>
+                        <span>
+                          <i className="fas fa-bookmark" />
+                          BOOKMARKS
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      to={`/user/following/${viewUserId}`}
+                      className={this.state.followingTab ? active : notActive}
+                      onClick={this.followingHandler}
+                    >
+                      <div>
+                        <span>
+                          <i className="fas fa-blind" />
+                          FOLLOWING
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      to={`/user/followers/${viewUserId}`}
+                      className={this.state.followersTab ? active : notActive}
+                      onClick={this.followersHandler}
+                    >
+                      <div>
+                        <span>
+                          <i className="fas fa-walking" />
+                          FOLLOWERS
+                        </span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
-              </div>
-              <div className="lower-section-wrapper">
-                <Card hoverable className="tabs-wrapper">
-                  <div className="tab-items">
-                    <div className="tabs">
-                      <Link to={`/user/claps/${viewUserId}`}>
-                        <div>
-                          <span>
-                            <i className="fas fa-hands" />
-                            CLAPS
-                          </span>
-                        </div>
-                      </Link>
-                      <Link to={`/user/bookmarks/${viewUserId}`}>
-                        <div>
-                          <span>
-                            <i className="fas fa-bookmark" />
-                            BOOKMARKS
-                          </span>
-                        </div>
-                      </Link>
-                      <Link to={`/user/following/${viewUserId}`}>
-                        <div>
-                          <span>
-                            <i className="fas fa-blind" />
-                            FOLLOWING
-                          </span>
-                        </div>
-                      </Link>
-                      <Link to={`/user/followers/${viewUserId}`}>
-                        <div>
-                          <span>
-                            <i className="fas fa-walking" />
-                            FOLLOWERS
-                          </span>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </Card>
-              </div>
+              </Card>
             </div>
           </div>
         </div>

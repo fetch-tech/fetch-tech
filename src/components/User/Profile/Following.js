@@ -9,6 +9,7 @@ export default class Following extends Component {
     viewUserId: "",
     following: []
   };
+
   async componentDidMount() {
     await this.setState({ viewUserId: this.props.match.params.userId });
     await axios
@@ -19,15 +20,16 @@ export default class Following extends Component {
         this.setState({ following: res.data.users });
       });
   }
+
   render() {
     const { following } = this.state;
     const followingDisplay = following.map((user, i) => {
       return (
         <div key={i}>
-          <Card style={{ width: 500, margin: "0 auto" }}>
+          <Card className="follow-card-body">
             <div className="user-following">
               <Avatar src={user.profile_pic} size={64} icon="user" />
-              <div style={{ marginLeft: 100 }}>
+              <div>
                 <h1>{user.username}</h1>
               </div>
             </div>
@@ -35,12 +37,13 @@ export default class Following extends Component {
         </div>
       );
     });
+
     return (
-      <div>
+      <div className="user-page-follow">
         <div>
           <UserProfile />
         </div>
-        <div className="following">{followingDisplay}</div>
+        <div className="display-following">{followingDisplay}</div>
       </div>
     );
   }
