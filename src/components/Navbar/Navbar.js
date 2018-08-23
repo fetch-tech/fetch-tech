@@ -199,9 +199,6 @@ class Navbar extends React.Component {
               </AutoComplete>
             </div>
           </div>
-          <a className="login" href="http://localhost:3001/login">
-            LOGIN
-          </a>
         </div>
       </div>
     );
