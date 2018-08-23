@@ -199,11 +199,7 @@ app.get("/api/gifs/tech3", controllers.giphyGifs3);
 app.get("/api/gifs/tech4", controllers.giphyGifs4);
 
 /****** TWITTER ******/
-app.get("/api/tweet/javascript", twitter_controller.searchTweet);
-app.get("/api/tweet/react", twitter_controller.searchReact);
-app.get("/api/tweet/redux", twitter_controller.searchRedux);
-app.get("/api/tweet/vue", twitter_controller.searchVue);
-app.get("/api/tweet/angular", twitter_controller.searchAngular);
+app.get("/api/tweet", twitter_controller.searchTrendingTweets);
 /****** TWITTER ******/
 
 // Runs the server on localhost:3001

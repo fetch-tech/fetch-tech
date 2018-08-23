@@ -1,13 +1,7 @@
 const Twit = require("twit");
+var moment = require("moment");
 
-let tweetJS = [];
-let tweetReact = [];
-let tweetRedux = [];
-let tweetVue = [];
-let tweetAngular = [];
-let query = "javaScript";
-
-let error = false;
+const todayDate = moment().format("YYYY-MM-DD");
 
 const {
   consumer_key,
@@ -22,99 +16,30 @@ const T = new Twit({
   access_token: access_token,
   access_token_secret: access_token_secret
 });
+const queries = [
+  "programming",
+  "javascript",
+  "python",
+  "web programming",
+  "dan abramov"
+];
 
-// Search JavaScript Tweet //
-const searchTweet = (req, res) => {
-  T.get(
-    "search/tweets",
-    { q: query, count: 2, language: "en" },
-    (err, data) => {
-      const searchArr = data.statuses;
-
-      const searchArrWithIndex = searchArr.map((object, index) => {
-        return object;
-      });
-
-      tweetJS = searchArrWithIndex;
-      res.status(200).send(tweetJS);
-    }
-  );
+const devArticlesOptions = () => {
+  let q = Math.floor(Math.random() * queries.length);
+  return q;
 };
 
-// Search React Tweet //
-const searchReact = (req, res) => {
+const searchTrendingTweets = (req, res, next) => {
+  let params = queries[devArticlesOptions()];
   T.get(
     "search/tweets",
-    { q: "#React", count: 2, language: "en" },
-    (err, data) => {
-      const searchReactArr = data.statuses;
-
-      const searchReactArrWithIndex = searchReactArr.map((object, index) => {
-        return object;
-      });
-
-      tweetReact = searchReactArrWithIndex;
-      res.status(200).send(tweetReact);
-    }
-  );
-};
-
-// Search Redux Tweet //
-const searchRedux = (req, res) => {
-  T.get(
-    "search/tweets",
-    { q: "#Redux", count: 2, language: "en" },
-    (err, data) => {
-      const searchRedux = data.statuses;
-
-      const searchReduxWithIndex = searchRedux.map((object, index) => {
-        return object;
-      });
-
-      tweetRedux = searchReduxWithIndex;
-      res.status(200).send(tweetRedux);
-    }
-  );
-};
-// Search Vue Tweet //
-const searchVue = (req, res) => {
-  T.get(
-    "search/tweets",
-    { q: "#Vue", count: 2, language: "en" },
-    (err, data) => {
-      const searchVue = data.statuses;
-
-      const searchVueArrWithIndex = searchVue.map((object, index) => {
-        return object;
-      });
-
-      tweetVue = searchVueArrWithIndex;
-      res.status(200).send(tweetVue);
-    }
-  );
-};
-
-const searchAngular = (req, res) => {
-  T.get(
-    "search/tweets",
-    { q: "#angular", count: 2, language: "en" },
-    (err, data) => {
-      const seearchAngular = data.statuses;
-
-      const searchAngularWithIndex = seearchAngular.map((object, index) => {
-        return object;
-      });
-
-      tweetAngular = searchAngularWithIndex;
-      res.status(200).send(tweetAngular);
+    { q: `${params} since:${todayDate}`, language: "en", count: 50 },
+    (err, data, response) => {
+      res.send({ tweets: data.statuses });
     }
   );
 };
 
 module.exports = {
-  searchTweet,
-  searchReact,
-  searchRedux,
-  searchVue,
-  searchAngular
+  searchTrendingTweets
 };

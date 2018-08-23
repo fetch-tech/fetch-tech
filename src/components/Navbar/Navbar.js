@@ -1,17 +1,8 @@
-import {
-  AutoComplete,
-  Avatar,
-  Button,
-  Card,
-  Icon,
-  Input,
-  Radio,
-  Tooltip
-} from "antd";
+import { AutoComplete, Avatar, Icon, Input, Radio, Tooltip } from "antd";
 import React from "react";
 import { connect } from "react-redux";
-import { Link, NavLink, withRouter } from "react-router-dom";
-import FETCH_TECH_LOGO_TRANS3 from "../../images/FETCH_TECH_LOGO_TRANS3.png";
+import { Link, withRouter } from "react-router-dom";
+// import FETCH_TECH_LOGO_TRANS3 from "../../images/FETCH_TECH_LOGO_TRANS3.png";
 import { getUser } from "../../redux/ducks/usersReducer";
 import "./Navbar.css";
 
@@ -116,7 +107,7 @@ class Navbar extends React.Component {
     return (
       <div className="nav">
         <div>
-          <img className="logoPic" src={FETCH_TECH_LOGO_TRANS3} alt="logo" />
+          <img className="logoPic" src="" alt="logo" />
         </div>
         <div className="navButtons">
           <Link
@@ -175,21 +166,6 @@ class Navbar extends React.Component {
                     arrowPointAtCenter
                   >
                     <Radio.Button value="general">General</Radio.Button>
-                  </Tooltip>
-
-                  <Tooltip
-                    placement="topLeft"
-                    title="Search In Twitter"
-                    arrowPointAtCenter
-                  >
-                    <Radio.Button value="twitter">Twitter</Radio.Button>
-                  </Tooltip>
-                  <Tooltip
-                    placement="topLeft"
-                    title="Search For People"
-                    arrowPointAtCenter
-                  >
-                    <Radio.Button value="people">People</Radio.Button>
                   </Tooltip>
                 </Radio.Group>
               )}
