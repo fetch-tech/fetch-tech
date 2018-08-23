@@ -6,6 +6,8 @@ import Claps from "../Claps/Claps";
 import Bookmark from "../Bookmark/Bookmark";
 import AddToStories from "../Stories/AddToStories";
 
+import "./article.css";
+
 class Article extends Component {
   constructor(props) {
     super(props);
@@ -29,37 +31,41 @@ class Article extends Component {
         <div className="wrapper" key={e}>
           <div className="card-sidebar">
             <div className="card-comment">
-              <Card hoverable className="card-body">
-                <div className="articleWrapper">
-                  <img
-                    className="urlToImage"
-                    src={article.urlToImage ? article.urlToImage : noImage}
-                    alt=""
-                  />
-                  <div className="aricle-center">
-                    <h2>{article.title}</h2>
-                    <div className="article-description">
-                      {article.description}
+              <Card hoverable className="card-wrapper">
+                <div className="card-body">
+                  <div className="articleWrapper">
+                    <img
+                      className="urlToImage"
+                      src={article.urlToImage ? article.urlToImage : noImage}
+                      alt=""
+                    />
+                    <div className="aricle-center">
+                      <h2>{article.title}</h2>
+                      <div className="article-description">
+                        {article.description}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="card-bottom">
-                  <div className="article-bottom">
-                    <div className="source">{article.source.name}</div>
+                  <div className="card-bottom">
+                    <div className="article-bottom">
+                      <div className="source">{article.source.name}</div>
+                    </div>
+                    <a target="_blank" href={article.url} target="_blank">
+                      <Button>
+                        Read
+                        <Icon type="right" />
+                      </Button>
+                    </a>
                   </div>
-                  <a target="_blank" href={article.url} target="_blank">
-                    <Button>
-                      Read
-                      <Icon type="right" />
+                </div>
+                <footer>
+                  <div className="showComment">
+                    <Button onClick={this.toggleHandler}>
+                      Hide Comments
+                      <Icon type="up" />
                     </Button>
-                  </a>
-                </div>
-                <div className="showComment">
-                  <Button onClick={this.toggleHandler}>
-                    Hide Comments
-                    <Icon type="up" />
-                  </Button>
-                </div>
+                  </div>
+                </footer>
               </Card>
               <Comments
                 article={article}
@@ -88,37 +94,41 @@ class Article extends Component {
         <div className="wrapper" key={e}>
           <div className="card-sidebar">
             <div className="card-comment">
-              <Card hoverable className="card-body">
-                <div className="articleWrapper">
-                  <img
-                    className="urlToImage"
-                    src={article.urlToImage ? article.urlToImage : noImage}
-                    alt=""
-                  />
-                  <div className="aricle-center">
-                    <h2>{article.title}</h2>
-                    <div className="article-description">
-                      {article.description}
+              <Card hoverable className="card-wrapper">
+                <div className="card-body">
+                  <div className="articleWrapper">
+                    <img
+                      className="urlToImage"
+                      src={article.urlToImage ? article.urlToImage : noImage}
+                      alt=""
+                    />
+                    <div className="aricle-center">
+                      <h2>{article.title}</h2>
+                      <div className="article-description">
+                        {article.description}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="card-bottom">
-                  <div className="article-bottom">
-                    <div className="source">{article.source.name}</div>
+                  <div className="card-bottom">
+                    <div className="article-bottom">
+                      <div className="source">{article.source.name}</div>
+                    </div>
+                    <a target="_blank" href={article.url} target="_blank">
+                      <Button>
+                        Read
+                        <Icon type="right" />
+                      </Button>
+                    </a>
                   </div>
-                  <a target="_blank" href={article.url} target="_blank">
-                    <Button>
-                      Read
-                      <Icon type="right" />
+                </div>
+                <footer>
+                  <div className="showComment">
+                    <Button onClick={this.toggleHandler}>
+                      Show Comments
+                      <Icon type="down" />
                     </Button>
-                  </a>
-                </div>
-                <div className="showComment">
-                  <Button onClick={this.toggleHandler}>
-                    Show Comments
-                    <Icon type="down" />
-                  </Button>
-                </div>
+                  </div>
+                </footer>
               </Card>
             </div>
 
