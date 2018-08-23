@@ -136,21 +136,6 @@ class Navbar extends React.Component {
                     >
                       <Radio.Button value="general">General</Radio.Button>
                     </Tooltip>
-
-                    <Tooltip
-                      placement="topLeft"
-                      title="Search In Twitter"
-                      arrowPointAtCenter
-                    >
-                      <Radio.Button value="twitter">Twitter</Radio.Button>
-                    </Tooltip>
-                    <Tooltip
-                      placement="topLeft"
-                      title="Search For People"
-                      arrowPointAtCenter
-                    >
-                      <Radio.Button value="people">People</Radio.Button>
-                    </Tooltip>
                   </Radio.Group>
                 )}
                 <AutoComplete

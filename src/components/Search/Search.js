@@ -1,4 +1,4 @@
-import { Button, Card, Icon } from "antd";
+import { Button, Card, Icon, Spin } from "antd";
 import axios from "axios";
 import React, { Component } from "react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
@@ -12,9 +12,11 @@ import Stories from "../Stories/Stories";
 class Search extends Component {
   state = {
     articles: [],
-    tweets: []
+    tweets: [],
+    loader: false
   };
   componentDidMount() {
+    this.setState({ loader: true });
     const url = this.props.match.url;
     if (this.props.match.params.search === "twitter") {
       axios.get(`http://localhost:3001/api${url}`).then(response => {
@@ -26,8 +28,14 @@ class Search extends Component {
       });
     }
   }
+  waitFunc = () => {
+    setTimeout(() => {
+      this.setState({ loader: false });
+    }, 5000);
+  };
   render() {
-    const { articles, tweets } = this.state;
+    const { articles, tweets, loader } = this.state;
+
     const tweetsDisplay = tweets.map((tweet, i) => {
       return (
         <div style={{ margin: "0 auto" }} key={i}>
@@ -37,6 +45,14 @@ class Search extends Component {
             }}
           >
             <TwitterTweetEmbed tweetId={tweet.id_str} />
+            {loader && (
+              <Card className="tweets-loader">
+                <span style={{ textAlign: "center" }}>
+                  <Spin />
+                </span>
+              </Card>
+            )}
+            {this.waitFunc()}
           </div>
         </div>
       );

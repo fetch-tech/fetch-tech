@@ -19,6 +19,7 @@ export default class GitHub_Repos extends Component {
 
   render() {
     const { trends } = this.state;
+    console.log(trends);
     const trendsDisplay = trends.map((gitTrend, t) => {
       return (
         <div className="wrapperG" key={t}>
