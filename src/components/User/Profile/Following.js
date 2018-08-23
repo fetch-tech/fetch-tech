@@ -29,7 +29,7 @@ export default class Following extends Component {
           <Card className="follow-card-body">
             <div className="user-following">
               <Avatar src={user.profile_pic} size={64} icon="user" />
-              <div>
+              <div className="follow-name">
                 <h1>{user.username}</h1>
               </div>
             </div>
