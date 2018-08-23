@@ -20,6 +20,12 @@
   object-fit: contain;
 }
 
+.avatar-picture {
+  border-radius: 50%;
+  height: inherit;
+  width: inherit;
+}
+
 .top-wrapper {
   height: 500px;
 }
@@ -101,9 +107,14 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  width: auto;
 }
 
 .follow-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   margin-left: 30px;
 }
 
@@ -122,13 +133,14 @@
   align-items: center;
   align-content: space-between;
   width: 90vw;
+  height: auto;
   margin-top: 40px;
 }
 
 .clap-article-wrapper {
   width: 350px;
-  height: 350px;
-  margin-bottom: 20px;
+  height: auto;
+  margin-bottom: 30px;
 }
 
 .clap-article-card {

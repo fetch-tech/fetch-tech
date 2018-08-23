@@ -34,34 +34,34 @@ export default class Stories extends Component {
     const { stories } = this.state;
     const storiesDisplay = stories.length ? (
       stories.map((story, i) => {
+        console.log("story: ", story);
         return (
           <div className="storyWrapper" key={i}>
             <Avatar
               onClick={() => this.onAvatarClick(story.username)}
-              style={{ marginLeft: "15px" }}
-              size={64}
+              size={60}
               src=""
             />
             <Modal
               title={story.username}
               visible={this.state[story.username]}
               onCancel={() => this.handleCancel(story.username)}
-              bodyStyle={{ height: "50vh" }}
+              // bodyStyle={{ height: "50vh" }}
               footer={null}
             >
-              <Carousel>
+              <Carousel className="story-card-body">
                 {story.stories.map((single, i) => {
-                  {
-                  }
                   return (
-                    <div key={i} className="articleWrapper">
+                    <div key={i} className="story-card-wrapper">
                       <div
                         style={{
                           display: "flex",
                           justifyContent: "space-between"
                         }}
                       >
-                        <div style={{ display: "flex" }}>
+                        <div
+                        // style={{ display: "flex" }}
+                        >
                           <div>
                             <div>
                               <img
@@ -72,26 +72,30 @@ export default class Stories extends Component {
                               />
                             </div>
                             <div>
-                              <div className="aricle-center">
-                                <h2>{single.title}</h2>
-                                <div style={{ fontSize: "16px" }}>
-                                  {single.description}
+                              <div className="article-center">
+                                <div>
+                                  <h2>{single.title}</h2>
+                                  <div style={{ fontSize: "16px" }}>
+                                    {single.description}
+                                  </div>
                                 </div>
-                                <div className="article-bottom">
+                                <div className="story-card-bottom">
                                   <div className="source">
                                     {single.source_name}
                                   </div>
+                                  <div>
+                                    <a
+                                      target="_blank"
+                                      href={single.url}
+                                      target="_blank"
+                                    >
+                                      <Button>
+                                        Read
+                                        <Icon type="right" />
+                                      </Button>
+                                    </a>
+                                  </div>
                                 </div>
-                                <a
-                                  target="_blank"
-                                  href={single.url}
-                                  target="_blank"
-                                >
-                                  <Button>
-                                    Read
-                                    <Icon type="right" />
-                                  </Button>
-                                </a>
                               </div>
                             </div>
                           </div>
@@ -103,7 +107,7 @@ export default class Stories extends Component {
                 })}
               </Carousel>
             </Modal>
-            <h2 style={{ marginLeft: "24px" }}>
+            <h2 className="story-username">
               {story.username.replace(/ .*/, "")}
             </h2>
           </div>

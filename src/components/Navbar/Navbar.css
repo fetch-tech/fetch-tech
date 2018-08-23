@@ -52,6 +52,7 @@
 .logoPic {
   max-width: 170px;
   max-height: 140px;
+  margin-right: 50px;
 }
 
 .right-corner {
@@ -88,7 +89,7 @@
 }
 
 .nav-link:hover {
-  color: #000000;
+  color: #c698d3;
 }
 
 .active-link,
@@ -98,4 +99,6 @@
 .active-link:focus {
   color: #000000;
   border-bottom: 1px solid #000000;
+  /* color: #bf44e4;
+  border-bottom: 1px solid #bf44e4; */
 }

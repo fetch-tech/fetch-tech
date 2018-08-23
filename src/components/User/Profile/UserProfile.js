@@ -197,6 +197,7 @@ class UserProfile extends Component {
                     }}
                   >
                     <img
+                      className="avatar-picture"
                       src={
                         acceptedProfilePic.length > 0
                           ? acceptedProfilePic[0].preview

@@ -2,7 +2,7 @@ import { AutoComplete, Avatar, Icon, Input, Radio, Tooltip } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-// import FETCH_TECH_LOGO_TRANS3 from "../../images/FETCH_TECH_LOGO_TRANS3.png";
+import logo from "../../images/FETCH_TECH_LOGO_TRANS3.png";
 import { getUser } from "../../redux/ducks/usersReducer";
 import "./Navbar.css";
 
@@ -107,7 +107,7 @@ class Navbar extends React.Component {
     return (
       <div className="nav">
         <div>
-          <img className="logoPic" src="" alt="logo" />
+          <img className="logoPic" src={logo} alt="logo" />
         </div>
         <div className="navButtons">
           <Link
@@ -199,9 +199,6 @@ class Navbar extends React.Component {
               </AutoComplete>
             </div>
           </div>
-          <a className="login" href="http://localhost:3001/login">
-            LOGIN
-          </a>
         </div>
       </div>
     );
