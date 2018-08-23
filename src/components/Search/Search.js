@@ -40,7 +40,7 @@ class Search extends Component {
             }}
           >
             <TwitterTweetEmbed tweetId={tweet.id_str} />
-            {loader && (
+            {this.state.loader && (
               <Card className="tweets-loader">
                 <span style={{ textAlign: "center" }}>
                   <Spin />
