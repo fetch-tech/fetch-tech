@@ -1,4 +1,5 @@
 /* user_controller contains all methods that deal with the user's information within the application */
+const _ = require("lodash");
 
 // Retrieves specific user's data from database
 const getUser = (req, res, next) => {
@@ -28,6 +29,16 @@ const getUserClaps = (req, res, next) => {
     res.send({ claps });
   });
 };
+
+function removeDuplicates(myArr, prop) {
+  return myArr.filter((obj, pos, arr) => {
+    if (obj.mvtIdentifier) {
+      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+    } else {
+      return arr.push(obj);
+    }
+  });
+}
 
 // Retrieves user's bookmarks
 const getUserBookmarks = (req, res, next) => {

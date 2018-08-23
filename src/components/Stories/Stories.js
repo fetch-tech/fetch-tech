@@ -2,18 +2,24 @@ import { Avatar, Button, Icon, Modal } from "antd";
 import axios from "axios";
 import Carousel from "nuka-carousel";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getUser } from "../../redux/ducks/usersReducer";
 import "../GenTech/genTech.css";
 import "./stories.css";
 
-export default class Stories extends Component {
+class Stories extends Component {
   state = {
     stories: [],
-    userId: "google-oauth2|105906369999808829473"
+    userId: ""
   };
-  componentDidMount() {
-    const { userId } = this.state;
-    axios
-      .post(`http://localhost:3001/api/stories/genStories`, { userId })
+  async componentDidMount() {
+    const { getUser } = this.props;
+    await getUser();
+    await this.setState({ userId: this.props.usersReducer.user.user_id });
+    await axios
+      .post(`http://localhost:3001/api/stories/genStories`, {
+        userId: this.state.userId
+      })
       .then(response => {
         this.setState({ stories: response.data.stories });
         response.data.stories.map(story => {
@@ -34,13 +40,14 @@ export default class Stories extends Component {
     const { stories } = this.state;
     const storiesDisplay = stories.length ? (
       stories.map((story, i) => {
-        console.log("story: ", story);
+        console.log(story);
         return (
           <div className="storyWrapper" key={i}>
             <Avatar
               onClick={() => this.onAvatarClick(story.username)}
-              size={60}
-              src=""
+              style={{ marginLeft: "15px" }}
+              size={64}
+              src={story.stories[0].profile_pic}
             />
             <Modal
               title={story.username}
@@ -119,3 +126,14 @@ export default class Stories extends Component {
     return <div className="stories_wrapper">{storiesDisplay}</div>;
   }
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser
+  }
+)(Stories);

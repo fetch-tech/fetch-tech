@@ -19,9 +19,11 @@ const T = new Twit({
 const queries = [
   "programming",
   "javascript",
-  "python",
   "web programming",
-  "dan abramov"
+  "dan abramov",
+  "Reactjs",
+  "vuejs",
+  "angularjs"
 ];
 
 const devArticlesOptions = () => {

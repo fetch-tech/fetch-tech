@@ -2,7 +2,6 @@ import { AutoComplete, Avatar, Icon, Input, Radio, Tooltip } from "antd";
 import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import logo from "../../images/FETCH_TECH_LOGO_TRANS3.png";
 import { getUser } from "../../redux/ducks/usersReducer";
 import "./Navbar.css";
 
@@ -107,7 +106,11 @@ class Navbar extends React.Component {
     return (
       <div className="nav">
         <div>
-          <img className="logoPic" src={logo} alt="logo" />
+          <img
+            className="logoPic"
+            src="https://s3.us-east-2.amazonaws.com/fetch-tech/fetch-dog.png"
+            alt="logo"
+          />
         </div>
         <div className="navButtons">
           <Link
