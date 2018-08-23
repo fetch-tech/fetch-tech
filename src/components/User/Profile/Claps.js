@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import "../../GenTech/genTech.css";
 import "./profile.css";
 import UserProfile from "./UserProfile";
+import Article from "../../Article/Article";
 
 export default class Claps extends Component {
   state = {
@@ -24,53 +25,44 @@ export default class Claps extends Component {
     const { claps } = this.state;
     const articleDisplay = claps.map((article, i) => {
       return (
-        <div className="wrapper" key={i}>
-          <div style={{ display: "flex" }}>
-            <Card
-              hoverable
-              style={{
-                marginLeft: 371,
-                width: 800,
-                marginTop: 5,
-                display: "flex"
-              }}
-            >
-              <div className="articleWrapper">
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div style={{ display: "flex" }}>
-                    <div className="aricle-center">
-                      <h2>{article.title}</h2>
-                      <div style={{ fontSize: "16px" }}>
-                        {article.description}
-                      </div>
-                      <div className="article-bottom">
-                        {/* <div className="source">{article.source.name}</div> */}
-                      </div>
-                      <a target="_blank" href={article.url} target="_blank">
-                        <Button>
-                          Read
-                          <Icon type="right" />
-                        </Button>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="article-sidebar" />
+        <div className="clap-article-wrapper" key={i}>
+          <Card
+            hoverable
+            className="clap-article-card"
+            // style={{
+            //   marginLeft: 371,
+            //   width: 800,
+            //   marginTop: 5
+            // }}
+          >
+            <div className="clap-article-body">
+              <div className="clap-article-top">
+                <h2>{article.title}</h2>
+                <div style={{ fontSize: "16px" }}>{article.description}</div>
+                <div className="article-bottom">
+                  {/* <div className="source">{article.source.name}</div> */}
                 </div>
               </div>
-            </Card>
-          </div>
+              <div className="clap-article-bottom">
+                <a target="_blank" href={article.url} target="_blank">
+                  <Button>
+                    Read
+                    <Icon type="right" />
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </Card>
         </div>
       );
     });
 
     return (
-      <div>
+      <div className="user-page-claps">
         <div>
           <UserProfile />
         </div>
-        <div className="articles">{articleDisplay}</div>
+        <div className="display-clap-articles">{articleDisplay}</div>
       </div>
     );
   }
