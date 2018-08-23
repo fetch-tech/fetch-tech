@@ -40,7 +40,7 @@ export default (
   <Switch>
     <Route path="/login" exact component={Login} />
     <PrivateRoute exact component={GenTech} path="/" />
-    <PrivateRoute component={DevTech} path="/devtech" />
+    <Route component={DevTech} path="/devtech" />
     <PrivateRoute component={Entertainment} path="/entertainment" />
     <PrivateRoute component={Gif} path="/gif" />
     <PrivateRoute component={GitHub_Repos} path="/githubrepos" />

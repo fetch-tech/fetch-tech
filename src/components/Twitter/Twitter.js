@@ -43,7 +43,10 @@ class Twitter extends Component {
         </div>
       );
     });
-    return <div>{tweetsDisplay}</div>;
+
+    return (
+      <div className="tweets-wrapper display-dev-articles">{tweetsDisplay}</div>
+    );
   }
 }
 export default Twitter;

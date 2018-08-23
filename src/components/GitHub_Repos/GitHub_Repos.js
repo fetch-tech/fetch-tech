@@ -1,4 +1,4 @@
-import { Card, Tag } from "antd";
+import { Card, Tag, Avatar } from "antd";
 import fetch from "node-fetch";
 import React, { Component } from "react";
 import "./GitHub_Repos.css";
@@ -9,11 +9,14 @@ export default class GitHub_Repos extends Component {
   };
 
   componentDidMount() {
-    fetch("https://github-trending-api.now.sh/repositories")
+    fetch(
+      "https://github-trending-api.now.sh/developers?language=javascript&since=weekly"
+    )
       .then(response => {
         return response.json();
       })
       .then(gitTrends => {
+        console.log(gitTrends);
         this.setState({ trends: gitTrends });
       });
   }
@@ -25,21 +28,24 @@ export default class GitHub_Repos extends Component {
       return (
         <div className="wrapperG" key={t}>
           <div className="title">
+            <Avatar src={gitTrend.avatar} />
             <h3>
               <a target="_blank" href={gitTrend.url}>
                 <span className="text-normal">
-                  {gitTrend.author} / {gitTrend.name}
+                  {gitTrend.repo.name} / {gitTrend.name}
                 </span>
               </a>
             </h3>
             <Tag>
-              <i className="fas fa-star" />
-              {gitTrend.stars}
+              <a target="_blank" href={gitTrend.repo.url}>
+                <i className="fas fa-star" />
+                {gitTrend.stars}
+              </a>
             </Tag>
           </div>
           <div className="description">
             <p style={{ color: "#586069 !important" }}>
-              {gitTrend.description}
+              {gitTrend.repo.description}
             </p>
           </div>
           <div>
@@ -50,13 +56,15 @@ export default class GitHub_Repos extends Component {
         </div>
       );
     });
+
     return (
-      <div>
+      <div className="github-wrapper display-dev-articles">
         <Card className="github-repos">
           <h1>
             <i className="fab fa-github" /> Trending Repos
           </h1>
           {trendsDisplay}
+          <h4>jfjsdj</h4>
         </Card>
       </div>
     );

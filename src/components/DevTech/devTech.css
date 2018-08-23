@@ -9,10 +9,14 @@
 
 .aricle-center {
   margin-left: 3%;
+  width: 350px;
 }
 
 .article-bottom {
-  margin: 15px;
+  margin-top: 10px;
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .source {
@@ -28,6 +32,11 @@
 
 .devPage {
   display: flex;
+  justify-content: space-between;
+}
+
+.dev-card {
+  width: 600px;
 }
 
 .devCard {
@@ -35,8 +44,22 @@
   margin-right: 80px;
   margin-top: 20px;
   display: "flex";
-  width: 800px;
+  width: 400px;
 }
 .devArticleDescript {
   font-size: 16px;
+  width: 350px;
+}
+
+.display-dev-articles {
+  height: 900px;
+  overflow-y: scroll;
+}
+
+.line-tech {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
 }
