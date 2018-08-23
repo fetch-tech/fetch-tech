@@ -1,12 +1,7 @@
-import { Button, Card, Icon } from "antd";
 import axios from "axios";
 import React from "react";
-import Bookmark from "../Bookmark/Bookmark";
-import Claps from "../Claps/Claps";
-import Comments from "../Comments/Comments";
-import AddToStories from "../Stories/AddToStories";
-import Stories from "../Stories/Stories";
 import Article from "../Article/Article";
+import Stories from "../Stories/Stories";
 import "./genTech.css";
 
 export default class extends React.Component {
@@ -74,7 +69,7 @@ export default class extends React.Component {
         //     </div>
         //   </div>
         // </div>
-        <div>
+        <div key={i}>
           <Article article={article} i={i} noImage={noImage} />
         </div>
       );

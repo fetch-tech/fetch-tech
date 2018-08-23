@@ -25,9 +25,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       isAuthenticated() ? (
         <Component {...props} />
       ) : (
+        // window.location.assign('http://localhost:3001/login')
         <Redirect
           to={{
-            pathname: "/login"
+            pathname: "/"
           }}
         />
       )

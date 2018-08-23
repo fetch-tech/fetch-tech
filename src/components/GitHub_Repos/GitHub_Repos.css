@@ -39,3 +39,19 @@
   padding: 2;
   border: "1px solid black";
 }
+
+.github-repos {
+  margin-top: 20px;
+  cursor: default;
+}
+.text-normal {
+  font-weight: 400 !important;
+  color: #0366d6;
+  cursor: pointer;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+.description {
+}
