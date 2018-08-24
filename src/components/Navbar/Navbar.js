@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { getUser } from "../../redux/ducks/usersReducer";
+import logoName from "../../images/ft-name.png";
 import "./Navbar.css";
 
 class Navbar extends React.Component {
@@ -105,12 +106,13 @@ class Navbar extends React.Component {
 
     return (
       <div className="nav">
-        <div>
+        <div className="logo-container">
           <img
             className="logoPic"
             src="https://s3.us-east-2.amazonaws.com/fetch-tech/fetch-dog.png"
             alt="logo"
           />
+          <img className="logo-name" src={logoName} />
         </div>
         <div className="navButtons">
           <Link

@@ -52,7 +52,6 @@
 .logoPic {
   max-width: 170px;
   max-height: 140px;
-  margin-right: 50px;
 }
 
 .right-corner {
@@ -101,4 +100,13 @@
   border-bottom: 1px solid #000000;
   /* color: #bf44e4;
   border-bottom: 1px solid #bf44e4; */
+}
+
+.logo-container {
+  width: 21%;
+}
+
+.logo-name {
+  max-width: 50%;
+  max-height: auto;
 }
