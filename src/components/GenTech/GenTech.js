@@ -10,7 +10,7 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:3001/api/home/articles").then(response => {
+    axios.get(`/api/home/articles`).then(response => {
       this.setState({ articles: response.data.articles.articles });
     });
   }

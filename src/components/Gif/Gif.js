@@ -13,17 +13,17 @@ export default class Gif extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:3001/api/gifs/tech").then(response => {
+    axios.get(`/api/gifs/tech`).then(response => {
       this.setState({ gifs: response.data.gifs.data });
 
-      axios.get("http://localhost:3001/api/gifs/tech2").then(response => {
+      axios.get(`/api/gifs/tech2`).then(response => {
         this.setState({ gifs2: response.data.gifs2.data });
       });
     });
-    axios.get("http://localhost:3001/api/gifs/tech3").then(response => {
+    axios.get(`/api/gifs/tech3`).then(response => {
       this.setState({ gifs3: response.data.gifs3.data });
     });
-    axios.get("http://localhost:3001/api/gifs/tech4").then(response => {
+    axios.get(`/api/gifs/tech4`).then(response => {
       this.setState({ gifs4: response.data.gifs4.data });
     });
   }

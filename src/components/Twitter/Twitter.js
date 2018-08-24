@@ -13,7 +13,7 @@ class Twitter extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:3001/api/tweet").then(response => {
+    axios.get(`/api/tweet`).then(response => {
       this.setState({ tweets: response.data.tweets });
       this.setState({ loader: true });
     });
@@ -43,7 +43,10 @@ class Twitter extends Component {
         </div>
       );
     });
-    return <div>{tweetsDisplay}</div>;
+
+    return (
+      <div className="tweets-wrapper display-dev-articles">{tweetsDisplay}</div>
+    );
   }
 }
 export default Twitter;

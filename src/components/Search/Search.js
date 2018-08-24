@@ -17,11 +17,11 @@ class Search extends Component {
     this.setState({ loader: true });
     const url = this.props.match.url;
     if (this.props.match.params.search === "twitter") {
-      axios.get(`http://localhost:3001/api${url}`).then(response => {
+      axios.get(`/api${url}`).then(response => {
         this.setState({ tweets: response.data.tweets.statuses });
       });
     } else {
-      axios.get(`http://localhost:3001/api${url}`).then(response => {
+      axios.get(`/api${url}`).then(response => {
         this.setState({ articles: response.data.articles.articles });
       });
     }

@@ -15,7 +15,7 @@ class Bookmark extends Component {
 
   checkforArticle = async () => {
     await axios
-      .post(`http://localhost:3001/api/articles/articleExistence`, {
+      .post(`/api/articles/articleExistence`, {
         url: this.state.url
       })
       .then(response => {
@@ -25,9 +25,9 @@ class Bookmark extends Component {
     this.state.articleId &&
       (await axios
         .get(
-          `http://localhost:3001/api/articles/bookmartStatus/${
-            this.state.articleId
-          }/${this.state.userId}`
+          `/api/articles/bookmartStatus/${this.state.articleId}/${
+            this.state.userId
+          }`
         )
         .then(res => {
           if (res.data.bookmark.length > 0) {
@@ -53,7 +53,7 @@ class Bookmark extends Component {
     if (!this.state.selected) {
       const { article, userId } = this.state;
       axios
-        .post("http://localhost:3001/api/articles/bookmarks", {
+        .post(`/api/articles/bookmarks`, {
           article,
           userId
         })
@@ -61,9 +61,9 @@ class Bookmark extends Component {
     } else {
       axios
         .post(
-          `http://localhost:3001/api/articles/removeBookmark/${
-            this.state.articleId
-          }/${this.state.userId}`
+          `/api/articles/removeBookmark/${this.state.articleId}/${
+            this.state.userId
+          }`
         )
         .then(res => {});
     }

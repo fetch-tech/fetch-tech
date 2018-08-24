@@ -13,7 +13,7 @@ export default class Bookmarks extends Component {
     await this.setState({ viewUserId: this.props.match.params.userId });
 
     await axios
-      .post(`http://localhost:3001/api/users/bookmarks/`, {
+      .post(`/api/users/bookmarks/`, {
         userId: this.state.viewUserId
       })
       .then(res => {

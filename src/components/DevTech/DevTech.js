@@ -3,6 +3,9 @@ import axios from "axios";
 import React, { Component } from "react";
 import GitHub_Repos from "../GitHub_Repos/GitHub_Repos";
 import Twitter from "../Twitter/Twitter";
+import Claps from "../Claps/Claps";
+import Bookmark from "../Bookmark/Bookmark";
+import AddToStories from "../Stories/AddToStories";
 import "./devTech.css";
 
 export default class DevTech extends Component {
@@ -19,42 +22,64 @@ export default class DevTech extends Component {
   }
 
   render() {
+    const noImage =
+      "http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg";
+
     const { devArticles } = this.state;
 
     const displayDevArticle = devArticles.map((devArticle, d) => {
       return (
         <div className="line-tech" key={d}>
-          <Card
-            className="devCard"
-            hoverable
-            key={devArticle.urlToImage}
-            // style={{
-            //   marginLeft: 80,
-            //   marginRight: 80,
-            //   marginTop: 5,
-            //   display: "flex"
-            // }}
-          >
-            <div className="articleWrapper ">
-              <img className="urlToImage" src={devArticle.urlToImage} alt="" />
+          <div className="dev-card">
+            <Card
+              className="devCard"
+              hoverable
+              key={devArticle.urlToImage}
+              // style={{
+              //   marginLeft: 80,
+              //   marginRight: 80,
+              //   marginTop: 5,
+              //   display: "flex"
+              // }}
+            >
+              <div className="articleWrapper ">
+                <img
+                  className="urlToImage"
+                  src={devArticle.urlToImage ? devArticle.urlToImage : noImage}
+                  alt=""
+                />
 
-              <div className="aricle-center">
-                <h2>{devArticle.title}</h2>
-                <div className="devArticleDescript">
-                  {devArticle.description}
+                <div className="aricle-center">
+                  <h2>{devArticle.title}</h2>
+                  <div className="devArticleDescript">
+                    {devArticle.description}
+                  </div>
                 </div>
                 <div className="article-bottom">
-                  <div className="source">{devArticle.author}</div>
+                  <div>
+                    <div className="source">{devArticle.author}</div>
+                  </div>
+                  <a target="_blank" href={devArticle.url} target="_blank">
+                    <Button>
+                      Read More
+                      <Icon type="right" />
+                    </Button>
+                  </a>
                 </div>
-                <a target="_blank" href={devArticle.url} target="_blank">
-                  <Button>
-                    Read More
-                    <Icon type="right" />
-                  </Button>
-                </a>
               </div>
+            </Card>
+          </div>
+          {/* <div className="sidebar">
+            <div>
+              <Claps article={devArticle} url={devArticle.url} />
             </div>
-          </Card>
+            <div>
+              <Bookmark article={devArticle} url={devArticle.url} />
+            </div>
+            <div>
+              <AddToStories article={devArticle} url={devArticle.url} />
+            </div>
+          </div> */}
         </div>
       );
     });
@@ -62,8 +87,7 @@ export default class DevTech extends Component {
     return (
       <div className="devPage">
         <Twitter />
-
-        <div>{displayDevArticle}</div>
+        <div className="display-dev-articles">{displayDevArticle}</div>
         <GitHub_Repos />
       </div>
     );

@@ -17,7 +17,7 @@ class Stories extends Component {
     await getUser();
     await this.setState({ userId: this.props.usersReducer.user.user_id });
     await axios
-      .post(`http://localhost:3001/api/stories/genStories`, {
+      .post(`/api/stories/genStories`, {
         userId: this.state.userId
       })
       .then(response => {

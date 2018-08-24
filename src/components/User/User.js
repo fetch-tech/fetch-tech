@@ -1,7 +1,11 @@
 import { Collapse, Modal } from "antd";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUser, getUserFollowers, getUserFollowing } from "../../redux/ducks/usersReducer";
+import {
+  getUser,
+  getUserFollowers,
+  getUserFollowing
+} from "../../redux/ducks/usersReducer";
 import "./user.css";
 import FollowerList from "./userContent/FollowerList";
 import FollowingList from "./userContent/FollowingList";
@@ -81,7 +85,6 @@ class User extends Component {
   /****** FOLLOWING MODAL ******/
 
   render() {
-
     const { user, followers, following } = this.props.usersReducer;
 
     // Displaying user's follower count
@@ -106,8 +109,8 @@ class User extends Component {
       <div>
         <div>
           <button>
-            <a href="http://localhost:3001/login">Login</a>
-            {/* <a href={process.env.REACT_APP_LOGIN}>Login</a> */}
+            {/* <a href="http://localhost:3001/login">Login</a> */}
+            <a href={process.env.REACT_APP_LOGIN}>Login</a>
           </button>
         </div>
         <br />

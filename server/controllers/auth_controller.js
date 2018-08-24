@@ -23,14 +23,14 @@ const getUser = (req, res) => {
   else res.status(403).json({ message: "Not Logged In" });
 };
 
-const logout = (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("http://localhost:3000");
-  });
-};
+// const logout = (req, res) => {
+//   req.session.destroy(() => {
+//     res.redirect("http://localhost:3000");
+//   });
+// };
 
 module.exports = {
   strat,
-  getUser,
-  logout
+  getUser
+  // logout
 };
