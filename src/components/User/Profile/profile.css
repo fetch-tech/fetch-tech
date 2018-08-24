@@ -105,7 +105,7 @@
 .user-following {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   width: auto;
 }
@@ -113,9 +113,11 @@
 .follow-name {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  margin-left: 30px;
+  width: 350px;
+  /* margin-left: 30px; */
 }
 
 .user-page-claps {
@@ -138,7 +140,7 @@
 }
 
 .clap-article-wrapper {
-  width: 350px;
+  width: 400px;
   height: auto;
   margin-bottom: 30px;
 }
@@ -177,7 +179,10 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 450px;
+  width: 100%;
   height: auto;
   margin-bottom: 20px;
+}
+
+.follow-avatar {
 }

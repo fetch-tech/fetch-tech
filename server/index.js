@@ -76,8 +76,10 @@ app.get("/me", getUser);
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/",
-    failureRedirect: "/"
+    // successRedirect: "/",
+    successRedirect: `http://localhost:3000/`,
+    // successRedirect: "/#/",
+    failureRedirect: "/login"
   })
 );
 
@@ -189,6 +191,7 @@ app.get("/api/users/stories", users_controller.getUserStories);
 app.post("/api/user/coverImage", users_controller.postCoverImage);
 app.post("/api/user/profileImage", users_controller.postProfileImage);
 app.post("/api/user", users_controller.getUserInfo);
+app.post("/api/user/follow", users_controller.followUser);
 
 /****** USER ENDPOINTS ******/
 

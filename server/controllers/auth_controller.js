@@ -7,7 +7,7 @@ const strat = new Auth0Strategy(
     clientID: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     domain: DOMAIN,
-    callbackURL: "/login",
+    callbackURL: "http://localhost:3000/",
     scope: "openid profile"
   },
   (accessToken, refreshToken, extraParams, profile, done) => {

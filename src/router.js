@@ -18,29 +18,33 @@ const isAuthenticated = () => {
   return !!user.user_id;
 };
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        // window.location.assign('http://localhost:3001/login')
-        <Redirect
-          to={{
-            pathname: "/"
-          }}
-        />
-      )
-    }
-  />
-);
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  console.log(isAuthenticated());
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        isAuthenticated() ? (
+          <Component {...props} />
+        ) : (
+          // window.location.assign("http://localhost:3001/login")
+
+          <Redirect
+            to={{
+              pathname: "/login"
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
 export default (
   <Switch>
-    <Route path="/login" exact component={Login} />
+    <Route path="/login" component={Login} />
     <PrivateRoute exact component={GenTech} path="/" />
-    <Route component={DevTech} path="/devtech" />
+    <PrivateRoute component={DevTech} path="/devtech" />
     <PrivateRoute component={Entertainment} path="/entertainment" />
     <PrivateRoute component={Gif} path="/gif" />
     <PrivateRoute component={GitHub_Repos} path="/githubrepos" />

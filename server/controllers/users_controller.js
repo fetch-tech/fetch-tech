@@ -111,7 +111,16 @@ const postProfileImage = (req, res, next) => {
   });
 };
 
+const followUser = (req, res, next) => {
+  const { userId, userToFollowId } = req.body;
+  const db = req.app.get("db");
+  db.FollowUser([userId, userToFollowId]).then(response => {
+    res.send({ success: true });
+  });
+};
+
 module.exports = {
+  followUser,
   getUser,
   getUserClaps,
   getUserBookmarks,

@@ -1,0 +1,22 @@
+.loginbody {
+  background-color: white;
+  height: 100vh;
+}
+.loginImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+.loginButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(160, 47, 150);
+}
+.btns {
+  display: flex;
+  justify-content: space-between;
+}
