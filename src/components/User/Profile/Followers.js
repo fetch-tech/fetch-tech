@@ -12,7 +12,7 @@ export default class Following extends Component {
   async componentDidMount() {
     await this.setState({ viewUserId: this.props.match.params.userId });
     await axios
-      .post(`http://localhost:3001/api/users/followers/`, {
+      .post(`/api/users/followers/`, {
         userId: this.state.viewUserId
       })
       .then(res => {
@@ -22,7 +22,7 @@ export default class Following extends Component {
 
   onUserFollow = userIdToFollow => {
     axios
-      .post("http://localhost:3001/api/user/follow", {
+      .post(`/api/user/follow`, {
         userId: this.state.viewUserId,
         userToFollowId: userIdToFollow
       })

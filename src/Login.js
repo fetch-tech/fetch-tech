@@ -40,7 +40,7 @@ class Login extends Component {
         </div>
         <div className="login-button">
           {!loggedIn ? (
-            <a href="http://localhost:3001/login">
+            <a href={process.env.REACT_APP_LOGIN}>
               <Button className="loginButton">Login</Button>
             </a>
           ) : (

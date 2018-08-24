@@ -25,7 +25,9 @@ class SingleComment extends Component {
     });
     await axios
       .get(
-        `http://localhost:3001/api/commentArticles/comment/comment/${commentId}`
+        `${
+          process.env.REACT_APP_LOGIN
+        }/api/commentArticles/comment/comment/${commentId}`
       )
       .then(response => {
         this.setState({ comments: response.data.commentsComments });
@@ -42,7 +44,7 @@ class SingleComment extends Component {
     e.preventDefault();
     const { commentId, comment, userId } = this.state;
     axios
-      .post("http://localhost:3001/api/commentArticles/comment/comment", {
+      .post(`/api/commentArticles/comment/comment`, {
         commentId,
         comment,
         userId

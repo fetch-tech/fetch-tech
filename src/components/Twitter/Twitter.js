@@ -13,7 +13,7 @@ class Twitter extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:3001/api/tweet").then(response => {
+    axios.get(`/api/tweet`).then(response => {
       this.setState({ tweets: response.data.tweets });
       this.setState({ loader: true });
     });

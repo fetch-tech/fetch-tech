@@ -10,11 +10,9 @@ export default class Entertainment extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://localhost:3001/api/home/articles/entertainment")
-      .then(response => {
-        this.setState({ entertainments: response.data.articles.articles });
-      });
+    axios.get(`/api/home/articles/entertainment`).then(response => {
+      this.setState({ entertainments: response.data.articles.articles });
+    });
   }
 
   render() {

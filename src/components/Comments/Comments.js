@@ -20,7 +20,7 @@ class Comments extends Component {
 
   checkOrAddComment = async () => {
     const articleId = await axios
-      .post("http://localhost:3001/api/commentArticles/comment/", {
+      .post(`/api/commentArticles/comment/`, {
         url: this.state.url
       })
       .then(response => {
@@ -30,11 +30,7 @@ class Comments extends Component {
     const comments =
       this.state.articleId &&
       (await axios
-        .get(
-          `http://localhost:3001/api/comments/commentArticles/${
-            this.state.articleId
-          }`
-        )
+        .get(`/api/comments/commentArticles/${this.state.articleId}`)
         .then(response => {
           this.setState({ comments: response.data.comments });
         }));
@@ -65,7 +61,7 @@ class Comments extends Component {
     e.preventDefault();
     const { article, comment, userId } = this.state;
     axios
-      .post("http://localhost:3001/api/comments/articles", {
+      .post(`/api/comments/articles`, {
         article,
         comment,
         userId

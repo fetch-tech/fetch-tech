@@ -77,13 +77,13 @@ app.get(
   "/login",
   passport.authenticate("auth0", {
     // successRedirect: "/",
-    successRedirect: `http://localhost:3000/`,
+    successRedirect: `${process.env.REDIRECT}`,
     // successRedirect: "/#/",
     failureRedirect: "/login"
   })
 );
 
-app.get("/logout", logout);
+// app.get("/logout", logout);
 
 /****** AUTH0 ******/
 

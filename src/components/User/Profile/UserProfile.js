@@ -28,7 +28,7 @@ class UserProfile extends Component {
     await this.setState({ userId: this.props.usersReducer.user.user_id });
     await this.setState({ viewUserId: this.props.match.params.userId });
     await axios
-      .post("http://localhost:3001/api/user", {
+      .post(`/api/user`, {
         userId: this.state.viewUserId
       })
       .then(res => {
@@ -58,7 +58,7 @@ class UserProfile extends Component {
           const data = response.data;
           const fileURL = data.secure_url; // You should store this URL for future references in your app
           axios
-            .post("http://localhost:3001/api/user/coverImage", {
+            .post(`/api/user/coverImage`, {
               userId: this.state.userId,
               coverUrl: fileURL
             })
@@ -88,7 +88,7 @@ class UserProfile extends Component {
           const data = response.data;
           const fileURL = data.secure_url; // You should store this URL for future references in your app
           axios
-            .post("http://localhost:3001/api/user/profileImage", {
+            .post(`/api/user/profileImage`, {
               userId: this.state.userId,
               profilerUrl: fileURL
             })

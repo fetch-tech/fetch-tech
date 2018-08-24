@@ -22,7 +22,7 @@ class Claps extends Component {
   };
   checkAndFetchClaps = async () => {
     const articleId = await axios
-      .post("http://localhost:3001/api/commentArticles/comment/", {
+      .post(`/api/commentArticles/comment/`, {
         url: this.state.url
       })
       .then(response => {
@@ -33,9 +33,7 @@ class Claps extends Component {
       this.state.articleId &&
       (await axios
         .get(
-          `http://localhost:3001/api/userArticleClap/${this.state.articleId}/${
-            this.state.userId
-          }`
+          `/api/userArticleClap/${this.state.articleId}/${this.state.userId}`
         )
         .then(response => {
           // response.data.userClaps.length > 0 &&
@@ -46,7 +44,7 @@ class Claps extends Component {
     const clapsNumber =
       this.state.articleId &&
       (await axios
-        .get(`http://localhost:3001/api/articleClaps/${this.state.articleId}`)
+        .get(`/api/articleClaps/${this.state.articleId}`)
         .then(response => {
           this.setState({ count: response.data.claps[0].sum });
         }));
@@ -69,7 +67,7 @@ class Claps extends Component {
     await this.setState({ classesRight: "clap hand-right" });
     if (initialUserCount !== userCount && initialUserCount !== 20) {
       axios
-        .post("http://localhost:3001/api/clapArticle/clap", {
+        .post(`/api/clapArticle/clap`, {
           article,
           number: userCount,
           initialNumber: initialUserCount,

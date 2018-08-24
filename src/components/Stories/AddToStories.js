@@ -16,7 +16,7 @@ class AddStories extends Component {
 
   checkforArticle = async () => {
     await axios
-      .post(`http://localhost:3001/api/articles/articleExistence`, {
+      .post(`/api/articles/articleExistence`, {
         url: this.state.url
       })
       .then(response => {
@@ -26,9 +26,9 @@ class AddStories extends Component {
     this.state.articleId &&
       (await axios
         .get(
-          `http://localhost:3001/api/articles/storyStatus/${
-            this.state.articleId
-          }/${this.state.userId}`
+          `/api/articles/storyStatus/${this.state.articleId}/${
+            this.state.userId
+          }`
         )
         .then(res => {
           if (res.data.story.length > 0) {
@@ -54,7 +54,7 @@ class AddStories extends Component {
     if (!this.state.selected) {
       const { article, userId } = this.state;
       axios
-        .post("http://localhost:3001/api/articles/stories", {
+        .post(`/api/articles/stories`, {
           article,
           userId
         })
@@ -64,9 +64,9 @@ class AddStories extends Component {
     } else {
       axios
         .post(
-          `http://localhost:3001/api/articles/removeStory/${
-            this.state.articleId
-          }/${this.state.userId}`
+          `/api/articles/removeStory/${this.state.articleId}/${
+            this.state.userId
+          }`
         )
         .then(res => {
           this.setState({ type: "plus-circle-o" });
