@@ -205,6 +205,8 @@ app.get("/api/gifs/tech4", controllers.giphyGifs4);
 app.get("/api/tweet", twitter_controller.searchTrendingTweets);
 /****** TWITTER ******/
 
+app.use(express.static(`${__dirname}/../build`));
+
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
