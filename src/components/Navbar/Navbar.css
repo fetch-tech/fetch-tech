@@ -1,78 +1,56 @@
 .nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   width: 100vw;
-  height: 124px;
-  background: #ffffff;
-}
-
-.logoImg {
-  margin-top: 0px;
-  height: 80px;
-  width: 120px;
-}
-
-.NavContainer {
-  height: 8vh;
-}
-
-.nav-items {
-  display: flex;
   justify-content: space-between;
-  height: auto;
-  width: auto;
+  overflow: hidden;
+  height: 20vh;
+  background: #fff;
+}
+.logo-container {
+  display: flex;
+  width: 10vw;
 }
 
 .navButtons {
+  width: 60vw;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 500px;
-}
-
-.nav_btn {
-  margin-left: 10%;
-  margin-right: 10%;
-  background: #662964;
-  color: #fff;
-  border-color: #d9d9d9;
-}
-
-.nav_btn:active {
-  background: #e21bda;
-}
-
-.nav_btn:hover {
-  background: #8c2888;
-}
-
-.logoPic {
-  max-width: 170px;
-  max-height: 140px;
 }
 
 .right-corner {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
+  justify-content: center;
+  width: 30vw;
+}
+
+.logoPic {
+  width: 50%;
+  height: 100%;
+}
+
+.logoImg {
+}
+
+.NavContainer {
+}
+
+.nav-items {
+}
+
+.nav_btn {
+}
+
+.nav_btn:active {
+}
+
+.nav_btn:hover {
 }
 
 .search-userPic {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-end;
-  width: 300px;
-  height: 100px;
 }
 
 .login {
-  margin-right: 20px;
 }
 
 .no-link,
@@ -100,13 +78,4 @@
   border-bottom: 1px solid #000000;
   /* color: #bf44e4;
   border-bottom: 1px solid #bf44e4; */
-}
-
-.logo-container {
-  width: 21%;
-}
-
-.logo-name {
-  max-width: 50%;
-  max-height: auto;
 }

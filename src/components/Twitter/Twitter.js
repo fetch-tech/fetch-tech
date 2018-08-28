@@ -29,7 +29,7 @@ class Twitter extends Component {
     const tweetsDisplay = tweets.map((tweet, i) => {
       return (
         <div key={i}>
-          <div>
+          <div style={{ width: 250 }}>
             <TwitterTweetEmbed tweetId={tweet.id_str} />
             {loader && (
               <Card className="tweets-loader">

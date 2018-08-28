@@ -11,6 +11,7 @@ import Claps from "./components/User/Profile/Claps";
 import Followers from "./components/User/Profile/Followers";
 import Following from "./components/User/Profile/Following";
 import Login from "./Login";
+import NotFound from "./NotFound";
 import store from "./redux/store";
 
 const isAuthenticated = () => {
@@ -53,5 +54,6 @@ export default (
     <PrivateRoute path="/user/bookmarks/:userId" exact component={Bookmarks} />
     <PrivateRoute path="/user/following/:userId" exact component={Following} />
     <PrivateRoute path="/user/followers/:userId" exact component={Followers} />
+    <Route component={NotFound} />
   </Switch>
 );
