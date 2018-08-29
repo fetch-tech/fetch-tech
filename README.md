@@ -9,11 +9,13 @@ Below, you'll find a comprehensive guide on how to navigate our website.
 ## Landing/Login Page
 
 When you visit the website, you'll be greeted with a login button.
+
 **IMPORTANT:** You will NOT be able to navigate away from this landing page and throughout the rest of the website without logging in.
 
 ## Logging In
 
 Upon clicking the login button, you'll be redirected to an Auth0 login page, where you can either login using a Google/GitHub account, or sign up. We recommend signing in with either your Google or Github account since the feature that handles signing up with an email and creating a password does not currently work.
+
 **IMPORTANT:** If you sign in with your Google/GitHub account, it is important to know that we **DO NOT** get **ANY** of your account information except for the name associated with your Google/GitHub account. This means we **DO NOT** get any **PASSWORDS** or any other private information. We only use the name associated with the account in order to create a unique user experience for the logged in user.
 
 ## Unique Features
